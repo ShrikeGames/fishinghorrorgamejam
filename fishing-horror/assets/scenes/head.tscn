@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3k3ty46hp51l"]
+
+[ext_resource type="Script" uid="uid://bnjjbu5ac8mnm" path="res://assets/scripts/head.gd" id="1_1y85x"]
+[ext_resource type="ArrayMesh" uid="uid://c8fx58d44fbl5" path="res://assets/models/noir/NoiR_LowPoly_Hair.obj" id="1_513b0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k2t1h"]
+
+[node name="Head" type="Node3D" node_paths=PackedStringArray("hair", "camera")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+script = ExtResource("1_1y85x")
+hair = NodePath("NoiRLowPolyHair")
+camera = NodePath("Camera3D")
+
+[node name="NoiRLowPolyHair" type="SoftBody3D" parent="."]
+transform = Transform3D(-1.0299999, -3.4985668e-08, -1.5153952e-07, -7.1054274e-15, 1.0036011, -0.23169956, 1.5552568e-07, -0.23169956, -1.0036011, -0.004707481, -1.3548177, 0.3737614)
+mesh = ExtResource("1_513b0")
+surface_material_override/0 = SubResource("StandardMaterial3D_k2t1h")
+collision_layer = 16
+collision_mask = 16
+pinned_points = [0, 44, 59, 7, 74, 296, 260, 531, 460, 21, 93, 367]
+attachments/0/point_index = 0
+attachments/0/spatial_attachment_path = NodePath("")
+attachments/0/offset = Vector3(0, 0, 0)
+attachments/1/point_index = 44
+attachments/1/spatial_attachment_path = NodePath("")
+attachments/1/offset = Vector3(0, 0, 0)
+attachments/2/point_index = 59
+attachments/2/spatial_attachment_path = NodePath("")
+attachments/2/offset = Vector3(0, 0, 0)
+attachments/3/point_index = 7
+attachments/3/spatial_attachment_path = NodePath("")
+attachments/3/offset = Vector3(0, 0, 0)
+attachments/4/point_index = 74
+attachments/4/spatial_attachment_path = NodePath("")
+attachments/4/offset = Vector3(0, 0, 0)
+attachments/5/point_index = 296
+attachments/5/spatial_attachment_path = NodePath("")
+attachments/5/offset = Vector3(0, 0, 0)
+attachments/6/point_index = 260
+attachments/6/spatial_attachment_path = NodePath("")
+attachments/6/offset = Vector3(0, 0, 0)
+attachments/7/point_index = 531
+attachments/7/spatial_attachment_path = NodePath("")
+attachments/7/offset = Vector3(0, 0, 0)
+attachments/8/point_index = 460
+attachments/8/spatial_attachment_path = NodePath("")
+attachments/8/offset = Vector3(0, 0, 0)
+attachments/9/point_index = 21
+attachments/9/spatial_attachment_path = NodePath("")
+attachments/9/offset = Vector3(0, 0, 0)
+attachments/10/point_index = 93
+attachments/10/spatial_attachment_path = NodePath("")
+attachments/10/offset = Vector3(0, 0, 0)
+attachments/11/point_index = 367
+attachments/11/spatial_attachment_path = NodePath("")
+attachments/11/offset = Vector3(0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.8270806, 0.5620834, 0, -0.5620834, 0.8270806, 4.1216954e-09, -0.011168264, -0.0471467)
+current = true
+near = 0.001

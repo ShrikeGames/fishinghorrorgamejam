@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://ccj5wxgu84l73"]
+
+[ext_resource type="Script" uid="uid://pk5p8slhm4iq" path="res://assets/scripts/tablet_canvas.gd" id="1_mm14m"]
+[ext_resource type="Texture2D" uid="uid://d4fvieluejrkx" path="res://assets/art/ui/ui_bar_stamina_amount.png" id="2_pnf78"]
+[ext_resource type="Texture2D" uid="uid://bku0ev1trmgt5" path="res://assets/art/ui/ui_bar_stamina.png" id="3_ftca7"]
+[ext_resource type="Texture2D" uid="uid://dad0limonhuj7" path="res://assets/art/ui/ui_bar_hp_amount.png" id="4_kyoxx"]
+[ext_resource type="Texture2D" uid="uid://dio8312we7u7b" path="res://assets/art/ui/ui_bar_hp.png" id="5_2byn7"]
+[ext_resource type="Texture2D" uid="uid://3ja7u3wh02v5" path="res://assets/art/ui/ui_cat_coins.png" id="6_bif1e"]
+[ext_resource type="Texture2D" uid="uid://cwajyfo7h3ipr" path="res://assets/art/ui/ui_dog_dollars.png" id="7_vijj3"]
+
+[sub_resource type="Theme" id="Theme_bu4mw"]
+
+[node name="TabletCanvas" type="CanvasLayer" node_paths=PackedStringArray("cat_coins_count", "dog_dollars_count", "stamina", "hunger")]
+script = ExtResource("1_mm14m")
+cat_coins_count = NodePath("UiCatCoins/Count")
+dog_dollars_count = NodePath("UiDogDollars/Count")
+stamina = NodePath("UiBarStaminaAmount")
+hunger = NodePath("UiBarHpAmount")
+
+[node name="UiBarStaminaAmount" type="Sprite2D" parent="."]
+position = Vector2(49, 41)
+texture = ExtResource("2_pnf78")
+offset = Vector2(171, -1)
+
+[node name="UiBarStamina" type="Sprite2D" parent="."]
+position = Vector2(220, 40)
+texture = ExtResource("3_ftca7")
+
+[node name="UiBarHpAmount" type="Sprite2D" parent="."]
+position = Vector2(48, 120)
+texture = ExtResource("4_kyoxx")
+offset = Vector2(172, 0)
+
+[node name="UiBarHp" type="Sprite2D" parent="."]
+position = Vector2(220, 120)
+texture = ExtResource("5_2byn7")
+
+[node name="UiCatCoins" type="Sprite2D" parent="."]
+position = Vector2(40, 200)
+texture = ExtResource("6_bif1e")
+
+[node name="Count" type="RichTextLabel" parent="UiCatCoins"]
+offset_left = 49.0
+offset_top = -35.0
+offset_right = 396.0
+offset_bottom = 38.0
+theme = SubResource("Theme_bu4mw")
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/normal_font_size = 51
+bbcode_enabled = true
+text = "9999"
+
+[node name="UiDogDollars" type="Sprite2D" parent="."]
+position = Vector2(40, 280)
+texture = ExtResource("7_vijj3")
+
+[node name="Count" type="RichTextLabel" parent="UiDogDollars"]
+offset_left = 49.0
+offset_top = -35.0
+offset_right = 396.0
+offset_bottom = 38.0
+theme = SubResource("Theme_bu4mw")
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/normal_font_size = 51
+bbcode_enabled = true
+text = "9999"

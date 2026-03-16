@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://w6ulejlbg88y"]
+
+[ext_resource type="PackedScene" uid="uid://bxfsm8fdsjudx" path="res://assets/scenes/texture_button.tscn" id="1_uu6ob"]
+
+[node name="MainMenu" type="Node2D"]
+
+[node name="TextureButton" parent="." instance=ExtResource("1_uu6ob")]
+offset_right = 800.0
+offset_bottom = 250.0
+text = "Start"
