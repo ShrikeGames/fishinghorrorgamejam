@@ -1,61 +1,89 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3k3ty46hp51l"]
+[gd_scene load_steps=6 format=3 uid="uid://d3k3ty46hp51l"]
 
 [ext_resource type="Script" uid="uid://bnjjbu5ac8mnm" path="res://assets/scripts/head.gd" id="1_1y85x"]
 [ext_resource type="ArrayMesh" uid="uid://c8fx58d44fbl5" path="res://assets/models/noir/NoiR_LowPoly_Hair.obj" id="1_513b0"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k2t1h"]
+[sub_resource type="Gradient" id="Gradient_1y85x"]
 
-[node name="Head" type="Node3D" node_paths=PackedStringArray("hair", "camera")]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kwfu1"]
+gradient = SubResource("Gradient_1y85x")
+fill_from = Vector2(0.5769231, 0.5726496)
+fill_to = Vector2(0.52136755, 0.8162393)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k2t1h"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+blend_mode = 1
+cull_mode = 2
+albedo_texture = SubResource("GradientTexture2D_kwfu1")
+
+[node name="Head" type="Node3D" node_paths=PackedStringArray("hair", "camera", "camera_3p")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 script = ExtResource("1_1y85x")
 hair = NodePath("NoiRLowPolyHair")
-camera = NodePath("Camera3D")
+camera = NodePath("First Person Camera")
+camera_3p = NodePath("3rd Person Camera")
 
 [node name="NoiRLowPolyHair" type="SoftBody3D" parent="."]
 transform = Transform3D(-1.0299999, -3.4985668e-08, -1.5153952e-07, -7.1054274e-15, 1.0036011, -0.23169956, 1.5552568e-07, -0.23169956, -1.0036011, -0.004707481, -1.3548177, 0.3737614)
+visible = false
 mesh = ExtResource("1_513b0")
 surface_material_override/0 = SubResource("StandardMaterial3D_k2t1h")
 collision_layer = 16
 collision_mask = 16
-pinned_points = [0, 44, 59, 7, 74, 296, 260, 531, 460, 21, 93, 367]
+pinned_points = [0, 44, 59, 7, 74, 296, 260, 531, 460, 21, 93, 367, 510, 563, 277]
 attachments/0/point_index = 0
-attachments/0/spatial_attachment_path = NodePath("")
-attachments/0/offset = Vector3(0, 0, 0)
+attachments/0/spatial_attachment_path = NodePath("..")
+attachments/0/offset = Vector3(0.09270987, -0.0814563, 0.063026726)
 attachments/1/point_index = 44
-attachments/1/spatial_attachment_path = NodePath("")
-attachments/1/offset = Vector3(0, 0, 0)
+attachments/1/spatial_attachment_path = NodePath("..")
+attachments/1/offset = Vector3(-0.06523753, 0.207214, 0.030170888)
 attachments/2/point_index = 59
-attachments/2/spatial_attachment_path = NodePath("")
-attachments/2/offset = Vector3(0, 0, 0)
+attachments/2/spatial_attachment_path = NodePath("..")
+attachments/2/offset = Vector3(-0.020929001, 0.2031796, 0.012696207)
 attachments/3/point_index = 7
-attachments/3/spatial_attachment_path = NodePath("")
-attachments/3/offset = Vector3(0, 0, 0)
+attachments/3/spatial_attachment_path = NodePath("..")
+attachments/3/offset = Vector3(-0.06498826, 0.22645772, 0.1135197)
 attachments/4/point_index = 74
-attachments/4/spatial_attachment_path = NodePath("")
-attachments/4/offset = Vector3(0, 0, 0)
+attachments/4/spatial_attachment_path = NodePath("..")
+attachments/4/offset = Vector3(0.013629555, 0.20713079, 0.029810607)
 attachments/5/point_index = 296
-attachments/5/spatial_attachment_path = NodePath("")
-attachments/5/offset = Vector3(0, 0, 0)
+attachments/5/spatial_attachment_path = NodePath("..")
+attachments/5/offset = Vector3(0.08121096, 0.08520782, 0.18723807)
 attachments/6/point_index = 260
-attachments/6/spatial_attachment_path = NodePath("")
-attachments/6/offset = Vector3(0, 0, 0)
+attachments/6/spatial_attachment_path = NodePath("..")
+attachments/6/offset = Vector3(-0.13201754, 0.08787441, 0.21518935)
 attachments/7/point_index = 531
-attachments/7/spatial_attachment_path = NodePath("")
-attachments/7/offset = Vector3(0, 0, 0)
+attachments/7/spatial_attachment_path = NodePath("..")
+attachments/7/offset = Vector3(-0.16517223, 0.043897152, 0.048695683)
 attachments/8/point_index = 460
-attachments/8/spatial_attachment_path = NodePath("")
-attachments/8/offset = Vector3(0, 0, 0)
+attachments/8/spatial_attachment_path = NodePath("..")
+attachments/8/offset = Vector3(0.111752495, 0.03956902, 0.047480255)
 attachments/9/point_index = 21
-attachments/9/spatial_attachment_path = NodePath("")
-attachments/9/offset = Vector3(0, 0, 0)
+attachments/9/spatial_attachment_path = NodePath("..")
+attachments/9/offset = Vector3(0.14129288, -0.023811579, 0.10661751)
 attachments/10/point_index = 93
-attachments/10/spatial_attachment_path = NodePath("")
-attachments/10/offset = Vector3(0, 0, 0)
+attachments/10/spatial_attachment_path = NodePath("..")
+attachments/10/offset = Vector3(-0.090036824, -0.08333576, 0.07553586)
 attachments/11/point_index = 367
-attachments/11/spatial_attachment_path = NodePath("")
-attachments/11/offset = Vector3(0, 0, 0)
+attachments/11/spatial_attachment_path = NodePath("..")
+attachments/11/offset = Vector3(-0.1618144, -0.062084794, 0.24539572)
+attachments/12/point_index = 510
+attachments/12/spatial_attachment_path = NodePath("..")
+attachments/12/offset = Vector3(-0.18321778, -0.26128566, 0.34739178)
+attachments/13/point_index = 563
+attachments/13/spatial_attachment_path = NodePath("..")
+attachments/13/offset = Vector3(0.17050064, -0.2912618, 0.30945557)
+attachments/14/point_index = 277
+attachments/14/spatial_attachment_path = NodePath("..")
+attachments/14/offset = Vector3(-0.09477787, -0.49121475, 0.42197216)
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.8270806, 0.5620834, 0, -0.5620834, 0.8270806, 4.1216954e-09, -0.011168264, -0.0471467)
+[node name="First Person Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.8270806, 0.5620834, 0, -0.5620834, 0.8270806, -2.9027598e-09, -0.021203157, 0.033203702)
+near = 0.001
+
+[node name="3rd Person Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.8270806, 0.5620834, 0, -0.5620834, 0.8270806, -0.4074818, 0.10580025, 0.953979)
 current = true
 near = 0.001

@@ -1,20 +1,26 @@
 extends Node
 
 class_name GlobalState
+signal caught_fish(fish:Fish)
 
 var game_state:Dictionary = {
 	"you": {
 		"run": 0,
 		"corruption": 0,
+		"max_corruption": 10,
 		"hunger": 10,
 		"max_hunger": 10,
 		"current_fish": 0,
 		"stamina": 10,
 		"max_stamina": 10,
-		"max_fish": 3,
+		"max_fish": 4,
 		"current_time": 0,
 		"mouse_sensitivity": 0.1,
-		"fov": 75.0
+		"fov": 75.0,
+		"fishing_lower_speed": 0.5,
+		"fishing_raise_speed": 0.3,
+		"hooked_fish": 0,
+		"max_hooked_fish": 1
 	},
 	"cat": {
 		"corruption": 0,

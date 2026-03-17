@@ -1,0 +1,10 @@
+[gd_resource type="Environment" format=3 uid="uid://32fdhwvi1k6h"]
+
+[resource]
+background_mode = 1
+background_color = Color(0, 0, 0.24705882, 1)
+fog_enabled = true
+fog_light_color = Color(0.061285496, 0.04200112, 0.38025367, 1)
+fog_light_energy = 1.57
+fog_density = 0.3334
+fog_height = 0.1

@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://d2slf4ex2iyy5"]
+[gd_scene load_steps=10 format=3 uid="uid://d2slf4ex2iyy5"]
 
 [ext_resource type="Texture2D" uid="uid://dsl8d76keqfod" path="res://assets/art/ui/tablet screen.png" id="1_h78au"]
 [ext_resource type="Script" uid="uid://dihhq2aw4jyd3" path="res://assets/scripts/tablet.gd" id="2_7clp0"]
 [ext_resource type="PackedScene" uid="uid://ccj5wxgu84l73" path="res://assets/scenes/tablet_canvas.tscn" id="2_rxhjt"]
+[ext_resource type="Environment" uid="uid://32fdhwvi1k6h" path="res://assets/env/underwater_env.tres" id="4_7clp0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7clp0"]
 albedo_texture = ExtResource("1_h78au")
@@ -19,13 +20,14 @@ viewport_path = NodePath("SubViewport")
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_rxhjt")
 
-[node name="Tablet" type="MeshInstance3D" node_paths=PackedStringArray("viewport", "canvas")]
+[node name="Tablet" type="MeshInstance3D" node_paths=PackedStringArray("viewport", "canvas", "hook_camera")]
 transform = Transform3D(0.19500622, 0.009749891, -0.06389334, 0, 0.008164612, 0.18226676, 0.16547096, -0.01149017, 0.075297795, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_7clp0")
 mesh = SubResource("BoxMesh_dis88")
 script = ExtResource("2_7clp0")
 viewport = NodePath("SubViewport")
 canvas = NodePath("SubViewport/TabletCanvas")
+hook_camera = NodePath("SubViewport/HookCamera")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.48, 0, -4.196293e-08, 0, 0.48, 0, 4.196293e-08, 0, -0.48, 0, 0.515, 0)
@@ -33,6 +35,10 @@ mesh = SubResource("PlaneMesh_h78au")
 surface_material_override/0 = SubResource("StandardMaterial3D_rxhjt")
 
 [node name="SubViewport" type="SubViewport" parent="."]
-transparent_bg = true
 
 [node name="TabletCanvas" parent="SubViewport" instance=ExtResource("2_rxhjt")]
+
+[node name="HookCamera" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.014241428, 0.9998986, 0, -0.9998986, 0.014241428, 0, 1.185053, 0.3582648)
+visible = false
+environment = ExtResource("4_7clp0")

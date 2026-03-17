@@ -1,10 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://w6ulejlbg88y"]
+[gd_scene load_steps=3 format=3 uid="uid://w6ulejlbg88y"]
 
-[ext_resource type="PackedScene" uid="uid://bxfsm8fdsjudx" path="res://assets/scenes/texture_button.tscn" id="1_uu6ob"]
+[ext_resource type="Texture2D" uid="uid://bb76y84iv8jf1" path="res://assets/art/ui/title_logo.png" id="1_uu6ob"]
+[ext_resource type="PackedScene" uid="uid://bxfsm8fdsjudx" path="res://assets/scenes/texture_button.tscn" id="2_v1ppo"]
 
-[node name="MainMenu" type="Node2D"]
+[node name="MainMenu" type="CanvasLayer"]
 
-[node name="TextureButton" parent="." instance=ExtResource("1_uu6ob")]
-offset_right = 800.0
-offset_bottom = 250.0
+[node name="TitleLogo" type="Sprite2D" parent="."]
+position = Vector2(259, 174)
+texture = ExtResource("1_uu6ob")
+
+[node name="TextureButton" parent="." node_paths=PackedStringArray("menu") instance=ExtResource("2_v1ppo")]
+offset_left = 131.0
+offset_top = 306.0
+offset_right = 931.0
+offset_bottom = 556.0
+scale = Vector2(0.27999997, 0.27999997)
 text = "Start"
+start_button = true
+menu = NodePath("..")
