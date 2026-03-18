@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvtyeccgvqblh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fqk1v"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5jdip"]
+material = SubResource("StandardMaterial3D_fqk1v")
+size = Vector2(0.9, 0.9)
+
+[node name="ShopScreen" type="MeshInstance3D"]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_5jdip")

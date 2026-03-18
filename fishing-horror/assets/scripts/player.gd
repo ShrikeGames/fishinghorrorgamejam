@@ -6,13 +6,21 @@ var camera:Camera3D
 @export var animation_player:AnimationPlayer
 @export var animation_tree:AnimationTree
 var hair:SoftBody3D
-@export var hair_3p:SoftBody3D
+@export var hair_3p:MeshInstance3D
+
 @export var fishing_rod:FishingRod
 @export var tablet:Tablet
 @export var fish_spot:Node3D
 @export var fish_spot_2:Node3D
 @export var menu:CanvasLayer
+@export var left_travel_point:Node3D
+@export var center_travel_point:Node3D
+@export var right_travel_point:Node3D
+var target_position:Vector3
+var current_location:String = "center"
+
 var in_menu:bool = true
+var in_dialogue:bool = false
 
 var fish_on_boat_position:Vector3
 
@@ -28,21 +36,27 @@ var fishing_lower:bool = false
 var fishing_raise:bool = false
 var fishing_lower_speed:float
 var fishing_raise_speed:float
-
+var boat_speed:float
 var forward:Vector3
 var fish_on_hook:Fish
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
+	Global.load_settings()
 	self.camera = head.camera_3p
 	self.head.rotation_degrees.y = 150
 	self.camera.rotation_degrees.x = -13
+	self.in_dialogue = false
 	hair = head.hair
 	initial_fov = Global.game_state["you"]["fov"]
+	boat_speed  = Global.game_state["you"]["boat_speed"]
 	mouse_sensitivity = Global.game_state["you"]["mouse_sensitivity"]
 	fishing_lower_speed = Global.game_state["you"]["fishing_lower_speed"]
 	fishing_raise_speed = Global.game_state["you"]["fishing_raise_speed"]
+	self.global_position = Vector3(Global.game_state["you"]["current_position"][0], Global.game_state["you"]["current_position"][1], Global.game_state["you"]["current_position"][2])
+	self.current_location = Global.game_state["you"]["current_location"]
+	self.target_position = Vector3(Global.game_state["you"]["target_position"][0], Global.game_state["you"]["target_position"][1], Global.game_state["you"]["target_position"][2])
+	
 	is_zooming = false
 	zoom_progress = 0.0
 	fishing_lower = false
@@ -60,6 +74,7 @@ func caught_fish(fish:Fish):
 func _process(delta: float) -> void:
 	if in_menu:
 		return
+	
 	if is_zooming:
 		zoom_progress = min(zoom_progress + (delta * zoom_speed_scale), 1)
 	
@@ -71,9 +86,7 @@ func _process(delta: float) -> void:
 		self.camera.rotation_degrees.x = -13
 		update_camera_state()
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	
-	if Input.is_action_just_pressed("toggle_camera"):
-		update_camera_state()
+		Global.save_settings()
 	
 	if Input.is_action_just_pressed("zoom_in"):
 		is_zooming = true
@@ -95,39 +108,74 @@ func _process(delta: float) -> void:
 			elif zoom_direction < 0:
 				camera.fov = lerpf(camera.fov, initial_fov, zoom_progress)
 	
-	if fishing_lower:
-		fishing_rod.hook.global_position.y -= fishing_lower_speed * delta
-		fishing_rod.spinner.rotation.x -= fishing_lower_speed * 10* delta
-	if fishing_raise:
-		if fish_on_hook:
-			Global.game_state["you"]["stamina"] -= fish_on_hook.size_multiplier * delta
-		
-		fishing_rod.hook.global_position.y += fishing_raise_speed * delta
-		if fishing_rod.hook.global_position.y <= 1.14:
-			fishing_rod.spinner.rotation.x += fishing_raise_speed * 10* delta
-		else:
-			if fish_on_hook and Global.game_state["you"]["current_fish"] < Global.game_state["you"]["max_fish"]:
-				# move the fish to the boat
-				fish_on_hook.caught = false
-				fish_on_hook.on_boat = true
-				if Global.game_state["you"]["current_fish"] % 2 == 0:
-					fish_on_hook.global_position = fish_spot.global_position
-				else:
-					fish_on_hook.global_position = fish_spot_2.global_position
-				fish_on_hook.rotation_degrees = Vector3(0,randf_range(-15, 15),0)
-				Global.game_state["you"]["current_fish"] += 1
-				# reduce the number of fish on hook count
-				Global.game_state["you"]["hooked_fish"] -= 1
-				fish_on_hook = null
-		
+	if in_dialogue:
+		return
+	
+	if Input.is_action_just_pressed("toggle_camera"):
+		update_camera_state()
+	
+	if global_position.x != left_travel_point.global_position.x and global_position.x != right_travel_point.global_position.x:
+		fishing_rod.visible = true
+		if fishing_lower:
+			fishing_rod.hook.global_position.y -= fishing_lower_speed * delta
+			fishing_rod.spinner.rotation.x -= fishing_lower_speed * 10* delta
+		if fishing_raise:
+			if fish_on_hook:
+				Global.game_state["you"]["stamina"] -= fish_on_hook.size_multiplier * delta
+			
+			fishing_rod.hook.global_position.y += fishing_raise_speed * delta
+			if fishing_rod.hook.global_position.y <= 1.14:
+				fishing_rod.spinner.rotation.x += fishing_raise_speed * 10* delta
+			else:
+				if fish_on_hook and Global.game_state["you"]["current_fish"] < Global.game_state["you"]["max_fish"]:
+					# move the fish to the boat
+					fish_on_hook.caught = false
+					fish_on_hook.on_boat = true
+					if Global.game_state["you"]["current_fish"] % 2 == 0:
+						fish_on_hook.global_position = fish_spot.global_position
+					else:
+						fish_on_hook.global_position = fish_spot_2.global_position
+					fish_on_hook.rotation_degrees = Vector3(0,randf_range(-15, 15),0)
+					Global.game_state["you"]["current_fish"] += 1
+					# reduce the number of fish on hook count
+					Global.game_state["you"]["hooked_fish"] -= 1
+					fish_on_hook = null
+	else:
+		fishing_rod.visible = false
+	
+	if global_position.x > target_position.x:
+		global_position.x -= boat_speed * delta
+		Global.game_state["you"]["hunger"] -= Global.game_state["you"]["travel_hunger_rate"] * delta
+	elif global_position.x < target_position.x:
+		global_position.x += boat_speed * delta
+		Global.game_state["you"]["hunger"] -= Global.game_state["you"]["travel_hunger_rate"] * delta
+	
+	if abs(global_position.x - target_position.x) <= boat_speed * delta:
+		global_position = target_position
+	if global_position.x == left_travel_point.global_position.x:
+		in_dialogue = true
+	elif global_position.x == right_travel_point.global_position.x:
+		in_dialogue = true
+	
+	global_position.x = clampf(global_position.x, right_travel_point.global_position.x,  left_travel_point.global_position.x)
 	fishing_rod.hook.global_position.y = clampf(fishing_rod.hook.global_position.y, -100000, 1.14)
-	var stamina_regen:float = 0.1
+	var stamina_regen:float = Global.game_state["you"]["stamina_regen_rate"]
 	Global.game_state["you"]["stamina"] += stamina_regen * delta
 	
 	Global.game_state["you"]["stamina"] = clampf(Global.game_state["you"]["stamina"], 0, Global.game_state["you"]["max_stamina"])
 	Global.game_state["you"]["hunger"] = clampf(Global.game_state["you"]["hunger"], 0, Global.game_state["you"]["max_hunger"])
 	Global.game_state["you"]["corruption"] = clampf(Global.game_state["you"]["corruption"], 0, Global.game_state["you"]["max_corruption"])
-
+	
+	Global.game_state["you"]["current_location"] = self.current_location
+	
+	Global.game_state["you"]["target_position"][0] = self.target_position.x
+	Global.game_state["you"]["target_position"][1] = self.target_position.y
+	Global.game_state["you"]["target_position"][2] = self.target_position.z
+	
+	Global.game_state["you"]["current_position"][0] = self.global_position.x
+	Global.game_state["you"]["current_position"][1] = self.global_position.y
+	Global.game_state["you"]["current_position"][2] = self.global_position.z
+	
 
 func _unhandled_input(event : InputEvent):
 	if in_menu:
@@ -147,13 +195,30 @@ func _unhandled_input(event : InputEvent):
 		var result = space_state.intersect_ray(query)
 		var collider:Area3D = result.get("collider", null)
 		if collider:
+			print(collider.name)
 			if collider.name == "FishingArea":
+				target_position = self.global_position
+				current_location = "center"
 				if event.button_index == 1:
 					fishing_lower = event.pressed
 				elif event.button_index == 2:
 					fishing_raise = event.pressed
 			elif collider.name == "TabletArea" and event.button_index == 1 and event.pressed:
 				tablet.toggle_screen()
+			elif collider.name == "LeftTravelArea" and event.button_index == 1 and event.pressed:
+				if current_location == "center":
+					target_position = self.left_travel_point.global_position
+					current_location = "left"
+				elif current_location == "right":
+					target_position = self.center_travel_point.global_position
+					current_location = "center"
+			elif collider.name == "RightTravelArea" and event.button_index == 1 and event.pressed:
+				if current_location == "center":
+					target_position = self.right_travel_point.global_position
+					current_location = "right"
+				elif current_location == "left":
+					target_position = self.center_travel_point.global_position
+					current_location = "center"
 			
 		if not event.pressed:
 			fishing_lower = false
@@ -163,10 +228,13 @@ func _unhandled_input(event : InputEvent):
 func update_camera(mouseInput:Vector2):
 	if in_menu:
 		return
+	
+	# how far right
 	var min_rotation_y:float = 2.3
-	var max_rotation_y:float = 3.8
+	# how far left
+	var max_rotation_y:float = 4.0
 	var min_rotation_x:float = -PI/4
-	var max_rotation_x:float = 0.0
+	var max_rotation_x:float = PI/6
 	if camera_toggle:
 		min_rotation_y=0
 		max_rotation_y=2*PI
@@ -188,7 +256,7 @@ func update_camera_state():
 		hair_3p.visible = true
 		self.camera = head.camera_3p
 	else:
-		hair.visible = true
+		hair.visible = false#make true to enable first person hair
 		hair_3p.visible = false
 		self.camera = head.camera
 	self.camera.make_current()

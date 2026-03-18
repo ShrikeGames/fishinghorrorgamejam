@@ -19,6 +19,14 @@ The rules and FAQ about the game jam itself are here: https://itch.io/jam/fishin
 - Solo or team entries are welcome.
 - Reused code and assets are fine, but games must be created during the jam. 
 
+# The voting Categories are:
+
+- Fishing Enjoyment
+- Fishing Beastiary
+- Horror Elements
+- Lore
+- Visuals and Audio
+
 # Optional Theme
 
 - The (completely optional) secret theme for the fishing horror jam is...
@@ -50,6 +58,9 @@ The rules and FAQ about the game jam itself are here: https://itch.io/jam/fishin
 
   - Generally 2 options per
   - (nice to have) voice acting for the npcs
+
+Based on conversation_state find the indexes in conversations
+
 
 # Cat Shop
 

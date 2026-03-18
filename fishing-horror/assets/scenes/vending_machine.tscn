@@ -1,0 +1,32 @@
+[gd_scene load_steps=9 format=3 uid="uid://b807hmya3f770"]
+
+[ext_resource type="PackedScene" uid="uid://crnttn5yc5sct" path="res://assets/scenes/npc_screen.tscn" id="1_7wik4"]
+[ext_resource type="Script" uid="uid://dbx541raeku1h" path="res://assets/scripts/vending_machine.gd" id="1_cbxty"]
+[ext_resource type="PackedScene" uid="uid://bvtyeccgvqblh" path="res://assets/scenes/shop_screen.tscn" id="2_cbxty"]
+[ext_resource type="Script" uid="uid://cwmib26rhdu3x" path="res://assets/scripts/npc_screen.gd" id="3_ptxbc"]
+[ext_resource type="Script" uid="uid://bb8fb2qyucts" path="res://assets/scripts/shop_screen.gd" id="5_1l4ln"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_fc420"]
+size = Vector3(1, 2, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ptxbc"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1l4ln"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_ptxbc")
+
+[node name="VendingMachine" type="MeshInstance3D" node_paths=PackedStringArray("npc_screen", "shop_screen")]
+mesh = SubResource("BoxMesh_fc420")
+script = ExtResource("1_cbxty")
+npc_screen = NodePath("NPCScreen")
+shop_screen = NodePath("ShopScreen")
+
+[node name="NPCScreen" parent="." instance=ExtResource("1_7wik4")]
+transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, -0.50250244, 0.50352633, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_1l4ln")
+script = ExtResource("3_ptxbc")
+
+[node name="ShopScreen" parent="." instance=ExtResource("2_cbxty")]
+transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, -0.50250244, -0.43892527, 0)
+script = ExtResource("5_1l4ln")

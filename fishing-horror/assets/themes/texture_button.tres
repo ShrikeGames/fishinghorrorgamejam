@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://c6j256munykbu"]
+
+[ext_resource type="FontFile" uid="uid://n58b5ip1ocgr" path="res://assets/fonts/NotoSansCJK-Bold.ttc" id="1_nej6d"]
+[ext_resource type="FontFile" uid="uid://b1cufcr4bwbdp" path="res://assets/fonts/NotoSansCJK-Regular.ttc" id="2_eucpf"]
+
+[resource]
+default_font = ExtResource("2_eucpf")
+RichTextLabel/fonts/bold_font = ExtResource("1_nej6d")
+RichTextLabel/fonts/bold_italics_font = ExtResource("1_nej6d")
+RichTextLabel/fonts/italics_font = ExtResource("2_eucpf")
+RichTextLabel/fonts/normal_font = ExtResource("2_eucpf")

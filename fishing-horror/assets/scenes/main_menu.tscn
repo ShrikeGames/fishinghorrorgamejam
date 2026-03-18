@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://w6ulejlbg88y"]
+[gd_scene load_steps=10 format=3 uid="uid://w6ulejlbg88y"]
 
 [ext_resource type="Texture2D" uid="uid://bb76y84iv8jf1" path="res://assets/art/ui/title_logo.png" id="1_uu6ob"]
 [ext_resource type="PackedScene" uid="uid://bxfsm8fdsjudx" path="res://assets/scenes/texture_button.tscn" id="2_v1ppo"]
+[ext_resource type="Texture2D" uid="uid://66frjnaa8vty" path="res://assets/art/ui/ui_settings.png" id="3_f2xsc"]
+[ext_resource type="Texture2D" uid="uid://cw2wgxw84njpo" path="res://assets/art/ui/ui_settings_pressed.png" id="4_v71do"]
+[ext_resource type="Texture2D" uid="uid://ccjhgngg3niuh" path="res://assets/art/ui/ui_settings_hover.png" id="5_xmmar"]
+[ext_resource type="Theme" uid="uid://c6j256munykbu" path="res://assets/themes/texture_button.tres" id="6_v71do"]
+[ext_resource type="Script" uid="uid://cx7467qjbpvwd" path="res://assets/scripts/settings_button.gd" id="6_xmmar"]
+[ext_resource type="Script" uid="uid://c8v4u4kqtlymm" path="res://assets/scripts/settings_container.gd" id="7_66en2"]
+
+[sub_resource type="Theme" id="Theme_xmmar"]
 
 [node name="MainMenu" type="CanvasLayer"]
 
@@ -9,12 +17,102 @@
 position = Vector2(259, 174)
 texture = ExtResource("1_uu6ob")
 
-[node name="TextureButton" parent="." node_paths=PackedStringArray("menu") instance=ExtResource("2_v1ppo")]
+[node name="StartButton" parent="." node_paths=PackedStringArray("menu") instance=ExtResource("2_v1ppo")]
 offset_left = 131.0
 offset_top = 306.0
 offset_right = 931.0
 offset_bottom = 556.0
 scale = Vector2(0.27999997, 0.27999997)
+theme = SubResource("Theme_xmmar")
 text = "Start"
 start_button = true
 menu = NodePath("..")
+
+[node name="SettingsButton" type="TextureButton" parent="." node_paths=PackedStringArray("settings_container")]
+offset_left = 24.0
+offset_top = 617.0
+offset_right = 108.0
+offset_bottom = 697.0
+texture_normal = ExtResource("3_f2xsc")
+texture_pressed = ExtResource("4_v71do")
+texture_hover = ExtResource("5_xmmar")
+script = ExtResource("6_xmmar")
+settings_container = NodePath("../SettingsContainer")
+
+[node name="SettingsContainer" type="Node2D" parent="." node_paths=PackedStringArray("master_volume_slider", "music_volume_slider", "sfx_volume_slider", "voices_volume_slider")]
+visible = false
+position = Vector2(119, 607)
+script = ExtResource("7_66en2")
+master_volume_slider = NodePath("VolumeSettingsContainer/MasterVolumeSlider")
+music_volume_slider = NodePath("VolumeSettingsContainer/MusicVolumeSlider")
+sfx_volume_slider = NodePath("VolumeSettingsContainer/SFXVolumeSlider")
+voices_volume_slider = NodePath("VolumeSettingsContainer/VoicesVolumeSlider")
+
+[node name="VolumeSettingsContainer" type="VBoxContainer" parent="SettingsContainer"]
+custom_minimum_size = Vector2(500, 200)
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -100.0
+offset_right = 500.0
+offset_bottom = 100.0
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MasterVolumeText" type="RichTextLabel" parent="SettingsContainer/VolumeSettingsContainer"]
+layout_mode = 2
+theme = ExtResource("6_v71do")
+bbcode_enabled = true
+text = "Master Volume"
+fit_content = true
+scroll_active = false
+
+[node name="MasterVolumeSlider" type="HSlider" parent="SettingsContainer/VolumeSettingsContainer"]
+layout_mode = 2
+value = 80.0
+scrollable = false
+
+[node name="MusicVolumeText" type="RichTextLabel" parent="SettingsContainer/VolumeSettingsContainer"]
+layout_mode = 2
+theme = ExtResource("6_v71do")
+bbcode_enabled = true
+text = "Music Volume"
+fit_content = true
+scroll_active = false
+
+[node name="MusicVolumeSlider" type="HSlider" parent="SettingsContainer/VolumeSettingsContainer"]
+layout_mode = 2
+value = 40.0
+scrollable = false
+
+[node name="SFXVolumeText" type="RichTextLabel" parent="SettingsContainer/VolumeSettingsContainer"]
+layout_mode = 2
+theme = ExtResource("6_v71do")
+bbcode_enabled = true
+text = "Sound Effects Volume"
+fit_content = true
+scroll_active = false
+
+[node name="SFXVolumeSlider" type="HSlider" parent="SettingsContainer/VolumeSettingsContainer"]
+layout_mode = 2
+value = 40.0
+scrollable = false
+
+[node name="VoicesVolumeText" type="RichTextLabel" parent="SettingsContainer/VolumeSettingsContainer"]
+layout_mode = 2
+theme = ExtResource("6_v71do")
+bbcode_enabled = true
+text = "Voices Volume"
+fit_content = true
+scroll_active = false
+
+[node name="VoicesVolumeSlider" type="HSlider" parent="SettingsContainer/VolumeSettingsContainer"]
+layout_mode = 2
+value = 80.0
+scrollable = false
+
+[connection signal="button_down" from="SettingsButton" to="SettingsButton" method="_on_button_down"]
+[connection signal="value_changed" from="SettingsContainer/VolumeSettingsContainer/MasterVolumeSlider" to="SettingsContainer" method="_on_master_volume_slider_value_changed"]
+[connection signal="value_changed" from="SettingsContainer/VolumeSettingsContainer/MusicVolumeSlider" to="SettingsContainer" method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="SettingsContainer/VolumeSettingsContainer/SFXVolumeSlider" to="SettingsContainer" method="_on_sfx_volume_slider_value_changed"]
+[connection signal="value_changed" from="SettingsContainer/VolumeSettingsContainer/VoicesVolumeSlider" to="SettingsContainer" method="_on_voices_volume_slider_value_changed"]
