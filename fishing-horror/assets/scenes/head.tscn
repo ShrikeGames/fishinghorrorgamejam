@@ -18,15 +18,15 @@ blend_mode = 1
 cull_mode = 2
 albedo_texture = SubResource("GradientTexture2D_kwfu1")
 
-[node name="Head" type="Node3D" node_paths=PackedStringArray("hair", "camera", "camera_3p")]
+[node name="Head" type="Node3D" node_paths=PackedStringArray("hair", "camera")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 script = ExtResource("1_1y85x")
 hair = NodePath("NoiRLowPolyHair")
 camera = NodePath("First Person Camera")
-camera_3p = NodePath("3rd Person Camera")
 
 [node name="NoiRLowPolyHair" type="SoftBody3D" parent="."]
 transform = Transform3D(-1.0299999, -3.4985668e-08, -1.5153952e-07, -7.1054274e-15, 1.0036011, -0.23169956, 1.5552568e-07, -0.23169956, -1.0036011, -0.004707481, -1.3548177, 0.3737614)
+visible = false
 mesh = ExtResource("1_513b0")
 surface_material_override/0 = SubResource("StandardMaterial3D_k2t1h")
 collision_layer = 16
@@ -80,10 +80,5 @@ attachments/14/spatial_attachment_path = NodePath("..")
 attachments/14/offset = Vector3(-0.09477787, -0.49121475, 0.42197216)
 
 [node name="First Person Camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.8270806, 0.5620834, 0, -0.5620834, 0.8270806, 1.8567478e-09, -0.021203157, -0.021238718)
-near = 0.001
-
-[node name="3rd Person Camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.8270806, 0.5620834, 0, -0.5620834, 0.8270806, -0.4074818, 0.10580025, 0.953979)
-current = true
-near = 0.001
+transform = Transform3D(1, 0, 0, 0, 0.8270806, 0.5620834, 0, -0.5620834, 0.8270806, -0.00412948, -0.021203157, 0.036978547)
+near = 0.15

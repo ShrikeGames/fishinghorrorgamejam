@@ -1,11 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://bwd1dktaq5uae"]
+[gd_scene load_steps=18 format=3 uid="uid://bwd1dktaq5uae"]
 
 [ext_resource type="Texture2D" uid="uid://ky5vmkfg0s7f" path="res://assets/art/ui/boat_wood.png" id="1_wrsni"]
 [ext_resource type="Script" uid="uid://83d2m68e1try" path="res://assets/scripts/fishing_rod.gd" id="2_kiyj0"]
 [ext_resource type="Texture2D" uid="uid://dsl8d76keqfod" path="res://assets/art/ui/tablet screen.png" id="2_sk1t3"]
 [ext_resource type="Texture2D" uid="uid://c4ldwwkenxliq" path="res://assets/art/ui/ui_quickbar.png" id="3_sk1t3"]
-[ext_resource type="Texture2D" uid="uid://cwfjb1jxabkpk" path="res://assets/art/ui/hook.png" id="5_5x206"]
-[ext_resource type="Material" uid="uid://bmgwfjxxa1x7p" path="res://assets/material/hook.tres" id="5_jgqbb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kiyj0"]
 albedo_texture = ExtResource("1_wrsni")
@@ -60,30 +58,13 @@ height = 1.75
 inner_radius = 0.002
 outer_radius = 0.004
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_kiyj0"]
-material = ExtResource("5_jgqbb")
-top_radius = 0.008
-bottom_radius = 0.001
-height = 0.05
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p2x1a"]
-albedo_texture = ExtResource("5_5x206")
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_5x206"]
-material = ExtResource("5_jgqbb")
-top_radius = 0.008
-bottom_radius = 0.003
-height = 0.1
-
-[node name="FishingRod" type="MeshInstance3D" node_paths=PackedStringArray("base", "tip", "hook", "hook_camera_node", "spinner")]
+[node name="FishingRod" type="MeshInstance3D" node_paths=PackedStringArray("base", "tip", "spinner")]
 transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_kiyj0")
 mesh = SubResource("CylinderMesh_cb5na")
 script = ExtResource("2_kiyj0")
 base = NodePath("Base")
 tip = NodePath("Base/Tip")
-hook = NodePath("Hook")
-hook_camera_node = NodePath("Hook/HookCameraNode")
 spinner = NodePath("Base/FlyWheel")
 
 [node name="Base" type="Node3D" parent="."]
@@ -164,18 +145,3 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0, 0.464, 0.004999995)
 mesh = SubResource("TorusMesh_sk1t3")
 skeleton = NodePath("../..")
-
-[node name="Hook" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00012615696, 1.0632695, 0.5374808)
-
-[node name="HookCameraNode" type="Node3D" parent="Hook"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.069250226, -0.29189047)
-
-[node name="Hook1" type="MeshInstance3D" parent="Hook"]
-transform = Transform3D(1, 0, 0, 0, -0.9659258, 0.25881895, 0, -0.25881895, -0.9659258, 0, -0.02984202, 0.069785655)
-mesh = SubResource("CylinderMesh_kiyj0")
-
-[node name="Hook2" type="MeshInstance3D" parent="Hook"]
-transform = Transform3D(1, 0, 0, 0, -0.7071069, -0.7071068, 0, 0.7071068, -0.7071069, 0, -0.018936753, 0.02908665)
-material_override = SubResource("StandardMaterial3D_p2x1a")
-mesh = SubResource("CylinderMesh_5x206")

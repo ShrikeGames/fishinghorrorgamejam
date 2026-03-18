@@ -41,14 +41,15 @@ func draw_triangle_around_point(point:Vector3):
 	fishing_line.mesh.surface_add_vertex(point)
 	
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	tip_pos = tip.global_position
 	hook_pos = hook.global_position
 	
 	fishing_line.mesh.clear_surfaces()
+
 	fishing_line.mesh.surface_begin(Mesh.PRIMITIVE_LINES)
 	fishing_line.mesh.surface_set_normal(Vector3(0, 0, 1))
 	fishing_line.mesh.surface_set_uv(Vector2(0, 0))
 	draw_fishing_line(tip_pos, hook_pos)
 	fishing_line.mesh.surface_end()
+	

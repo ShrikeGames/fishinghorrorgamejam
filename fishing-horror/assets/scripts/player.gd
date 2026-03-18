@@ -16,6 +16,9 @@ var hair:SoftBody3D
 @export var left_travel_point:Node3D
 @export var center_travel_point:Node3D
 @export var right_travel_point:Node3D
+@export var camera_3p:Camera3D
+@export var head_3p:Node3D
+
 var target_position:Vector3
 var current_location:String = "center"
 
@@ -43,7 +46,7 @@ var fish_on_hook:Fish
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Global.load_settings()
-	self.camera = head.camera_3p
+	self.camera = camera_3p
 	self.head.rotation_degrees.y = 150
 	self.camera.rotation_degrees.x = -13
 	self.in_dialogue = false
@@ -56,7 +59,7 @@ func _ready() -> void:
 	self.global_position = Vector3(Global.game_state["you"]["current_position"][0], Global.game_state["you"]["current_position"][1], Global.game_state["you"]["current_position"][2])
 	self.current_location = Global.game_state["you"]["current_location"]
 	self.target_position = Vector3(Global.game_state["you"]["target_position"][0], Global.game_state["you"]["target_position"][1], Global.game_state["you"]["target_position"][2])
-	
+	self.fishing_rod.hook.global_position.x = self.global_position.x
 	is_zooming = false
 	zoom_progress = 0.0
 	fishing_lower = false
@@ -81,7 +84,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("escape"):
 		menu.visible = true
 		in_menu = true
-		self.camera = head.camera_3p
+		self.camera = camera_3p
 		self.head.rotation_degrees.y = 150
 		self.camera.rotation_degrees.x = -13
 		update_camera_state()
@@ -108,11 +111,11 @@ func _process(delta: float) -> void:
 			elif zoom_direction < 0:
 				camera.fov = lerpf(camera.fov, initial_fov, zoom_progress)
 	
-	if in_dialogue:
-		return
-	
 	if Input.is_action_just_pressed("toggle_camera"):
 		update_camera_state()
+		
+	if in_dialogue:
+		return
 	
 	if global_position.x != left_travel_point.global_position.x and global_position.x != right_travel_point.global_position.x:
 		fishing_rod.visible = true
@@ -150,7 +153,7 @@ func _process(delta: float) -> void:
 		global_position.x += boat_speed * delta
 		Global.game_state["you"]["hunger"] -= Global.game_state["you"]["travel_hunger_rate"] * delta
 	
-	if abs(global_position.x - target_position.x) <= boat_speed * delta:
+	if abs(global_position.x - target_position.x) <= boat_speed * delta and abs(global_position.x - target_position.x)>0:
 		global_position = target_position
 	if global_position.x == left_travel_point.global_position.x:
 		in_dialogue = true
@@ -209,16 +212,20 @@ func _unhandled_input(event : InputEvent):
 				if current_location == "center":
 					target_position = self.left_travel_point.global_position
 					current_location = "left"
+					in_dialogue = false
 				elif current_location == "right":
 					target_position = self.center_travel_point.global_position
 					current_location = "center"
+					in_dialogue = false
 			elif collider.name == "RightTravelArea" and event.button_index == 1 and event.pressed:
 				if current_location == "center":
 					target_position = self.right_travel_point.global_position
 					current_location = "right"
+					in_dialogue = false
 				elif current_location == "left":
 					target_position = self.center_travel_point.global_position
 					current_location = "center"
+					in_dialogue = false
 			
 		if not event.pressed:
 			fishing_lower = false
@@ -230,23 +237,40 @@ func update_camera(mouseInput:Vector2):
 		return
 	
 	# how far right
-	var min_rotation_y:float = 2.3
+	var min_rotation_y:float = 1.8
 	# how far left
-	var max_rotation_y:float = 4.0
-	var min_rotation_x:float = -PI/4
+	var max_rotation_y:float = 4.1
+	var min_rotation_x:float = -PI/3
 	var max_rotation_x:float = PI/6
+	var animation_x:float = convert_to_range(head.rotation.y, min_rotation_y, max_rotation_y, -1.0, 1.0)
+	var animation_y:float = convert_to_range(camera.rotation.x, min_rotation_x, max_rotation_x, -1.0, 1.0)
+	var new_rotation_y:float = 0
 	if camera_toggle:
 		min_rotation_y=0
 		max_rotation_y=2*PI
-	
-	
-	head.rotate(Vector3(0,1,0), -mouseInput.x * mouse_sensitivity *0.01)
-	var new_rotation_y:float = fmod(head.rotation.y + 2*PI, 2*PI)
-	new_rotation_y =  clamp(new_rotation_y,min_rotation_y, max_rotation_y)
-	head.rotation.y = new_rotation_y
+		min_rotation_x = 0
+		max_rotation_y = 2*PI
+		animation_x=0
+		animation_y=0
+		head_3p.rotate(Vector3(0,1,0), -mouseInput.x * mouse_sensitivity *0.01)
+		new_rotation_y = fmod(head_3p.rotation.y + 2*PI, 2*PI)
+		new_rotation_y =  clamp(new_rotation_y,min_rotation_y, max_rotation_y)
+		head_3p.rotation.y = new_rotation_y
+	else:
+		head.rotate(Vector3(0,1,0), -mouseInput.x * mouse_sensitivity *0.01)
+		new_rotation_y = fmod(head.rotation.y + 2*PI, 2*PI)
+		new_rotation_y =  clamp(new_rotation_y,min_rotation_y, max_rotation_y)
+		head.rotation.y = new_rotation_y
+		animation_tree.set("parameters/LookMachine/BlendSpace2D/blend_position", Vector2(-animation_x, animation_y))
 	
 	camera.rotate(Vector3(1,0,0), -mouseInput.y * mouse_sensitivity *0.01)
 	camera.rotation.x = clamp(camera.rotation.x, min_rotation_x, max_rotation_x)
+	
+	
+	
+func convert_to_range(value:float,min_value:float, max_value:float, new_min_value:float, new_max_value:float):
+	return ((value - min_value) * (new_max_value - new_min_value) / (max_value - min_value)) + new_min_value
+	
 	
 func update_camera_state():
 	camera_toggle = not camera_toggle
@@ -254,10 +278,16 @@ func update_camera_state():
 	if camera_toggle:
 		hair.visible = false
 		hair_3p.visible = true
-		self.camera = head.camera_3p
+		self.camera = camera_3p
 	else:
 		hair.visible = false#make true to enable first person hair
 		hair_3p.visible = false
 		self.camera = head.camera
 	self.camera.make_current()
 	update_camera(Vector2(0,0))
+
+func is_in_dialogue():
+	return in_dialogue
+
+func is_moving():
+	return global_position.x != target_position.x
