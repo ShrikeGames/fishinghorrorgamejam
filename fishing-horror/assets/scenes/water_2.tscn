@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://ugy5rgmg786j"]
+
+[ext_resource type="Material" uid="uid://dotxujvqmh550" path="res://assets/material/water_2.tres" id="1_177u8"]
+[ext_resource type="Texture2D" uid="uid://cfafqqj6j1y5r" path="res://assets/art/ui/island_green.png" id="2_177u8"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_mew3l"]
+material = ExtResource("1_177u8")
+size = Vector3(200, 200, 200)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mew3l"]
+albedo_texture = ExtResource("2_177u8")
+
+[sub_resource type="BoxMesh" id="BoxMesh_2hqfb"]
+
+[node name="water2" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_mew3l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100.10791, -10.016743)
+material_override = SubResource("StandardMaterial3D_mew3l")
+mesh = SubResource("BoxMesh_2hqfb")

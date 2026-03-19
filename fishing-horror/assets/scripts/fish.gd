@@ -48,7 +48,7 @@ func _process(delta: float) -> void:
 			Global.game_state["you"]["hooked_fish"] += 1
 			caught = true
 		elif self.global_position.distance_to(self.target_position) <= 0.01:
-			self.target_position = self.global_position + (direction.rotated(Vector3.UP, randf_range(-PI/6, PI/6)) * 2.0)
+			self.target_position = self.global_position + (direction * 2.0)
 		elif self.hook.global_position.distance_to(self.global_position) >= 10.0:
 			self.get_parent().remove_child(self)
 		elif self.hook.global_position.distance_to(self.global_position) <= 1.0 and hooked_fish < max_hooked_fish:

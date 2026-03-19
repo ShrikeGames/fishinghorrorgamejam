@@ -18,6 +18,7 @@ var hair:SoftBody3D
 @export var right_travel_point:Node3D
 @export var camera_3p:Camera3D
 @export var head_3p:Node3D
+@export var pointers:Pointer
 
 var target_position:Vector3
 var current_location:String = "center"
@@ -134,10 +135,14 @@ func _process(delta: float) -> void:
 					# move the fish to the boat
 					fish_on_hook.caught = false
 					fish_on_hook.on_boat = true
-					if Global.game_state["you"]["current_fish"] % 2 == 0:
-						fish_on_hook.global_position = fish_spot.global_position
+					fish_on_hook.get_parent().remove_child(fish_on_hook)
+					if int(Global.game_state["you"]["current_fish"]) % 2 == 0:
+						fish_spot.add_child(fish_on_hook)
+						fish_on_hook.position = Vector3(0,fish_spot.get_child_count()*0.1,0)
+						
 					else:
-						fish_on_hook.global_position = fish_spot_2.global_position
+						fish_spot_2.add_child(fish_on_hook)
+						fish_on_hook.position = Vector3(0,fish_spot_2.get_child_count()*0.1,0)
 					fish_on_hook.rotation_degrees = Vector3(0,randf_range(-15, 15),0)
 					Global.game_state["you"]["current_fish"] += 1
 					# reduce the number of fish on hook count
@@ -183,10 +188,7 @@ func _process(delta: float) -> void:
 func _unhandled_input(event : InputEvent):
 	if in_menu:
 		return
-	if event is InputEventMouseMotion:
-		var mouseInput:Vector2 = event.relative
-		update_camera(mouseInput)
-	elif event is InputEventMouseButton and event.button_index in [1,2]:
+	if event is InputEventMouseButton and event.button_index in [1,2]:
 		
 		var from:Vector3 = camera.project_ray_origin(event.position)
 		const RAY_LENGTH:float = 10.0
@@ -206,32 +208,55 @@ func _unhandled_input(event : InputEvent):
 					fishing_lower = event.pressed
 				elif event.button_index == 2:
 					fishing_raise = event.pressed
-			elif collider.name == "TabletArea" and event.button_index == 1 and event.pressed:
-				tablet.toggle_screen()
-			elif collider.name == "LeftTravelArea" and event.button_index == 1 and event.pressed:
-				if current_location == "center":
-					target_position = self.left_travel_point.global_position
-					current_location = "left"
-					in_dialogue = false
-				elif current_location == "right":
-					target_position = self.center_travel_point.global_position
-					current_location = "center"
-					in_dialogue = false
-			elif collider.name == "RightTravelArea" and event.button_index == 1 and event.pressed:
-				if current_location == "center":
-					target_position = self.right_travel_point.global_position
-					current_location = "right"
-					in_dialogue = false
-				elif current_location == "left":
-					target_position = self.center_travel_point.global_position
-					current_location = "center"
-					in_dialogue = false
+			elif collider.name == "TabletArea":
+				if event.button_index == 1 and event.pressed:
+					tablet.toggle_screen()
+			elif collider.name == "LeftTravelArea":
+				if event.button_index == 1 and event.pressed:
+					if current_location == "center":
+						target_position = self.left_travel_point.global_position
+						current_location = "left"
+						in_dialogue = false
+					elif current_location == "right":
+						target_position = self.center_travel_point.global_position
+						current_location = "center"
+						in_dialogue = false
+			elif collider.name == "RightTravelArea":
+				if event.button_index == 1 and event.pressed:
+					if current_location == "center":
+						target_position = self.right_travel_point.global_position
+						current_location = "right"
+						in_dialogue = false
+					elif current_location == "left":
+						target_position = self.center_travel_point.global_position
+						current_location = "center"
+						in_dialogue = false
 			
 		if not event.pressed:
 			fishing_lower = false
 			fishing_raise = false
-		
-
+	if event is InputEventMouseMotion:
+		var mouseInput:Vector2 = event.relative
+		update_camera(mouseInput)
+		var from:Vector3 = camera.project_ray_origin(event.position)
+		const RAY_LENGTH:float = 10.0
+		var to:Vector3 = from + camera.project_ray_normal(event.position) * RAY_LENGTH
+		var space_state = get_world_3d().direct_space_state
+		var query = PhysicsRayQueryParameters3D.create(from, to)
+		query.collide_with_areas = true
+		query.collision_mask = 2
+		var result = space_state.intersect_ray(query)
+		var collider:Area3D = result.get("collider", null)
+		if collider:
+			print(collider.name)
+			if collider.name == "FishingArea":
+				pointers.show_fishing()
+			elif collider.name == "TabletArea":
+				pointers.show_tablet()
+			elif collider.name == "LeftTravelArea":
+				pointers.show_travel()
+			elif collider.name == "RightTravelArea":
+				pointers.show_travel()
 func update_camera(mouseInput:Vector2):
 	if in_menu:
 		return

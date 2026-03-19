@@ -29,8 +29,8 @@ var game_state:Dictionary = {
 		"mouse_sensitivity": 0.1,
 		"fov": 75.0,
 		"boat_speed": 1.0,
-		"fishing_lower_speed": 0.5,
-		"fishing_raise_speed": 0.3,
+		"fishing_lower_speed": 1.5,
+		"fishing_raise_speed": 0.75,
 		"hooked_fish": 0,
 		"max_hooked_fish": 1,
 		"target_position": [0,0,0],
@@ -221,6 +221,7 @@ func load_settings():
 	if not FileAccess.file_exists(settings_config_location):
 		save_settings()
 	game_state = read_json(settings_config_location)
+	game_state["you"]["hooked_fish"] = 0
 
 func save_settings():
 	# save the results
