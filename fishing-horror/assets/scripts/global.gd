@@ -222,6 +222,8 @@ func load_settings():
 		save_settings()
 	game_state = read_json(settings_config_location)
 	game_state["you"]["hooked_fish"] = 0
+	game_state["you"]["current_fish"] = 0
+	
 
 func save_settings():
 	# save the results

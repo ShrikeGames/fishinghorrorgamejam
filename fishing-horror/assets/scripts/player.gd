@@ -200,7 +200,6 @@ func _unhandled_input(event : InputEvent):
 		var result = space_state.intersect_ray(query)
 		var collider:Area3D = result.get("collider", null)
 		if collider:
-			print(collider.name)
 			if collider.name == "FishingArea":
 				target_position = self.global_position
 				current_location = "center"
@@ -248,7 +247,6 @@ func _unhandled_input(event : InputEvent):
 		var result = space_state.intersect_ray(query)
 		var collider:Area3D = result.get("collider", null)
 		if collider:
-			print(collider.name)
 			if collider.name == "FishingArea":
 				pointers.show_fishing()
 			elif collider.name == "TabletArea":
@@ -269,6 +267,7 @@ func update_camera(mouseInput:Vector2):
 	var max_rotation_x:float = PI/6
 	var animation_x:float = convert_to_range(head.rotation.y, min_rotation_y, max_rotation_y, -1.0, 1.0)
 	var animation_y:float = convert_to_range(camera.rotation.x, min_rotation_x, max_rotation_x, -1.0, 1.0)
+	#print(animation_x, ", ", animation_y)
 	var new_rotation_y:float = 0
 	if camera_toggle:
 		min_rotation_y=0
@@ -288,9 +287,9 @@ func update_camera(mouseInput:Vector2):
 		head.rotation.y = new_rotation_y
 		animation_tree.set("parameters/LookMachine/BlendSpace2D/blend_position", Vector2(-animation_x, animation_y))
 	
-	camera.rotate(Vector3(1,0,0), -mouseInput.y * mouse_sensitivity *0.01)
+	camera.rotate(Vector3(1,0,0), mouseInput.y * mouse_sensitivity *0.01)
 	camera.rotation.x = clamp(camera.rotation.x, min_rotation_x, max_rotation_x)
-	
+	print(camera.global_position)
 	
 	
 func convert_to_range(value:float,min_value:float, max_value:float, new_min_value:float, new_max_value:float):
@@ -305,7 +304,7 @@ func update_camera_state():
 		hair_3p.visible = true
 		self.camera = camera_3p
 	else:
-		hair.visible = false#make true to enable first person hair
+		hair.visible = true#make true to enable first person hair
 		hair_3p.visible = false
 		self.camera = head.camera
 	self.camera.make_current()

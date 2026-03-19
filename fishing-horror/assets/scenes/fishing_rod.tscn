@@ -11,7 +11,7 @@ albedo_texture = ExtResource("1_wrsni")
 [sub_resource type="CylinderMesh" id="CylinderMesh_cb5na"]
 top_radius = 0.01
 bottom_radius = 0.01
-height = 0.52
+height = 0.4
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5x206"]
 albedo_texture = ExtResource("2_sk1t3")
@@ -68,7 +68,7 @@ tip = NodePath("Base/Tip")
 spinner = NodePath("Base/FlyWheel")
 
 [node name="Base" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 2.9802322e-08, 0, -2.9802322e-08, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 2.9802322e-08, 0, -2.9802322e-08, 1, 0, -0.051446833, 0)
 
 [node name="Tip" type="Node3D" parent="Base"]
 transform = Transform3D(1, 0, 0, 0, 1, 2.9802322e-08, 0, -2.9802322e-08, 1, 0, 1.600521, 0.0058760643)
