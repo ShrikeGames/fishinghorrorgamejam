@@ -9,8 +9,8 @@ var fish_object:Resource = load("res://assets/scenes/fish/FishSegment.tscn")
 var game_state:Dictionary = {
 	"settings": {
 		"volume":{
-			"master": 80.0,
-			"music": 0.0,
+			"master": 100.0,
+			"music": 10.0,
 			"sfx": 40.0,
 			"voices": 80.0
 		}

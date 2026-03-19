@@ -7,7 +7,7 @@ func generate(bones:Node2D, multi_colour_chance:float, colour:String):
 	# worm initial values
 	num_bones = randi_range(10, 12)
 	max_distance = randi_range(15, 15)
-	max_radius = randi_range(30, 40)
+	max_radius = randi_range(20, 30)
 	
 	var min_turn_angle:float = 0.5
 	var turn_speed:float = 1

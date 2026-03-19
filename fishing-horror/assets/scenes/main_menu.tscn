@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://w6ulejlbg88y"]
+[gd_scene load_steps=11 format=3 uid="uid://w6ulejlbg88y"]
 
 [ext_resource type="Texture2D" uid="uid://bb76y84iv8jf1" path="res://assets/art/ui/title_logo.png" id="1_uu6ob"]
 [ext_resource type="PackedScene" uid="uid://bxfsm8fdsjudx" path="res://assets/scenes/texture_button.tscn" id="2_v1ppo"]
@@ -8,6 +8,7 @@
 [ext_resource type="Theme" uid="uid://c6j256munykbu" path="res://assets/themes/texture_button.tres" id="6_v71do"]
 [ext_resource type="Script" uid="uid://cx7467qjbpvwd" path="res://assets/scripts/settings_button.gd" id="6_xmmar"]
 [ext_resource type="Script" uid="uid://c8v4u4kqtlymm" path="res://assets/scripts/settings_container.gd" id="7_66en2"]
+[ext_resource type="AudioStream" uid="uid://k32hbcg1arvl" path="res://assets/sound/music/decode-ciphers_Aaron_music_YT.mp3" id="9_ej4af"]
 
 [sub_resource type="Theme" id="Theme_xmmar"]
 
@@ -17,7 +18,7 @@
 position = Vector2(259, 174)
 texture = ExtResource("1_uu6ob")
 
-[node name="StartButton" parent="." node_paths=PackedStringArray("menu") instance=ExtResource("2_v1ppo")]
+[node name="StartButton" parent="." node_paths=PackedStringArray("menu", "music_player") instance=ExtResource("2_v1ppo")]
 offset_left = 131.0
 offset_top = 306.0
 offset_right = 931.0
@@ -27,6 +28,7 @@ theme = SubResource("Theme_xmmar")
 text = "Start"
 start_button = true
 menu = NodePath("..")
+music_player = NodePath("../MenuMusic")
 
 [node name="SettingsButton" type="TextureButton" parent="." node_paths=PackedStringArray("settings_container")]
 offset_left = 24.0
@@ -110,6 +112,12 @@ scroll_active = false
 layout_mode = 2
 value = 80.0
 scrollable = false
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_ej4af")
+autoplay = true
+bus = &"Music"
+parameters/looping = true
 
 [connection signal="button_down" from="SettingsButton" to="SettingsButton" method="_on_button_down"]
 [connection signal="value_changed" from="SettingsContainer/VolumeSettingsContainer/MasterVolumeSlider" to="SettingsContainer" method="_on_master_volume_slider_value_changed"]

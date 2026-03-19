@@ -6,11 +6,12 @@ class_name Pointer
 @export var fishing:Node2D
 @export var tablet:Node2D
 @export var travel:Node2D
-
+@export var fps_counter:RichTextLabel
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	self.visible = not menu.visible
+	self.fps_counter.text = "%s"%Engine.get_frames_per_second()
 
 func show_fishing():
 	fishing.visible = true

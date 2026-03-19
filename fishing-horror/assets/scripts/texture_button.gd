@@ -5,6 +5,7 @@ extends TextureButton
 @export var text: String
 @export var start_button:bool = false
 @export var menu:CanvasLayer
+@export var music_player:AudioStreamPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,6 +16,7 @@ func _ready() -> void:
 func _on_button_down() -> void:
 	if start_button and menu:
 		menu.visible = false
+		music_player.stop()
 		var player:Player = menu.get_parent().find_child("player")
 		print(player)
 		player.in_menu = false

@@ -29,7 +29,9 @@ var fish:FishSegment
 func _ready() -> void:
 	self.global_position = original_position
 	#self.look_at(target_position)
-	self.size_multiplier = 1.0 + (-fmod(self.global_position.y, 10))
+	self.size_multiplier = randf_range(0.5, 1.0) + -fmod(self.global_position.y, 25)
+	self.size_multiplier = clampf(self.size_multiplier, 0.5, 2.0)
+	
 	self.scale = self.scale * self.size_multiplier
 	self.caught = false
 	self.on_boat = false
@@ -86,7 +88,7 @@ func _process(delta: float) -> void:
 			elif self.global_position.distance_to(self.target_position) <= 0.1:
 				# reached target, pick a new one
 				self.target_position = self.global_position + (direction * 5.0)
-			elif self.hook.global_position.distance_to(self.global_position) >= 10.0:
+			elif Vector2(self.hook.global_position.x, self.hook.global_position.z).distance_to(Vector2(self.global_position.x, self.global_position.z)) >= 10.0:
 				# too far away, despawn
 				self.get_parent().remove_child(self)
 			elif self.hook.global_position.distance_to(self.global_position) <= 1.0 and hooked_fish < max_hooked_fish:

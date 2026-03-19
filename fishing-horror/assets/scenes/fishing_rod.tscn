@@ -58,12 +58,11 @@ height = 1.75
 inner_radius = 0.002
 outer_radius = 0.004
 
-[node name="FishingRod" type="MeshInstance3D" node_paths=PackedStringArray("base", "tip", "spinner")]
+[node name="FishingRod" type="MeshInstance3D" node_paths=PackedStringArray("tip", "spinner")]
 transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_kiyj0")
 mesh = SubResource("CylinderMesh_cb5na")
 script = ExtResource("2_kiyj0")
-base = NodePath("Base")
 tip = NodePath("Base/Tip")
 spinner = NodePath("Base/FlyWheel")
 

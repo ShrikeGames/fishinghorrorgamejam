@@ -20,6 +20,11 @@ var hair:SoftBody3D
 @export var head_3p:Node3D
 @export var pointers:Pointer
 
+@export var music_main:AudioStreamPlayer
+@export var music_cat:AudioStreamPlayer
+@export var music_dog:AudioStreamPlayer
+
+
 var target_position:Vector3
 var current_location:String = "center"
 
@@ -116,7 +121,19 @@ func _process(delta: float) -> void:
 		update_camera_state()
 		
 	if in_dialogue:
+		if global_position.x == left_travel_point.global_position.x and not music_cat.playing:
+			music_main.stop()
+			music_dog.stop()
+			music_cat.play()
+		elif global_position.x == right_travel_point.global_position.x and not music_dog.playing:
+			music_main.stop()
+			music_dog.play()
+			music_cat.stop()
 		return
+	elif not music_main.playing:
+		music_main.play()
+		music_dog.stop()
+		music_cat.stop()
 	if fish_on_hook and not fish_on_hook.recharging:
 		update_camera(Vector2(fishing_rod.tip.global_position.x -fish_on_hook.global_position.x, fishing_rod.tip.global_position.z - fish_on_hook.global_position.z))
 	

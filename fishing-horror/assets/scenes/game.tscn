@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=4 uid="uid://byoeo0uxwfn25"]
+[gd_scene load_steps=89 format=4 uid="uid://byoeo0uxwfn25"]
 
 [ext_resource type="PackedScene" uid="uid://ugy5rgmg786j" path="res://assets/scenes/water_2.tscn" id="1_xe33q"]
 [ext_resource type="Script" uid="uid://cxs13vgiii6p8" path="res://assets/scripts/player.gd" id="2_cb5na"]
@@ -23,6 +23,8 @@
 [ext_resource type="Texture2D" uid="uid://xtflbp0tgsmp" path="res://assets/art/ui/kenny/mouse_left.png" id="23_jdjof"]
 [ext_resource type="Theme" uid="uid://c6j256munykbu" path="res://assets/themes/texture_button.tres" id="24_h5j7u"]
 [ext_resource type="Texture2D" uid="uid://dfro12lql07dr" path="res://assets/art/ui/kenny/mouse_right.png" id="25_8vm3o"]
+[ext_resource type="AudioStream" uid="uid://dag06vfo0bpfg" path="res://assets/sound/music/Dog Shop Aaron_music_YT.mp3" id="25_h5j7u"]
+[ext_resource type="AudioStream" uid="uid://b4guriv6goqb6" path="res://assets/sound/music/Cat-Shop Aaron_music_YT.mp3" id="25_jdjof"]
 [ext_resource type="Texture2D" uid="uid://c7x34yh0fys4h" path="res://assets/art/ui/kenny/mouse_scroll.png" id="26_h5j7u"]
 
 [sub_resource type="Animation" id="Animation_jdjof"]
@@ -4378,12 +4380,12 @@ size = Vector3(1, 2.4883423, 5.4241943)
 [sub_resource type="BoxMesh" id="BoxMesh_wfsp4"]
 resource_local_to_scene = true
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_fx2rd"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_h5j7u"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jdjof"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p2xyf"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_fx2rd")
+albedo_texture = SubResource("ViewportTexture_h5j7u")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fc420"]
 size = Vector3(0.1197052, 0.21971893, 0.2640915)
@@ -4456,10 +4458,10 @@ transform = Transform3D(-0.99559975, 4.370145e-08, -0.09370862, -0.049128506, 0.
 light_color = Color(0.19733328, 0.13999999, 1, 1)
 
 [node name="DogSpotLight3D2" type="SpotLight3D" parent="env"]
-transform = Transform3D(0.18060137, -0.5064042, 0.8431714, -0.049128506, 0.8515532, 0.52196133, -0.9823288, -0.13569067, 0.12891278, -40.765, 2.723, 0)
+transform = Transform3D(-0.9823288, -0.13569061, 0.12891273, -0.049128484, 0.8515532, 0.52196133, -0.18060133, 0.5064041, -0.84317124, -40.765, 2.723, 0)
 light_color = Color(1, 0.32941177, 0.32941177, 1)
 
-[node name="player" type="StaticBody3D" parent="." node_paths=PackedStringArray("head", "animation_player", "animation_tree", "hair_3p", "fishing_rod", "tablet", "fish_spot", "fish_spot_2", "menu", "left_travel_point", "center_travel_point", "right_travel_point", "camera_3p", "head_3p", "pointers")]
+[node name="player" type="StaticBody3D" parent="." node_paths=PackedStringArray("head", "animation_player", "animation_tree", "hair_3p", "fishing_rod", "tablet", "fish_spot", "fish_spot_2", "menu", "left_travel_point", "center_travel_point", "right_travel_point", "camera_3p", "head_3p", "pointers", "music_main", "music_cat", "music_dog")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("2_cb5na")
@@ -4478,6 +4480,9 @@ right_travel_point = NodePath("../RightTravelPoint")
 camera_3p = NodePath("Head3rdPerson/3rd Person Camera")
 head_3p = NodePath("Head3rdPerson")
 pointers = NodePath("../Pointers")
+music_main = NodePath("../MusicPlayer")
+music_cat = NodePath("../CatMusicPlayer")
+music_dog = NodePath("../DogMusicPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="player"]
 root_node = NodePath("../NoiR_Base")
@@ -4638,9 +4643,10 @@ transform = Transform3D(0.9676988, 0.23202473, -0.1027316, -0.03152315, -0.29158
 bone_name = "LeftThumbDistal"
 bone_idx = 13
 
-[node name="FishingRod" parent="player/NoiR_Base/Armature/GeneralSkeleton/BoneAttachment3D" node_paths=PackedStringArray("hook", "fishing_line", "hook_camera_node") instance=ExtResource("3_k2t1h")]
+[node name="FishingRod" parent="player/NoiR_Base/Armature/GeneralSkeleton/BoneAttachment3D" node_paths=PackedStringArray("base", "hook", "fishing_line", "hook_camera_node") instance=ExtResource("3_k2t1h")]
 transform = Transform3D(0.96670955, -0.19678189, -0.16040209, 0.23251651, 0.43029875, 0.8734432, -0.10287092, -0.88176584, 0.46178132, 0.005530894, 0.002430737, 0.015280783)
 skeleton = NodePath("../..")
+base = NodePath("../../../../../../Hook/MeshInstance3D2")
 hook = NodePath("../../../../../../Hook")
 fishing_line = NodePath("../../../../../../FishingLine")
 hook_camera_node = NodePath("../../../../../../HookCameraNode")
@@ -4660,46 +4666,46 @@ collision_mask = 0
 pinned_points = [0, 44, 59, 7, 74, 296, 260, 531, 460, 21, 93, 367, 277, 545, 511, 269, 368, 322, 375, 848, 321, 284, 32, 497]
 attachments/0/point_index = 0
 attachments/0/spatial_attachment_path = NodePath("..")
-attachments/0/offset = Vector3(-0.11599551, 0.28226638, 0.02838093)
+attachments/0/offset = Vector3(-0.11599551, 0.28226644, 0.02838093)
 attachments/1/point_index = 44
 attachments/1/spatial_attachment_path = NodePath("..")
-attachments/1/offset = Vector3(0.045018833, 0.5297675, -0.13439363)
+attachments/1/offset = Vector3(0.045018833, 0.5297676, -0.13439363)
 attachments/2/point_index = 59
 attachments/2/spatial_attachment_path = NodePath("..")
-attachments/2/offset = Vector3(-0.000150064, 0.53810906, -0.117831945)
+attachments/2/offset = Vector3(-0.000150064, 0.5381091, -0.117831945)
 attachments/3/point_index = 7
 attachments/3/spatial_attachment_path = NodePath("..")
-attachments/3/offset = Vector3(0.044764735, 0.48998153, -0.21338838)
+attachments/3/offset = Vector3(0.044764735, 0.48998147, -0.21338838)
 attachments/4/point_index = 74
 attachments/4/spatial_attachment_path = NodePath("..")
-attachments/4/offset = Vector3(-0.035379663, 0.52993953, -0.13405216)
+attachments/4/offset = Vector3(-0.035379663, 0.5299396, -0.13405216)
 attachments/5/point_index = 296
 attachments/5/spatial_attachment_path = NodePath("..")
-attachments/5/offset = Vector3(-0.10427331, 0.33094776, -0.17966026)
+attachments/5/offset = Vector3(-0.10427331, 0.3309477, -0.17966026)
 attachments/6/point_index = 260
 attachments/6/spatial_attachment_path = NodePath("..")
-attachments/6/offset = Vector3(0.11309558, 0.3146422, -0.2036727)
+attachments/6/offset = Vector3(0.11309558, 0.31464213, -0.2036727)
 attachments/7/point_index = 531
 attachments/7/spatial_attachment_path = NodePath("..")
-attachments/7/offset = Vector3(0.14689402, 0.38978422, -0.04225236)
+attachments/7/offset = Vector3(0.14689402, 0.38978428, -0.04225236)
 attachments/8/point_index = 460
 attachments/8/spatial_attachment_path = NodePath("..")
-attachments/8/offset = Vector3(-0.13540791, 0.38719714, -0.038451135)
+attachments/8/offset = Vector3(-0.13540791, 0.3871972, -0.038451135)
 attachments/9/point_index = 21
 attachments/9/spatial_attachment_path = NodePath("..")
-attachments/9/offset = Vector3(-0.1655219, 0.29868984, -0.044076324)
+attachments/9/offset = Vector3(-0.1655219, 0.29868978, -0.044076324)
 attachments/10/point_index = 93
 attachments/10/spatial_attachment_path = NodePath("..")
-attachments/10/offset = Vector3(0.07029968, 0.27256453, 0.019645989)
+attachments/10/offset = Vector3(0.07029968, 0.2725646, 0.019645989)
 attachments/11/point_index = 367
 attachments/11/spatial_attachment_path = NodePath("..")
-attachments/11/offset = Vector3(0.14347103, 0.17742455, -0.12958062)
+attachments/11/offset = Vector3(0.14347103, 0.17742449, -0.12958068)
 attachments/12/point_index = 277
 attachments/12/spatial_attachment_path = NodePath("..")
 attachments/12/offset = Vector3(0.07513283, -0.274554, 0.010638416)
 attachments/13/point_index = 545
 attachments/13/spatial_attachment_path = NodePath("..")
-attachments/13/offset = Vector3(0.36908245, -0.45943034, 0.25784457)
+attachments/13/offset = Vector3(0.36908245, -0.45943034, 0.25784454)
 attachments/14/point_index = 511
 attachments/14/spatial_attachment_path = NodePath("..")
 attachments/14/offset = Vector3(0.07040573, -0.052662134, -0.08383703)
@@ -4711,25 +4717,25 @@ attachments/16/spatial_attachment_path = NodePath("..")
 attachments/16/offset = Vector3(-0.023310963, -0.045479238, -0.058362424)
 attachments/17/point_index = 322
 attachments/17/spatial_attachment_path = NodePath("..")
-attachments/17/offset = Vector3(-0.11485206, -0.046597958, -0.048027933)
+attachments/17/offset = Vector3(-0.11485206, -0.046597958, -0.048027992)
 attachments/18/point_index = 375
 attachments/18/spatial_attachment_path = NodePath("..")
-attachments/18/offset = Vector3(0.07072073, -0.046399772, -0.06856531)
+attachments/18/offset = Vector3(0.07072073, -0.046399772, -0.06856537)
 attachments/19/point_index = 848
 attachments/19/spatial_attachment_path = NodePath("..")
-attachments/19/offset = Vector3(0.073975734, -0.14897662, 0.0021979213)
+attachments/19/offset = Vector3(0.073975734, -0.14897668, 0.0021979213)
 attachments/20/point_index = 321
 attachments/20/spatial_attachment_path = NodePath("..")
-attachments/20/offset = Vector3(-0.13229886, -0.1496526, 0.025887907)
+attachments/20/offset = Vector3(-0.13229886, -0.14965254, 0.025887907)
 attachments/21/point_index = 284
 attachments/21/spatial_attachment_path = NodePath("..")
 attachments/21/offset = Vector3(-0.1367204, -0.15508091, 0.010887742)
 attachments/22/point_index = 32
 attachments/22/spatial_attachment_path = NodePath("..")
-attachments/22/offset = Vector3(-0.07326366, 0.0871321, -0.10966349)
+attachments/22/offset = Vector3(-0.07326366, 0.08713204, -0.10966349)
 attachments/23/point_index = 497
 attachments/23/spatial_attachment_path = NodePath("..")
-attachments/23/offset = Vector3(-0.09926691, 0.08031303, -0.09586644)
+attachments/23/offset = Vector3(-0.09926691, 0.08031309, -0.09586644)
 
 [node name="Hair_1stPerson" type="SoftBody3D" parent="player/NoiR_Base/Armature/GeneralSkeleton/BoneAttachment3D2"]
 transform = Transform3D(1.05, 0, 0, 0, 0.9377682, 0.4790728, 0, -0.4723252, 0.9511651, -0.016686514, -0.91859245, 0.61431515)
@@ -4739,52 +4745,51 @@ skeleton = NodePath("../../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_1q3k2")
 collision_layer = 0
 collision_mask = 0
-simulation_precision = 100
 linear_stiffness = 0.4
 pressure_coefficient = 0.5
 pinned_points = [0, 44, 59, 7, 74, 296, 260, 531, 460, 21, 93, 367, 277, 545, 511, 269, 368, 322, 375, 848, 321, 284, 32, 497]
 attachments/0/point_index = 0
 attachments/0/spatial_attachment_path = NodePath("..")
-attachments/0/offset = Vector3(-0.11599551, 0.28226638, 0.02838093)
+attachments/0/offset = Vector3(-0.11599551, 0.28226644, 0.02838093)
 attachments/1/point_index = 44
 attachments/1/spatial_attachment_path = NodePath("..")
-attachments/1/offset = Vector3(0.045018833, 0.5297675, -0.13439363)
+attachments/1/offset = Vector3(0.045018833, 0.5297676, -0.13439363)
 attachments/2/point_index = 59
 attachments/2/spatial_attachment_path = NodePath("..")
-attachments/2/offset = Vector3(-0.000150064, 0.53810906, -0.117831945)
+attachments/2/offset = Vector3(-0.000150064, 0.5381091, -0.117831945)
 attachments/3/point_index = 7
 attachments/3/spatial_attachment_path = NodePath("..")
-attachments/3/offset = Vector3(0.044764735, 0.48998153, -0.21338838)
+attachments/3/offset = Vector3(0.044764735, 0.48998147, -0.21338838)
 attachments/4/point_index = 74
 attachments/4/spatial_attachment_path = NodePath("..")
-attachments/4/offset = Vector3(-0.035379663, 0.52993953, -0.13405216)
+attachments/4/offset = Vector3(-0.035379663, 0.5299396, -0.13405216)
 attachments/5/point_index = 296
 attachments/5/spatial_attachment_path = NodePath("..")
-attachments/5/offset = Vector3(-0.10427331, 0.33094776, -0.17966026)
+attachments/5/offset = Vector3(-0.10427331, 0.3309477, -0.17966026)
 attachments/6/point_index = 260
 attachments/6/spatial_attachment_path = NodePath("..")
-attachments/6/offset = Vector3(0.11309558, 0.3146422, -0.2036727)
+attachments/6/offset = Vector3(0.11309558, 0.31464213, -0.2036727)
 attachments/7/point_index = 531
 attachments/7/spatial_attachment_path = NodePath("..")
-attachments/7/offset = Vector3(0.14689402, 0.38978422, -0.04225236)
+attachments/7/offset = Vector3(0.14689402, 0.38978428, -0.04225236)
 attachments/8/point_index = 460
 attachments/8/spatial_attachment_path = NodePath("..")
-attachments/8/offset = Vector3(-0.13540791, 0.38719714, -0.038451135)
+attachments/8/offset = Vector3(-0.13540791, 0.3871972, -0.038451135)
 attachments/9/point_index = 21
 attachments/9/spatial_attachment_path = NodePath("..")
-attachments/9/offset = Vector3(-0.1655219, 0.29868984, -0.044076324)
+attachments/9/offset = Vector3(-0.1655219, 0.29868978, -0.044076324)
 attachments/10/point_index = 93
 attachments/10/spatial_attachment_path = NodePath("..")
-attachments/10/offset = Vector3(0.07029968, 0.27256453, 0.019645989)
+attachments/10/offset = Vector3(0.07029968, 0.2725646, 0.019645989)
 attachments/11/point_index = 367
 attachments/11/spatial_attachment_path = NodePath("..")
-attachments/11/offset = Vector3(0.14347103, 0.17742455, -0.12958062)
+attachments/11/offset = Vector3(0.14347103, 0.17742449, -0.12958068)
 attachments/12/point_index = 277
 attachments/12/spatial_attachment_path = NodePath("..")
 attachments/12/offset = Vector3(0.07513283, -0.274554, 0.010638416)
 attachments/13/point_index = 545
 attachments/13/spatial_attachment_path = NodePath("..")
-attachments/13/offset = Vector3(0.36908245, -0.45943034, 0.25784457)
+attachments/13/offset = Vector3(0.36908245, -0.45943034, 0.25784454)
 attachments/14/point_index = 511
 attachments/14/spatial_attachment_path = NodePath("..")
 attachments/14/offset = Vector3(0.07040573, -0.052662134, -0.08383703)
@@ -4796,25 +4801,25 @@ attachments/16/spatial_attachment_path = NodePath("..")
 attachments/16/offset = Vector3(-0.023310963, -0.045479238, -0.058362424)
 attachments/17/point_index = 322
 attachments/17/spatial_attachment_path = NodePath("..")
-attachments/17/offset = Vector3(-0.11485206, -0.046597958, -0.048027933)
+attachments/17/offset = Vector3(-0.11485206, -0.046597958, -0.048027992)
 attachments/18/point_index = 375
 attachments/18/spatial_attachment_path = NodePath("..")
-attachments/18/offset = Vector3(0.07072073, -0.046399772, -0.06856531)
+attachments/18/offset = Vector3(0.07072073, -0.046399772, -0.06856537)
 attachments/19/point_index = 848
 attachments/19/spatial_attachment_path = NodePath("..")
-attachments/19/offset = Vector3(0.073975734, -0.14897662, 0.0021979213)
+attachments/19/offset = Vector3(0.073975734, -0.14897668, 0.0021979213)
 attachments/20/point_index = 321
 attachments/20/spatial_attachment_path = NodePath("..")
-attachments/20/offset = Vector3(-0.13229886, -0.1496526, 0.025887907)
+attachments/20/offset = Vector3(-0.13229886, -0.14965254, 0.025887907)
 attachments/21/point_index = 284
 attachments/21/spatial_attachment_path = NodePath("..")
 attachments/21/offset = Vector3(-0.1367204, -0.15508091, 0.010887742)
 attachments/22/point_index = 32
 attachments/22/spatial_attachment_path = NodePath("..")
-attachments/22/offset = Vector3(-0.07326366, 0.0871321, -0.10966349)
+attachments/22/offset = Vector3(-0.07326366, 0.08713204, -0.10966349)
 attachments/23/point_index = 497
 attachments/23/spatial_attachment_path = NodePath("..")
-attachments/23/offset = Vector3(-0.09926691, 0.08031303, -0.09586644)
+attachments/23/offset = Vector3(-0.09926691, 0.08031309, -0.09586644)
 
 [node name="BoneAttachment3D3" type="BoneAttachment3D" parent="player/NoiR_Base/Armature/GeneralSkeleton" index="5"]
 transform = Transform3D(1.000001, 0, 0, 0, 0.9653373, -0.26100433, 0, 0.26100415, 0.9653374, -0.040313486, 0.67632324, 0.1767447)
@@ -4943,7 +4948,7 @@ debug_color = Color(0.9873999, 0, 0.31841138, 0.41960785)
 [node name="Tablet" parent="player" node_paths=PackedStringArray("fishing_rod") instance=ExtResource("6_wfsp4")]
 transform = Transform3D(0.25550267, -0.0006625685, 0.0043419693, 6.578513e-09, 0.008164607, 0.18226676, -0.011244819, -0.015054745, 0.09865725, 0.17545666, 0.7353785, 0.44574192)
 mesh = SubResource("BoxMesh_wfsp4")
-surface_material_override/0 = SubResource("StandardMaterial3D_jdjof")
+surface_material_override/0 = SubResource("StandardMaterial3D_p2xyf")
 fishing_rod = NodePath("../NoiR_Base/Armature/GeneralSkeleton/BoneAttachment3D/FishingRod")
 
 [node name="TabletArea" type="Area3D" parent="player"]
@@ -5007,39 +5012,32 @@ player = NodePath("../player")
 fish_container = NodePath(".")
 fishing_rod = NodePath("../player/NoiR_Base/Armature/GeneralSkeleton/BoneAttachment3D/FishingRod")
 
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("14_s2rys")
-autoplay = true
-bus = &"Music"
-parameters/looping = true
-
-[node name="MainMenu" parent="." instance=ExtResource("15_fc420")]
-
 [node name="CatIsland" type="MeshInstance3D" parent="."]
 transform = Transform3D(64.89797, -0.3141076, 0, 2.0395012, 9.995066, 0, 0, 0, 64.930016, 75, -9, 0)
 material_override = SubResource("StandardMaterial3D_wfsp4")
 mesh = SubResource("CylinderMesh_5aext")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="CatIsland"]
+[node name="CatDock" type="MeshInstance3D" parent="CatIsland"]
 transform = Transform3D(0.015393615, 0.00048376338, 0, -0.003141082, 0.09995066, 0, 0, 0, 0.015401198, -0.52865136, 0.9787021, 0.042864718)
 material_override = SubResource("StandardMaterial3D_5jdip")
 mesh = SubResource("BoxMesh_3cnnv")
 
 [node name="CatVendingMachine" parent="CatIsland" instance=ExtResource("16_kc0sw")]
-transform = Transform3D(3.6239285e-07, 0.00048376323, -0.015393609, 7.5013355e-05, 0.09995063, 0.0031410798, 0.015401198, -1.1558438e-05, -6.732079e-10, -0.5333233, 1.1283488, 0.040597796)
+transform = Transform3D(-6.732157e-10, 0, -0.01571081, 0, 0.099951796, 0, 0.01540138, 0, -6.8674133e-10, -0.5333233, 1.1283488, 0.040597796)
 skeleton = NodePath("../..")
-
-[node name="Camera3D" type="Camera3D" parent="CatIsland"]
-transform = Transform3D(-6.7320777e-10, -5.820766e-11, -0.015401199, 9.7144515e-17, 0.1, 4.656613e-10, 0.015401198, -1.3679011e-17, -6.732077e-10, -0.52579206, 1.0928534, 0)
-fov = 42.8
 
 [node name="DogIsland" type="MeshInstance3D" parent="."]
 transform = Transform3D(64.90434, 0.28113553, 0, -1.8254128, 9.996048, 0, 0, 0, 64.93001, -75, -9, 0)
 material_override = SubResource("StandardMaterial3D_wfsp4")
 mesh = SubResource("CylinderMesh_5aext")
 
+[node name="DogDock" type="MeshInstance3D" parent="DogIsland"]
+transform = Transform3D(0.015393615, 0.0004837634, 0, -0.003141082, 0.099950664, 0, 0, 0, 0.0154011985, 0.529, 0.979, 0.043)
+material_override = SubResource("StandardMaterial3D_5jdip")
+mesh = SubResource("BoxMesh_3cnnv")
+
 [node name="DogVendingMachine" parent="DogIsland" instance=ExtResource("16_kc0sw")]
-transform = Transform3D(-0.015395112, -0.00043298243, 1.3764303e-09, -0.0028113546, 0.09996047, 2.513547e-10, -1.3769746e-09, 0, -0.0154012, 0.48099738, 1.0855309, 0)
+transform = Transform3D(-6.840703e-10, 0, -0.0154012, 0, 0.09996141, 0, 0.015649704, 0, -6.732078e-10, 0.533, 1.128, 0.041)
 skeleton = NodePath("../..")
 settings_name = "dog"
 
@@ -5051,13 +5049,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 0)
 [node name="RightTravelPoint" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 0)
 
-[node name="Pointers" type="CanvasLayer" parent="." node_paths=PackedStringArray("menu", "pointer", "fishing", "tablet", "travel")]
+[node name="Pointers" type="CanvasLayer" parent="." node_paths=PackedStringArray("menu", "pointer", "fishing", "tablet", "travel", "fps_counter")]
 script = ExtResource("19_au80e")
 menu = NodePath("../MainMenu")
 pointer = NodePath("Pointer")
 fishing = NodePath("fishing")
 tablet = NodePath("tablet")
 travel = NodePath("travel")
+fps_counter = NodePath("fps_counter")
 
 [node name="Pointer" type="Sprite2D" parent="Pointers"]
 modulate = Color(1, 1, 1, 0.48235294)
@@ -5174,5 +5173,29 @@ theme_override_font_sizes/normal_font_size = 36
 text = "Zoom"
 fit_content = true
 scroll_active = false
+
+[node name="fps_counter" type="RichTextLabel" parent="Pointers"]
+offset_left = 8.0
+offset_top = 9.0
+offset_right = 151.0
+offset_bottom = 68.0
+text = "60"
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_s2rys")
+bus = &"Music"
+parameters/looping = true
+
+[node name="MainMenu" parent="." instance=ExtResource("15_fc420")]
+
+[node name="DogMusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("25_h5j7u")
+bus = &"Music"
+parameters/looping = false
+
+[node name="CatMusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("25_jdjof")
+bus = &"Music"
+parameters/looping = false
 
 [editable path="player/NoiR_Base"]
