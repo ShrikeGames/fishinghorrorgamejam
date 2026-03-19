@@ -32,7 +32,7 @@ func spawn_fish():
 	fish.original_position.z += (1.0+randf())*random_flip.pick_random()*min_spawn_radius
 	fish.original_position.y = randf_range(fishing_rod.hook.global_position.y-2.0, 0)
 	
-	fish.target_position = fish.original_position + (Vector3(randf()*random_flip.pick_random(), randf()*random_flip.pick_random(), randf()*random_flip.pick_random()).normalized()*max_target_radius)
+	fish.target_position = fishing_rod.hook.global_position + (Vector3(randf()*random_flip.pick_random(), randf()*random_flip.pick_random(), randf()*random_flip.pick_random()).normalized()*max_target_radius)
 	if fishing_rod.hook.global_position.y > 0:
 		fish.original_position -= Vector3(0, fishing_rod.hook.global_position.y+0.5, 0)
 		fish.target_position -= Vector3(0, fishing_rod.hook.global_position.y+0.5, 0)
