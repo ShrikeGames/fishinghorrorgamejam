@@ -1,0 +1,77 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1yieosuc4wwg"]
+
+[ext_resource type="Theme" uid="uid://c6j256munykbu" path="res://assets/themes/texture_button.tres" id="1_5psnx"]
+[ext_resource type="Texture2D" uid="uid://b2xss8fqckeg3" path="res://assets/art/ui/ui_good_ico.png" id="2_ypyfw"]
+[ext_resource type="Texture2D" uid="uid://chn3jm1sf2am7" path="res://assets/art/ui/ui_bad_icon.png" id="3_ua8vr"]
+[ext_resource type="Texture2D" uid="uid://c0c5wrniywdo0" path="res://assets/art/ui/ui_shopping_icon.png" id="4_07hn7"]
+
+[sub_resource type="Theme" id="Theme_38cc2"]
+
+[node name="ShopScreenContents" type="CanvasLayer"]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(512, 512)
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PromptText" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_5psnx")
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "[center]Would you like to buy this?[/center]
+[center]Item Name[/center]
+"
+fit_content = true
+scroll_active = false
+
+[node name="Icons" type="Node2D" parent="VBoxContainer"]
+
+[node name="GoodIcon" type="Sprite2D" parent="VBoxContainer/Icons"]
+position = Vector2(40, 155)
+texture = ExtResource("2_ypyfw")
+
+[node name="Text1" type="RichTextLabel" parent="VBoxContainer/Icons/GoodIcon"]
+offset_left = 49.0
+offset_top = -35.0
+offset_right = 396.0
+offset_bottom = 38.0
+theme = SubResource("Theme_38cc2")
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/normal_font_size = 51
+bbcode_enabled = true
+text = "Yeah!"
+metadata/_edit_use_anchors_ = true
+
+[node name="BadIcon" type="Sprite2D" parent="VBoxContainer/Icons"]
+position = Vector2(40, 235)
+texture = ExtResource("3_ua8vr")
+
+[node name="Text2" type="RichTextLabel" parent="VBoxContainer/Icons/BadIcon"]
+offset_left = 49.0
+offset_top = -35.0
+offset_right = 396.0
+offset_bottom = 38.0
+theme = SubResource("Theme_38cc2")
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/normal_font_size = 51
+bbcode_enabled = true
+text = "Hell nah!"
+metadata/_edit_use_anchors_ = true
+
+[node name="ShopIcon" type="Sprite2D" parent="VBoxContainer/Icons"]
+position = Vector2(40, 315)
+texture = ExtResource("4_07hn7")
+
+[node name="Text3" type="RichTextLabel" parent="VBoxContainer/Icons/ShopIcon"]
+offset_left = 49.0
+offset_top = -35.0
+offset_right = 396.0
+offset_bottom = 38.0
+theme = SubResource("Theme_38cc2")
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/normal_font_size = 51
+bbcode_enabled = true
+text = "Wanna buy"
+metadata/_edit_use_anchors_ = true

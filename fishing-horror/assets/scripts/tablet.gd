@@ -9,6 +9,7 @@ var env_under_water:Environment = load("res://assets/env/underwater_env.tres")
 @export var canvas:TabletCanvas
 @export var fishing_rod:FishingRod
 @export var hook_camera:Camera3D
+@export var canvas2:TabletCanvas
 
 var screens:Array = []
 var current_screen:int = 0
@@ -21,7 +22,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	hook_camera.global_position = fishing_rod.hook_camera_node.global_position
 	hook_camera.look_at(fishing_rod.hook.global_position)
-	canvas.update_depth(fishing_rod.hook.global_position.y)
+	canvas2.update_depth(fishing_rod.hook.global_position.y)
 	
 	if fishing_rod.hook.global_position.y >= 0:
 		hook_camera.environment = env_above_water
@@ -34,3 +35,4 @@ func toggle_screen():
 	current_screen = wrapi(current_screen+1, 0, max_screen)
 	screens[current_screen].visible = true
 	screens[1].current = screens[1].visible
+	canvas2.visible = screens[1].visible

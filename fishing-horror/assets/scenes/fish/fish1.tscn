@@ -26,36 +26,36 @@ height = 0.25
 [node name="Fish1" type="Node3D"]
 
 [node name="Body" type="MeshInstance3D" parent="."]
-transform = Transform3D(-2.8660283e-15, -1.3113416e-07, -1, 0.5, -4.371139e-08, 0, -2.1855694e-08, -1, 1.3113416e-07, 0.15554157, 0, -0.14747606)
+transform = Transform3D(-2.8660283e-15, -1.3113416e-07, -1, 0.5, -4.371139e-08, 0, -2.1855694e-08, -1, 1.3113416e-07, 0.0007863045, 0, -0.14747606)
 material_override = SubResource("StandardMaterial3D_tgxa0")
 mesh = SubResource("CapsuleMesh_mp61v")
 
 [node name="TailFinLeft" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.7071068, 0.7071066, 1.8545169e-08, 0, -4.3711385e-08, 0.59999996, 0.7071066, -0.7071068, -1.8545169e-08, -0.3625964, 0.009861633, -0.08300116)
+transform = Transform3D(0.7071068, 0.7071066, 1.8545169e-08, 0, -4.3711385e-08, 0.59999996, 0.7071066, -0.7071068, -1.8545169e-08, -0.5173516, 0.009861633, -0.08300116)
 material_override = SubResource("StandardMaterial3D_2crec")
 mesh = SubResource("CylinderMesh_2ohvv")
 
 [node name="TailFinRight" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.7071066, -0.7071068, -1.8545183e-08, 5.0242954e-15, -4.3711392e-08, 0.59999996, -0.7071068, -0.7071066, -1.8545164e-08, 0.64981973, 0.009861633, -0.08300129)
+transform = Transform3D(0.7071066, -0.7071068, -1.8545183e-08, 5.0242954e-15, -4.3711392e-08, 0.59999996, -0.7071068, -0.7071066, -1.8545164e-08, 0.49506447, 0.009861633, -0.08300129)
 material_override = SubResource("StandardMaterial3D_2crec")
 mesh = SubResource("CylinderMesh_2ohvv")
 
 [node name="TailFinLeft2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.8660254, 0.49999988, 1.3113406e-08, 4.8530964e-15, -4.371139e-08, 0.59999996, 0.49999988, -0.8660254, -2.27131e-08, -0.08028126, 0.009861633, 0.9454228)
+transform = Transform3D(0.8660254, 0.49999988, 1.3113406e-08, 4.8530964e-15, -4.371139e-08, 0.59999996, 0.49999988, -0.8660254, -2.27131e-08, -0.23503652, 0.009861633, 0.9454228)
 material_override = SubResource("StandardMaterial3D_2crec")
 mesh = SubResource("CylinderMesh_2ohvv")
 
 [node name="TailFinRight2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.87063026, -0.49193737, -1.2901957e-08, -3.1146316e-15, -4.3711385e-08, 0.59999996, -0.49193737, -0.87063026, -2.2833875e-08, 0.38410553, 0.009861633, 0.9454228)
+transform = Transform3D(0.87063026, -0.49193737, -1.2901957e-08, -3.1146316e-15, -4.3711385e-08, 0.59999996, -0.49193737, -0.87063026, -2.2833875e-08, 0.22935027, 0.009861633, 0.9454228)
 material_override = SubResource("StandardMaterial3D_2crec")
 mesh = SubResource("CylinderMesh_2ohvv")
 
 [node name="EyeLeft" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.3113416e-07, -0.5, -0.8660254, 0, 0.8660254, -0.5, 1, 6.556708e-08, 1.1356552e-07, -0.039306298, 0.0926657, -0.7745688)
+transform = Transform3D(1.3113416e-07, -0.5, -0.8660254, 0, 0.8660254, -0.5, 1, 6.556708e-08, 1.1356552e-07, -0.19406156, 0.0926657, -0.7745688)
 material_override = SubResource("StandardMaterial3D_vkq1p")
 mesh = SubResource("SphereMesh_bfdon")
 
 [node name="EyeRight" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.3113416e-07, 0.50000006, -0.86602545, 0, 0.86602545, 0.50000006, 1, -6.5567086e-08, 1.1356552e-07, 0.35327882, 0.09231424, -0.7745688)
+transform = Transform3D(1.3113416e-07, 0.50000006, -0.86602545, 0, 0.86602545, 0.50000006, 1, -6.5567086e-08, 1.1356552e-07, 0.19852355, 0.09231424, -0.7745688)
 material_override = SubResource("StandardMaterial3D_vkq1p")
 mesh = SubResource("SphereMesh_bfdon")

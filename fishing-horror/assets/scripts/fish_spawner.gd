@@ -2,6 +2,7 @@ extends Node3D
 
 class_name FishSpawner
 
+@export var player:Player
 @export var fish_container:Node3D
 @export var fishing_rod:FishingRod
 # Timer for how often to spawn a fish
@@ -11,8 +12,8 @@ class_name FishSpawner
 # Determine the size, corruption level, quality, how much food it provides
 
 @export var timer:float = 0.0
-@export var max_timer:float = 1.5
-@export var min_spawn_radius:float = 3.0
+@export var max_timer:float = 0.5
+@export var min_spawn_radius:float = 5.0
 @export var max_target_radius:float = 2.0
 var fish_resource:Resource = load("res://assets/scenes/fish/fish.tscn")
 
@@ -21,20 +22,26 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	timer -= delta
-	if timer <= 0 and fishing_rod.hook.global_position.y <= -0.5 * min_spawn_radius:
+	if timer <= 0:
 		spawn_fish()
 		timer = max_timer
 	pass
 
 func spawn_fish():
 	var fish:Fish = fish_resource.instantiate()
+	fish.player = player
 	fish.hook = fishing_rod.hook
 	var random_flip:Array[int] = [-1,1]
 	fish.size_multiplier = randf_range(0.15, 1.0)
+	fish.speed = randf_range(0.3, 1.0) * (1.0-fish.size_multiplier)
 	fish.speed = 2 - fish.size_multiplier
 	
 	fish.original_position = fishing_rod.hook.global_position + (Vector3((1.0+randf())*random_flip.pick_random(), (0.15*randf())*random_flip.pick_random(), (1.0+randf())*random_flip.pick_random()).normalized()*min_spawn_radius)
 	fish.target_position = fishing_rod.hook.global_position + (Vector3(randf()*random_flip.pick_random(), randf()*random_flip.pick_random(), randf()*random_flip.pick_random()).normalized()*max_target_radius)
+	if fishing_rod.hook.global_position.y > 0:
+		fish.original_position -= Vector3(0, fishing_rod.hook.global_position.y+0.5, 0)
+		fish.target_position -= Vector3(0, fishing_rod.hook.global_position.y+0.5, 0)
+		
 	fish_container.add_child(fish)
 	
-	print(fish.global_position, " -> ", fish.target_position)
+	#print(fish.global_position, " -> ", fish.target_position)

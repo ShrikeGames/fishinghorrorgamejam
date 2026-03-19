@@ -1,10 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://cya6bx6pu23w7"]
+[gd_scene load_steps=5 format=3 uid="uid://cya6bx6pu23w7"]
 
 [ext_resource type="Script" uid="uid://lwg0t3cmxh5t" path="res://assets/scripts/fish.gd" id="1_lelai"]
 [ext_resource type="PackedScene" uid="uid://ymkq0riuhokf" path="res://assets/scenes/fish/fish1.tscn" id="2_54ncq"]
+[ext_resource type="Material" uid="uid://b777seqxnafkx" path="res://assets/material/fish_plane.tres" id="2_es3ra"]
 
-[node name="Fish" type="Node3D"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_es3ra"]
+resource_local_to_scene = true
+material = ExtResource("2_es3ra")
+
+[node name="Fish" type="Node3D" node_paths=PackedStringArray("billboard", "plane", "direction_node")]
 script = ExtResource("1_lelai")
+billboard = NodePath("SubViewport/Billboard")
+plane = NodePath("plane")
+direction_node = NodePath("Direction")
+
+[node name="plane" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("PlaneMesh_es3ra")
 
 [node name="Fish1" parent="." instance=ExtResource("2_54ncq")]
 transform = Transform3D(0.46, 0, 0, 0, 0.46, 0, 0, 0, 0.46, 0, 0, 0.36521196)
+visible = false
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(1024, 1024)
+
+[node name="Billboard" type="CanvasLayer" parent="SubViewport"]
+
+[node name="Direction" type="Node3D" parent="."]

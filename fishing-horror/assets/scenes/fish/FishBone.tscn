@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://btmlde4jtvcfd"]
+
+[ext_resource type="Script" uid="uid://dbobsjrexhag7" path="res://assets/scripts/fish/FishBone.gd" id="1_nwp4e"]
+[ext_resource type="Texture2D" uid="uid://b7ktk1nr2386w" path="res://assets/art/placeholder.png" id="1_o86v0"]
+
+[node name="FishBone" type="Node2D" node_paths=PackedStringArray("left", "right", "line")]
+script = ExtResource("1_nwp4e")
+left = NodePath("Left")
+right = NodePath("Right")
+line = NodePath("Line2D")
+
+[node name="Placeholder" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("1_o86v0")
+
+[node name="Left" type="Node2D" parent="."]
+
+[node name="Right" type="Node2D" parent="."]
+
+[node name="Line2D" type="Line2D" parent="."]
+default_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
+
+[connection signal="draw" from="." to="." method="_on_draw"]

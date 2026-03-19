@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://cfrspj4nivtt5"]
+
+[ext_resource type="Script" uid="uid://pk5p8slhm4iq" path="res://assets/scripts/tablet_canvas.gd" id="1_j61n1"]
+[ext_resource type="Texture2D" uid="uid://d4fvieluejrkx" path="res://assets/art/ui/ui_bar_stamina_amount.png" id="2_t6q2v"]
+[ext_resource type="Texture2D" uid="uid://bku0ev1trmgt5" path="res://assets/art/ui/ui_bar_stamina.png" id="3_o5055"]
+[ext_resource type="Texture2D" uid="uid://c6a3cavpmx0w3" path="res://assets/art/ui/ui_hook_depth_icon.png" id="8_xjkky"]
+[ext_resource type="Texture2D" uid="uid://dvpihiql28dsr" path="res://assets/art/ui/ui_stamina_icon.png" id="11_yuggo"]
+
+[sub_resource type="Theme" id="Theme_bu4mw"]
+
+[node name="TabletCanvas" type="CanvasLayer" node_paths=PackedStringArray("depth_amount", "stamina")]
+script = ExtResource("1_j61n1")
+depth_amount = NodePath("Icons/UiHookDepthIcon/Count")
+stamina = NodePath("Bars/UiBarStaminaAmount")
+
+[node name="Bars" type="Node2D" parent="."]
+position = Vector2(80, 0)
+
+[node name="UiBarStaminaAmount" type="Sprite2D" parent="Bars"]
+position = Vector2(49, 41)
+texture = ExtResource("2_t6q2v")
+offset = Vector2(171, -1)
+
+[node name="UiBarStamina" type="Sprite2D" parent="Bars"]
+position = Vector2(220, 40)
+texture = ExtResource("3_o5055")
+
+[node name="Icons" type="Node2D" parent="."]
+
+[node name="UiHookDepthIcon" type="Sprite2D" parent="Icons"]
+position = Vector2(40, 119)
+texture = ExtResource("8_xjkky")
+
+[node name="Count" type="RichTextLabel" parent="Icons/UiHookDepthIcon"]
+offset_left = 49.0
+offset_top = -35.0
+offset_right = 396.0
+offset_bottom = 38.0
+theme = SubResource("Theme_bu4mw")
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/normal_font_size = 51
+bbcode_enabled = true
+text = " -10m"
+
+[node name="UiStaminaIcon" type="Sprite2D" parent="."]
+position = Vector2(40, 40)
+texture = ExtResource("11_yuggo")

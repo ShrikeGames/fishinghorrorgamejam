@@ -9,26 +9,31 @@ class_name TabletCanvas
 @export var stamina:Sprite2D
 @export var hunger:Sprite2D
 @export var corruption:Sprite2D
-var speed_lerp:float = 50.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	update_coin_counts(Global.game_state["cat"]["coins"], Global.game_state["cat"]["coins"])
 
 func update_coin_counts(cat_coints:int, dog_count:int):
-	cat_coins_count.text = " %d"%cat_coints
-	dog_dollars_count.text = " %d"%dog_count
+	if cat_coins_count:
+		cat_coins_count.text = " %d"%cat_coints
+	if dog_dollars_count:
+		dog_dollars_count.text = " %d"%dog_count
 
 func update_depth(depth:float):
-	depth_amount.text = " %sm"%snappedf(depth, 0.01)
+	if depth_amount:
+		depth_amount.text = " %sm"%snappedf(depth, 0.01)
 
 func _process(delta: float) -> void:
 	update_ui_bars(delta)
 	
-func update_ui_bars(delta):
-	stamina.scale.x = lerp(stamina.scale.x, get_percentage(Global.game_state["you"]["stamina"], Global.game_state["you"]["max_stamina"]), delta * speed_lerp)
-	hunger.scale.x = lerp(hunger.scale.x, get_percentage(Global.game_state["you"]["hunger"], Global.game_state["you"]["max_hunger"]), delta * speed_lerp)
-	corruption.scale.x = lerp(corruption.scale.x, 1.0 - get_percentage(Global.game_state["you"]["corruption"], Global.game_state["you"]["max_corruption"]), delta * speed_lerp)
+func update_ui_bars(_delta):
+	if stamina:
+		stamina.scale.x = get_percentage(Global.game_state["you"]["stamina"], Global.game_state["you"]["max_stamina"])
+	if hunger:
+		hunger.scale.x = get_percentage(Global.game_state["you"]["hunger"], Global.game_state["you"]["max_hunger"])
+	if corruption:
+		corruption.scale.x = 1.0 - get_percentage(Global.game_state["you"]["corruption"], Global.game_state["you"]["max_corruption"])
 
 func get_percentage(current_value: float, max_value: float) -> float:
 	return current_value / max_value

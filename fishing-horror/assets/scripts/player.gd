@@ -117,19 +117,28 @@ func _process(delta: float) -> void:
 		
 	if in_dialogue:
 		return
+	if fish_on_hook and not fish_on_hook.recharging:
+		update_camera(Vector2(fishing_rod.tip.global_position.x -fish_on_hook.global_position.x, fishing_rod.tip.global_position.z - fish_on_hook.global_position.z))
 	
 	if global_position.x != left_travel_point.global_position.x and global_position.x != right_travel_point.global_position.x:
 		fishing_rod.visible = true
 		if fishing_lower:
 			fishing_rod.hook.global_position.y -= fishing_lower_speed * delta
 			fishing_rod.spinner.rotation.x -= fishing_lower_speed * 10* delta
-		if fishing_raise:
+		if fishing_raise and Global.game_state["you"]["stamina"] >= Global.game_state["you"]["stamina_cost"] * delta:
 			if fish_on_hook:
-				Global.game_state["you"]["stamina"] -= fish_on_hook.size_multiplier * delta
-			
-			fishing_rod.hook.global_position.y += fishing_raise_speed * delta
+				Global.game_state["you"]["stamina"] -= Global.game_state["you"]["stamina_cost"] * delta
+				#fish_on_hook.global_rotation_degrees = Vector3(90,0,0)
+				fish_on_hook.speed_modifier = 0.25
+			var total_raise_speed:float = fishing_raise_speed
+			if fish_on_hook:
+				if not fish_on_hook.recharging:
+					total_raise_speed = 0
+				else:
+					total_raise_speed *= 0.75
+			fishing_rod.hook.global_position.y += total_raise_speed * delta
 			if fishing_rod.hook.global_position.y <= 1.14:
-				fishing_rod.spinner.rotation.x += fishing_raise_speed * 10* delta
+				fishing_rod.spinner.rotation.x += total_raise_speed * 10* delta
 			else:
 				if fish_on_hook and Global.game_state["you"]["current_fish"] < Global.game_state["you"]["max_fish"]:
 					# move the fish to the boat
@@ -144,10 +153,16 @@ func _process(delta: float) -> void:
 						fish_spot_2.add_child(fish_on_hook)
 						fish_on_hook.position = Vector3(0,fish_spot_2.get_child_count()*0.1,0)
 					fish_on_hook.rotation_degrees = Vector3(0,randf_range(-15, 15),0)
+					fish_on_hook.fish.paused = true
 					Global.game_state["you"]["current_fish"] += 1
 					# reduce the number of fish on hook count
 					Global.game_state["you"]["hooked_fish"] -= 1
 					fish_on_hook = null
+		else:
+			if fish_on_hook:
+				fish_on_hook.speed_modifier = 1.0
+				if not fish_on_hook.recharging:
+					fishing_rod.spinner.rotation.x -= fishing_lower_speed * 10* delta
 	else:
 		fishing_rod.visible = false
 	
@@ -168,7 +183,8 @@ func _process(delta: float) -> void:
 	global_position.x = clampf(global_position.x, right_travel_point.global_position.x,  left_travel_point.global_position.x)
 	fishing_rod.hook.global_position.y = clampf(fishing_rod.hook.global_position.y, -100000, 1.14)
 	var stamina_regen:float = Global.game_state["you"]["stamina_regen_rate"]
-	Global.game_state["you"]["stamina"] += stamina_regen * delta
+	if not fishing_raise:
+		Global.game_state["you"]["stamina"] += stamina_regen * delta
 	
 	Global.game_state["you"]["stamina"] = clampf(Global.game_state["you"]["stamina"], 0, Global.game_state["you"]["max_stamina"])
 	Global.game_state["you"]["hunger"] = clampf(Global.game_state["you"]["hunger"], 0, Global.game_state["you"]["max_hunger"])
@@ -199,7 +215,9 @@ func _unhandled_input(event : InputEvent):
 		query.collision_mask = 2
 		var result = space_state.intersect_ray(query)
 		var collider:Area3D = result.get("collider", null)
+		
 		if collider:
+			print(collider.name)
 			if collider.name == "FishingArea":
 				target_position = self.global_position
 				current_location = "center"
@@ -230,7 +248,12 @@ func _unhandled_input(event : InputEvent):
 						target_position = self.center_travel_point.global_position
 						current_location = "center"
 						in_dialogue = false
-			
+			else:
+				if event.button_index == 1 and event.pressed:
+					var vending_machine:VendingMachine = collider.get_parent()
+					var option_picked:int = int(collider.name.replace("ShopOption", ""))-1
+					Global.game_state[vending_machine.shop_screen.conversation_name]["settings"]["conversation_state"].append(option_picked)
+					Global.update_conversation.emit()
 		if not event.pressed:
 			fishing_lower = false
 			fishing_raise = false
@@ -255,6 +278,7 @@ func _unhandled_input(event : InputEvent):
 				pointers.show_travel()
 			elif collider.name == "RightTravelArea":
 				pointers.show_travel()
+
 func update_camera(mouseInput:Vector2):
 	if in_menu:
 		return
@@ -267,6 +291,7 @@ func update_camera(mouseInput:Vector2):
 	var max_rotation_x:float = PI/6
 	var animation_x:float = convert_to_range(head.rotation.y, min_rotation_y, max_rotation_y, -1.0, 1.0)
 	var animation_y:float = convert_to_range(camera.rotation.x, min_rotation_x, max_rotation_x, -1.0, 1.0)
+	
 	#print(animation_x, ", ", animation_y)
 	var new_rotation_y:float = 0
 	if camera_toggle:
@@ -280,6 +305,8 @@ func update_camera(mouseInput:Vector2):
 		new_rotation_y = fmod(head_3p.rotation.y + 2*PI, 2*PI)
 		new_rotation_y =  clamp(new_rotation_y,min_rotation_y, max_rotation_y)
 		head_3p.rotation.y = new_rotation_y
+		camera.rotate(Vector3(1,0,0), -mouseInput.y * mouse_sensitivity *0.01)
+		camera.rotation.x = clamp(camera.rotation.x, min_rotation_x, max_rotation_x)
 	else:
 		head.rotate(Vector3(0,1,0), -mouseInput.x * mouse_sensitivity *0.01)
 		new_rotation_y = fmod(head.rotation.y + 2*PI, 2*PI)
@@ -287,9 +314,9 @@ func update_camera(mouseInput:Vector2):
 		head.rotation.y = new_rotation_y
 		animation_tree.set("parameters/LookMachine/BlendSpace2D/blend_position", Vector2(-animation_x, animation_y))
 	
-	camera.rotate(Vector3(1,0,0), mouseInput.y * mouse_sensitivity *0.01)
-	camera.rotation.x = clamp(camera.rotation.x, min_rotation_x, max_rotation_x)
-	print(camera.global_position)
+		camera.rotate(Vector3(1,0,0), mouseInput.y * mouse_sensitivity *0.01)
+		camera.rotation.x = clamp(camera.rotation.x, min_rotation_x, max_rotation_x)
+	#print(camera.global_position)
 	
 	
 func convert_to_range(value:float,min_value:float, max_value:float, new_min_value:float, new_max_value:float):
