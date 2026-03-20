@@ -4666,76 +4666,76 @@ collision_mask = 0
 pinned_points = [0, 44, 59, 7, 74, 296, 260, 531, 460, 21, 93, 367, 277, 545, 511, 269, 368, 322, 375, 848, 321, 284, 32, 497]
 attachments/0/point_index = 0
 attachments/0/spatial_attachment_path = NodePath("..")
-attachments/0/offset = Vector3(-0.11599551, 0.2822662, 0.02838087)
+attachments/0/offset = Vector3(-0.11599551, 0.28226644, 0.02838093)
 attachments/1/point_index = 44
 attachments/1/spatial_attachment_path = NodePath("..")
-attachments/1/offset = Vector3(0.045018833, 0.52976733, -0.13439363)
+attachments/1/offset = Vector3(0.045018833, 0.5297676, -0.13439363)
 attachments/2/point_index = 59
 attachments/2/spatial_attachment_path = NodePath("..")
-attachments/2/offset = Vector3(-0.000150064, 0.5381089, -0.117831945)
+attachments/2/offset = Vector3(-0.000150064, 0.5381091, -0.117831945)
 attachments/3/point_index = 7
 attachments/3/spatial_attachment_path = NodePath("..")
-attachments/3/offset = Vector3(0.044764735, 0.48998135, -0.21338838)
+attachments/3/offset = Vector3(0.044764735, 0.48998147, -0.21338838)
 attachments/4/point_index = 74
 attachments/4/spatial_attachment_path = NodePath("..")
-attachments/4/offset = Vector3(-0.035379663, 0.52993935, -0.13405216)
+attachments/4/offset = Vector3(-0.035379663, 0.5299396, -0.13405216)
 attachments/5/point_index = 296
 attachments/5/spatial_attachment_path = NodePath("..")
-attachments/5/offset = Vector3(-0.10427331, 0.33094758, -0.17966026)
+attachments/5/offset = Vector3(-0.10427331, 0.3309477, -0.17966026)
 attachments/6/point_index = 260
 attachments/6/spatial_attachment_path = NodePath("..")
-attachments/6/offset = Vector3(0.11309558, 0.314642, -0.20367265)
+attachments/6/offset = Vector3(0.11309558, 0.31464213, -0.2036727)
 attachments/7/point_index = 531
 attachments/7/spatial_attachment_path = NodePath("..")
-attachments/7/offset = Vector3(0.14689402, 0.38978404, -0.04225236)
+attachments/7/offset = Vector3(0.14689402, 0.38978428, -0.04225236)
 attachments/8/point_index = 460
 attachments/8/spatial_attachment_path = NodePath("..")
-attachments/8/offset = Vector3(-0.13540791, 0.38719696, -0.038451135)
+attachments/8/offset = Vector3(-0.13540791, 0.3871972, -0.038451135)
 attachments/9/point_index = 21
 attachments/9/spatial_attachment_path = NodePath("..")
-attachments/9/offset = Vector3(-0.1655219, 0.29868966, -0.044076383)
+attachments/9/offset = Vector3(-0.1655219, 0.29868978, -0.044076324)
 attachments/10/point_index = 93
 attachments/10/spatial_attachment_path = NodePath("..")
-attachments/10/offset = Vector3(0.07029968, 0.27256447, 0.01964593)
+attachments/10/offset = Vector3(0.07029968, 0.2725646, 0.019645989)
 attachments/11/point_index = 367
 attachments/11/spatial_attachment_path = NodePath("..")
-attachments/11/offset = Vector3(0.14347103, 0.17742425, -0.12958062)
+attachments/11/offset = Vector3(0.14347103, 0.17742449, -0.12958068)
 attachments/12/point_index = 277
 attachments/12/spatial_attachment_path = NodePath("..")
-attachments/12/offset = Vector3(0.07513283, -0.27455413, 0.010638356)
+attachments/12/offset = Vector3(0.07513283, -0.274554, 0.010638416)
 attachments/13/point_index = 545
 attachments/13/spatial_attachment_path = NodePath("..")
-attachments/13/offset = Vector3(0.36908245, -0.4594304, 0.25784454)
+attachments/13/offset = Vector3(0.36908245, -0.45943034, 0.25784454)
 attachments/14/point_index = 511
 attachments/14/spatial_attachment_path = NodePath("..")
-attachments/14/offset = Vector3(0.07040573, -0.052662253, -0.08383703)
+attachments/14/offset = Vector3(0.07040573, -0.052662134, -0.08383703)
 attachments/15/point_index = 269
 attachments/15/spatial_attachment_path = NodePath("..")
-attachments/15/offset = Vector3(-0.024478564, -0.052678525, -0.0731647)
+attachments/15/offset = Vector3(-0.024478564, -0.052678406, -0.0731647)
 attachments/16/point_index = 368
 attachments/16/spatial_attachment_path = NodePath("..")
-attachments/16/offset = Vector3(-0.023310963, -0.045479357, -0.058362424)
+attachments/16/offset = Vector3(-0.023310963, -0.045479238, -0.058362424)
 attachments/17/point_index = 322
 attachments/17/spatial_attachment_path = NodePath("..")
-attachments/17/offset = Vector3(-0.11485206, -0.046598077, -0.048027933)
+attachments/17/offset = Vector3(-0.11485206, -0.046597958, -0.048027992)
 attachments/18/point_index = 375
 attachments/18/spatial_attachment_path = NodePath("..")
-attachments/18/offset = Vector3(0.07072073, -0.04639995, -0.06856537)
+attachments/18/offset = Vector3(0.07072073, -0.046399772, -0.06856537)
 attachments/19/point_index = 848
 attachments/19/spatial_attachment_path = NodePath("..")
-attachments/19/offset = Vector3(0.073975734, -0.14897674, 0.0021979213)
+attachments/19/offset = Vector3(0.073975734, -0.14897668, 0.0021979213)
 attachments/20/point_index = 321
 attachments/20/spatial_attachment_path = NodePath("..")
-attachments/20/offset = Vector3(-0.13229886, -0.14965266, 0.025887907)
+attachments/20/offset = Vector3(-0.13229886, -0.14965254, 0.025887907)
 attachments/21/point_index = 284
 attachments/21/spatial_attachment_path = NodePath("..")
-attachments/21/offset = Vector3(-0.1367204, -0.15508097, 0.010887742)
+attachments/21/offset = Vector3(-0.1367204, -0.15508091, 0.010887742)
 attachments/22/point_index = 32
 attachments/22/spatial_attachment_path = NodePath("..")
 attachments/22/offset = Vector3(-0.07326366, 0.08713204, -0.10966349)
 attachments/23/point_index = 497
 attachments/23/spatial_attachment_path = NodePath("..")
-attachments/23/offset = Vector3(-0.09926691, 0.08031297, -0.0958665)
+attachments/23/offset = Vector3(-0.09926691, 0.08031309, -0.09586644)
 
 [node name="Hair_1stPerson" type="SoftBody3D" parent="player/NoiR_Base/Armature/GeneralSkeleton/BoneAttachment3D2"]
 transform = Transform3D(1.05, 0, 0, 0, 0.9377682, 0.4790728, 0, -0.4723252, 0.9511651, -0.016686514, -0.91859245, 0.61431515)
@@ -4750,76 +4750,76 @@ pressure_coefficient = 0.5
 pinned_points = [0, 44, 59, 7, 74, 296, 260, 531, 460, 21, 93, 367, 277, 545, 511, 269, 368, 322, 375, 848, 321, 284, 32, 497]
 attachments/0/point_index = 0
 attachments/0/spatial_attachment_path = NodePath("..")
-attachments/0/offset = Vector3(-0.11599551, 0.2822662, 0.02838087)
+attachments/0/offset = Vector3(-0.11599551, 0.28226644, 0.02838093)
 attachments/1/point_index = 44
 attachments/1/spatial_attachment_path = NodePath("..")
-attachments/1/offset = Vector3(0.045018833, 0.52976733, -0.13439363)
+attachments/1/offset = Vector3(0.045018833, 0.5297676, -0.13439363)
 attachments/2/point_index = 59
 attachments/2/spatial_attachment_path = NodePath("..")
-attachments/2/offset = Vector3(-0.000150064, 0.5381089, -0.117831945)
+attachments/2/offset = Vector3(-0.000150064, 0.5381091, -0.117831945)
 attachments/3/point_index = 7
 attachments/3/spatial_attachment_path = NodePath("..")
-attachments/3/offset = Vector3(0.044764735, 0.48998135, -0.21338838)
+attachments/3/offset = Vector3(0.044764735, 0.48998147, -0.21338838)
 attachments/4/point_index = 74
 attachments/4/spatial_attachment_path = NodePath("..")
-attachments/4/offset = Vector3(-0.035379663, 0.52993935, -0.13405216)
+attachments/4/offset = Vector3(-0.035379663, 0.5299396, -0.13405216)
 attachments/5/point_index = 296
 attachments/5/spatial_attachment_path = NodePath("..")
-attachments/5/offset = Vector3(-0.10427331, 0.33094758, -0.17966026)
+attachments/5/offset = Vector3(-0.10427331, 0.3309477, -0.17966026)
 attachments/6/point_index = 260
 attachments/6/spatial_attachment_path = NodePath("..")
-attachments/6/offset = Vector3(0.11309558, 0.314642, -0.20367265)
+attachments/6/offset = Vector3(0.11309558, 0.31464213, -0.2036727)
 attachments/7/point_index = 531
 attachments/7/spatial_attachment_path = NodePath("..")
-attachments/7/offset = Vector3(0.14689402, 0.38978404, -0.04225236)
+attachments/7/offset = Vector3(0.14689402, 0.38978428, -0.04225236)
 attachments/8/point_index = 460
 attachments/8/spatial_attachment_path = NodePath("..")
-attachments/8/offset = Vector3(-0.13540791, 0.38719696, -0.038451135)
+attachments/8/offset = Vector3(-0.13540791, 0.3871972, -0.038451135)
 attachments/9/point_index = 21
 attachments/9/spatial_attachment_path = NodePath("..")
-attachments/9/offset = Vector3(-0.1655219, 0.29868966, -0.044076383)
+attachments/9/offset = Vector3(-0.1655219, 0.29868978, -0.044076324)
 attachments/10/point_index = 93
 attachments/10/spatial_attachment_path = NodePath("..")
-attachments/10/offset = Vector3(0.07029968, 0.27256447, 0.01964593)
+attachments/10/offset = Vector3(0.07029968, 0.2725646, 0.019645989)
 attachments/11/point_index = 367
 attachments/11/spatial_attachment_path = NodePath("..")
-attachments/11/offset = Vector3(0.14347103, 0.17742425, -0.12958062)
+attachments/11/offset = Vector3(0.14347103, 0.17742449, -0.12958068)
 attachments/12/point_index = 277
 attachments/12/spatial_attachment_path = NodePath("..")
-attachments/12/offset = Vector3(0.07513283, -0.27455413, 0.010638356)
+attachments/12/offset = Vector3(0.07513283, -0.274554, 0.010638416)
 attachments/13/point_index = 545
 attachments/13/spatial_attachment_path = NodePath("..")
-attachments/13/offset = Vector3(0.36908245, -0.4594304, 0.25784454)
+attachments/13/offset = Vector3(0.36908245, -0.45943034, 0.25784454)
 attachments/14/point_index = 511
 attachments/14/spatial_attachment_path = NodePath("..")
-attachments/14/offset = Vector3(0.07040573, -0.052662253, -0.08383703)
+attachments/14/offset = Vector3(0.07040573, -0.052662134, -0.08383703)
 attachments/15/point_index = 269
 attachments/15/spatial_attachment_path = NodePath("..")
-attachments/15/offset = Vector3(-0.024478564, -0.052678525, -0.0731647)
+attachments/15/offset = Vector3(-0.024478564, -0.052678406, -0.0731647)
 attachments/16/point_index = 368
 attachments/16/spatial_attachment_path = NodePath("..")
-attachments/16/offset = Vector3(-0.023310963, -0.045479357, -0.058362424)
+attachments/16/offset = Vector3(-0.023310963, -0.045479238, -0.058362424)
 attachments/17/point_index = 322
 attachments/17/spatial_attachment_path = NodePath("..")
-attachments/17/offset = Vector3(-0.11485206, -0.046598077, -0.048027933)
+attachments/17/offset = Vector3(-0.11485206, -0.046597958, -0.048027992)
 attachments/18/point_index = 375
 attachments/18/spatial_attachment_path = NodePath("..")
-attachments/18/offset = Vector3(0.07072073, -0.04639995, -0.06856537)
+attachments/18/offset = Vector3(0.07072073, -0.046399772, -0.06856537)
 attachments/19/point_index = 848
 attachments/19/spatial_attachment_path = NodePath("..")
-attachments/19/offset = Vector3(0.073975734, -0.14897674, 0.0021979213)
+attachments/19/offset = Vector3(0.073975734, -0.14897668, 0.0021979213)
 attachments/20/point_index = 321
 attachments/20/spatial_attachment_path = NodePath("..")
-attachments/20/offset = Vector3(-0.13229886, -0.14965266, 0.025887907)
+attachments/20/offset = Vector3(-0.13229886, -0.14965254, 0.025887907)
 attachments/21/point_index = 284
 attachments/21/spatial_attachment_path = NodePath("..")
-attachments/21/offset = Vector3(-0.1367204, -0.15508097, 0.010887742)
+attachments/21/offset = Vector3(-0.1367204, -0.15508091, 0.010887742)
 attachments/22/point_index = 32
 attachments/22/spatial_attachment_path = NodePath("..")
 attachments/22/offset = Vector3(-0.07326366, 0.08713204, -0.10966349)
 attachments/23/point_index = 497
 attachments/23/spatial_attachment_path = NodePath("..")
-attachments/23/offset = Vector3(-0.09926691, 0.08031297, -0.0958665)
+attachments/23/offset = Vector3(-0.09926691, 0.08031309, -0.09586644)
 
 [node name="BoneAttachment3D3" type="BoneAttachment3D" parent="player/NoiR_Base/Armature/GeneralSkeleton" index="5"]
 transform = Transform3D(1.000001, 0, 0, 0, 0.9653373, -0.26100433, 0, 0.26100415, 0.9653374, -0.040313486, 0.67632324, 0.1767447)
@@ -5053,9 +5053,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 0)
 script = ExtResource("19_au80e")
 menu = NodePath("../MainMenu")
 pointer = NodePath("CenterContainer/Pointer")
-fishing = NodePath("fishing")
-tablet = NodePath("tablet")
-travel = NodePath("travel")
+fishing = NodePath("BottomRight/fishing")
+tablet = NodePath("BottomRight/tablet")
+travel = NodePath("BottomRight/travel")
 fps_counter = NodePath("fps_counter")
 
 [node name="CenterContainer" type="CenterContainer" parent="Pointers"]
@@ -5076,15 +5076,26 @@ modulate = Color(1, 1, 1, 0.48235294)
 texture = ExtResource("19_3cnnv")
 centered = false
 
-[node name="fishing" type="Node2D" parent="Pointers"]
-position = Vector2(438, 273)
+[node name="BottomRight" type="CenterContainer" parent="Pointers"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -227.0
+offset_top = -186.0
+grow_horizontal = 0
+grow_vertical = 0
 
-[node name="MouseLeft" type="Sprite2D" parent="Pointers/fishing"]
+[node name="fishing" type="Node2D" parent="Pointers/BottomRight"]
+position = Vector2(-612, -258)
+
+[node name="MouseLeft" type="Sprite2D" parent="Pointers/BottomRight/fishing"]
 position = Vector2(682, 336)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("23_jdjof")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Pointers/fishing/MouseLeft"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Pointers/BottomRight/fishing/MouseLeft"]
 offset_left = 57.50006
 offset_top = -34.99997
 offset_right = 347.5003
@@ -5096,12 +5107,12 @@ text = "Lower Hook"
 fit_content = true
 scroll_active = false
 
-[node name="MouseLeft2" type="Sprite2D" parent="Pointers/fishing"]
+[node name="MouseLeft2" type="Sprite2D" parent="Pointers/BottomRight/fishing"]
 position = Vector2(682.00006, 386.00003)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("25_8vm3o")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Pointers/fishing/MouseLeft2"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Pointers/BottomRight/fishing/MouseLeft2"]
 offset_left = 57.50006
 offset_top = -34.99997
 offset_right = 347.5003
@@ -5113,15 +5124,15 @@ text = "Raise Hook"
 fit_content = true
 scroll_active = false
 
-[node name="tablet" type="Node2D" parent="Pointers"]
-position = Vector2(438, 273)
+[node name="tablet" type="Node2D" parent="Pointers/BottomRight"]
+position = Vector2(-612, -258)
 
-[node name="MouseLeft" type="Sprite2D" parent="Pointers/tablet"]
+[node name="MouseLeft" type="Sprite2D" parent="Pointers/BottomRight/tablet"]
 position = Vector2(682, 336)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("23_jdjof")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Pointers/tablet/MouseLeft"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Pointers/BottomRight/tablet/MouseLeft"]
 offset_left = 57.50006
 offset_top = -34.99997
 offset_right = 347.5003
@@ -5133,12 +5144,12 @@ text = "Change Screen"
 fit_content = true
 scroll_active = false
 
-[node name="MouseLeft2" type="Sprite2D" parent="Pointers/tablet"]
+[node name="MouseLeft2" type="Sprite2D" parent="Pointers/BottomRight/tablet"]
 position = Vector2(682.00006, 386.00003)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("26_h5j7u")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Pointers/tablet/MouseLeft2"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Pointers/BottomRight/tablet/MouseLeft2"]
 offset_left = 57.50006
 offset_top = -34.99997
 offset_right = 347.5003
@@ -5150,15 +5161,15 @@ text = "Zoom"
 fit_content = true
 scroll_active = false
 
-[node name="travel" type="Node2D" parent="Pointers"]
-position = Vector2(438, 273)
+[node name="travel" type="Node2D" parent="Pointers/BottomRight"]
+position = Vector2(-612, -258)
 
-[node name="MouseLeft" type="Sprite2D" parent="Pointers/travel"]
+[node name="MouseLeft" type="Sprite2D" parent="Pointers/BottomRight/travel"]
 position = Vector2(682, 336)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("23_jdjof")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Pointers/travel/MouseLeft"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Pointers/BottomRight/travel/MouseLeft"]
 offset_left = 57.50006
 offset_top = -34.99997
 offset_right = 347.5003
@@ -5170,12 +5181,12 @@ text = "Travel"
 fit_content = true
 scroll_active = false
 
-[node name="MouseLeft2" type="Sprite2D" parent="Pointers/travel"]
+[node name="MouseLeft2" type="Sprite2D" parent="Pointers/BottomRight/travel"]
 position = Vector2(682.00006, 386.00003)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("26_h5j7u")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Pointers/travel/MouseLeft2"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Pointers/BottomRight/travel/MouseLeft2"]
 offset_left = 57.50006
 offset_top = -34.99997
 offset_right = 347.5003

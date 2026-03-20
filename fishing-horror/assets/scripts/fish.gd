@@ -3,6 +3,7 @@ extends Node3D
 class_name Fish
 
 @export var player:Player
+@export var viewport:SubViewport
 @export var billboard:CanvasLayer
 @export var plane:MeshInstance3D
 @export var direction_node:Node3D
@@ -79,19 +80,19 @@ func _process(delta: float) -> void:
 		if not caught:
 			var hooked_fish:int = Global.game_state["you"]["hooked_fish"]
 			var max_hooked_fish:int = Global.game_state["you"]["max_hooked_fish"]
-			if self.global_position.distance_to(self.hook.global_position) <= 0.05 and hooked_fish < max_hooked_fish:
+			if self.global_position.distance_to(self.hook.global_position) <= speed and hooked_fish < max_hooked_fish:
 				# got caught on the hook
 				Global.emit_signal("caught_fish", self)
 				Global.game_state["you"]["hooked_fish"] += 1
 				self.target_position = self.hook.global_position + Vector3(randf_range(-5.0,5.0), -5.0, randf_range(-5.0,5.0))
 				caught = true
-			elif self.global_position.distance_to(self.target_position) <= 0.1:
+			elif self.global_position.distance_to(self.target_position) <= speed:
 				# reached target, pick a new one
 				self.target_position = self.global_position + (direction * 5.0)
 			elif Vector2(self.hook.global_position.x, self.hook.global_position.z).distance_to(Vector2(self.global_position.x, self.global_position.z)) >= 10.0:
 				# too far away, despawn
 				self.get_parent().remove_child(self)
-			elif self.hook.global_position.distance_to(self.global_position) <= 1.0 and hooked_fish < max_hooked_fish:
+			elif self.hook.global_position.distance_to(self.global_position) <= speed and hooked_fish < max_hooked_fish:
 				# traget hook when close to is
 				self.target_position = self.hook.global_position
 			self.target_position.y = clampf(self.target_position.y, -10000, -0.5)

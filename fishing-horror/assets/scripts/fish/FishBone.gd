@@ -22,11 +22,14 @@ var colour:String = "fff"
 var head_points:Array[Node2D] = []
 var eye_colour:String = "000"
 var has_eyes:bool = false
+var timer:float = 0
+
 func init(bone:FishBone, multicolour:bool, distance:float = 1, body_radius:float = 1, min_turn_angle:float = 0.4, turn_speed:float = 12, eyes:bool = false):
+	self.timer = 0
 	self.prev_bone = bone
 	self.use_individual_colours = multicolour
-	self.max_distance = distance
-	self.radius = body_radius
+	self.max_distance = max(distance, radius * 0.5)
+	self.radius = max(2.0, body_radius)
 	self.left.translate(Vector2(0, -radius))
 	self.right.translate(Vector2(0, radius))
 	self.flexibility = min_turn_angle
@@ -73,21 +76,15 @@ func init(bone:FishBone, multicolour:bool, distance:float = 1, body_radius:float
 
 func update(delta):
 	var target_pos:Vector2
+	timer += delta
 	
 	if prev_bone:
 		target_pos = prev_bone.global_position
 	else:
+		target_pos = Vector2(514,512 + (sin(timer*agility))) 
 		global_position = Vector2(512,512)
 	
 	var distance:float = global_position.distance_to(target_pos)
-	if not prev_bone and (not target_pos or distance < max_distance*2):
-		var direction:Vector2 = global_transform.x
-		direction.x = direction.x + sin(delta)*0.001#+randf_range(-0.1, 0.1)
-		direction.y = direction.y + cos(delta)*0.001#+randf_range(-0.1, 0.1)
-		target_pos = global_position + direction * look_ahead_distance
-		target_pos.x = wrapf(target_pos.x, radius, 1920-radius)
-		target_pos.y = wrapf(target_pos.y, radius, 1080-radius)
-		distance = global_position.distance_to(target_pos)
 	
 	if distance != max_distance:
 		var angle_diff:float = get_angle_to(target_pos)

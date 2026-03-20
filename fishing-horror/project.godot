@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Fishing Horror"
+config/name="Fishy Fetchy"
 run/main_scene="uid://byoeo0uxwfn25"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 run/max_fps=60

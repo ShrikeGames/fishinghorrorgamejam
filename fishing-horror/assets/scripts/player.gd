@@ -135,7 +135,7 @@ func _process(delta: float) -> void:
 		music_dog.stop()
 		music_cat.stop()
 	if fish_on_hook and not fish_on_hook.recharging:
-		update_camera(Vector2(fishing_rod.tip.global_position.x -fish_on_hook.global_position.x, fishing_rod.tip.global_position.z - fish_on_hook.global_position.z))
+		update_camera(Vector2(fishing_rod.tip.global_position.x -fish_on_hook.global_position.x + randf_range(-1.5,1.5), fishing_rod.tip.global_position.z - fish_on_hook.global_position.z + randf_range(-1.5,1.5)))
 	
 	if global_position.x != left_travel_point.global_position.x and global_position.x != right_travel_point.global_position.x:
 		fishing_rod.visible = true

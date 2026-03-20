@@ -8,8 +8,9 @@
 resource_local_to_scene = true
 material = ExtResource("2_es3ra")
 
-[node name="Fish" type="Node3D" node_paths=PackedStringArray("billboard", "plane", "direction_node")]
+[node name="Fish" type="Node3D" node_paths=PackedStringArray("viewport", "billboard", "plane", "direction_node")]
 script = ExtResource("1_lelai")
+viewport = NodePath("SubViewport")
 billboard = NodePath("SubViewport/Billboard")
 plane = NodePath("plane")
 direction_node = NodePath("Direction")

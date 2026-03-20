@@ -4,7 +4,7 @@ class_name Goldfish
 func generate(bones:Node2D, multi_colour_chance:float, colour:String):
 	var prev_bone:Node2D = null
 	var x_pos:float = 0
-	# tadpole initial values
+	
 	num_bones = randi_range(8, 12)
 	max_distance = randi_range(10, 15)
 	max_radius = randi_range(10, 20)
