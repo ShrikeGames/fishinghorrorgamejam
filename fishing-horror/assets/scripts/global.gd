@@ -24,7 +24,7 @@ var game_state:Dictionary = {
 		"current_fish": 0,
 		"stamina": 10,
 		"max_stamina": 10,
-		"travel_hunger_rate": 0.01,
+		"travel_hunger_rate": 0.1,
 		"stamina_regen_rate": 2.0,
 		"stamina_cost": 0.5,
 		"max_fish": 10,

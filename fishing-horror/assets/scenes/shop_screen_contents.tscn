@@ -20,8 +20,8 @@ theme = ExtResource("1_5psnx")
 theme_override_constants/outline_size = 20
 theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
-text = "[center]Would you like to buy this?[/center]
-[center]Item Name[/center]
+text = "[center]Example dialogue?[/center]
+[center]another line of text[/center]
 "
 fit_content = true
 scroll_active = false
@@ -73,5 +73,5 @@ theme = SubResource("Theme_38cc2")
 theme_override_constants/outline_size = 20
 theme_override_font_sizes/normal_font_size = 51
 bbcode_enabled = true
-text = "Wanna buy"
+text = "Maybe bro"
 metadata/_edit_use_anchors_ = true

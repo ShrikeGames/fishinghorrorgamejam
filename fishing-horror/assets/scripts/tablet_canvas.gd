@@ -26,6 +26,7 @@ func update_depth(depth:float):
 
 func _process(delta: float) -> void:
 	update_ui_bars(delta)
+	update_coin_counts(Global.game_state["cat"]["coins"], Global.game_state["dog"]["coins"])
 	
 func update_ui_bars(_delta):
 	if stamina:

@@ -26,7 +26,7 @@ func init(settings_name:String):
 	var next_conversations:Array = config["conversations"]
 	var current_conversation:Dictionary = config
 	for conversation_index in conversation_state:
-		if len(next_conversations) > 0:
+		if len(next_conversations) > conversation_index:
 			current_conversation = next_conversations[conversation_index]
 			next_conversations  = next_conversations[conversation_index]["conversations"]
 	print("current_conversation: ", current_conversation)

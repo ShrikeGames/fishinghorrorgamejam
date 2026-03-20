@@ -4,63 +4,13 @@ class_name FishSegment
 @export var bones:Node2D
 @export var base_colour:String
 @export var multi_colour_chance:float = 1.0
-var colour_choices = ["00", "11", "22", "33", "44", "55", "66", "77", "88", "99", "AA", "BB", "CC", "DD", "EE", "FF"]
 var time:float = 0.0
 var paused:bool = false
+var species:Species
+
 func _ready():
-	var red: String = colour_choices[randi_range(0, len(colour_choices)-1)]
-	var green: String = colour_choices[randi_range(0, len(colour_choices)-1)]
-	var blue: String = colour_choices[randi_range(0, len(colour_choices)-1)]
-	
-	var species_id:int = randi_range(1,12)
-	if species_id == 1:
-		var worm:Worm = Worm.new()
-		base_colour = "%s%s%s"%[red, green, blue]
-		worm.generate(bones, multi_colour_chance, base_colour)
-	elif species_id == 2:
-		var tadpole:Goldfish = Goldfish.new()
-		base_colour = "%s%s%s"%[red, green, blue]
-		tadpole.generate(bones, multi_colour_chance, base_colour)
-	elif species_id == 3:
-		var longfish:Longfish = Longfish.new()
-		base_colour = "%s%s%s"%[red, green, blue]
-		longfish.generate(bones, multi_colour_chance, base_colour)
-	elif species_id == 4:
-		var eyefish:Eyefish = Eyefish.new()
-		base_colour = "%s%s%s"%[red, green, blue]
-		eyefish.generate(bones, multi_colour_chance, base_colour)
-	elif species_id == 5:
-		var eyefish:FanTail = FanTail.new()
-		base_colour = "%s%s%s"%[red, green, blue]
-		eyefish.generate(bones, multi_colour_chance, base_colour)
-	elif species_id == 6:
-		var eyefish:PufferFish = PufferFish.new()
-		base_colour = "%s%s%s"%[red, green, blue]
-		eyefish.generate(bones, multi_colour_chance, base_colour)
-	elif species_id == 7:
-		var eyefish:PuffTailFish = PuffTailFish.new()
-		base_colour = "%s%s%s"%[red, green, blue]
-		eyefish.generate(bones, multi_colour_chance, base_colour)
-	elif species_id == 8:
-		var eyefish:SpineFish = SpineFish.new()
-		base_colour = "%s%s%s"%[red, green, blue]
-		eyefish.generate(bones, multi_colour_chance, base_colour)
-	elif species_id == 9:
-		var eyefish:StubbyFish = StubbyFish.new()
-		base_colour = "%s%s%s"%[red, green, blue]
-		eyefish.generate(bones, multi_colour_chance, base_colour)
-	elif species_id == 10:
-		var eyefish:TriangleFish = TriangleFish.new()
-		base_colour = "%s%s%s"%[red, green, blue]
-		eyefish.generate(bones, multi_colour_chance, base_colour)
-	elif species_id == 11:
-		var eyefish:ClusterEyeFish = ClusterEyeFish.new()
-		base_colour = "%s%s%s"%[red, green, blue]
-		eyefish.generate(bones, multi_colour_chance, base_colour)
-	elif species_id == 12:
-		var eyefish:SharkFish = SharkFish.new()
-		base_colour = "%s%s%s"%[red, green, blue]
-		eyefish.generate(bones, multi_colour_chance, base_colour)
+	species.generate(bones, multi_colour_chance, base_colour)
+	pass
 	
 	
 func _process(delta):

@@ -23,7 +23,8 @@ var head_points:Array[Node2D] = []
 var eye_colour:String = "000"
 var has_eyes:bool = false
 var timer:float = 0
-
+var slow_agility:float = 0
+var max_agility:float = 0
 func init(bone:FishBone, multicolour:bool, distance:float = 1, body_radius:float = 1, min_turn_angle:float = 0.4, turn_speed:float = 12, eyes:bool = false):
 	self.timer = 0
 	self.prev_bone = bone
@@ -34,6 +35,8 @@ func init(bone:FishBone, multicolour:bool, distance:float = 1, body_radius:float
 	self.right.translate(Vector2(0, radius))
 	self.flexibility = min_turn_angle
 	self.agility = turn_speed
+	self.max_agility = self.agility
+	self.slow_agility = self.agility * 0.1
 	self.has_eyes = eyes
 	# add head points if it's the front
 	if not prev_bone:

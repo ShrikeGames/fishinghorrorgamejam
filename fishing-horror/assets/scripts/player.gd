@@ -23,7 +23,16 @@ var hair:SoftBody3D
 @export var music_main:AudioStreamPlayer
 @export var music_cat:AudioStreamPlayer
 @export var music_dog:AudioStreamPlayer
+@export var music_battle:AudioStreamPlayer
+var music_main_playback_position:float = 0.0
+var music_cat_playback_position:float = 0.0
+var music_dog_playback_position:float = 0.0
+var music_battle_playback_position:float = 0.0
 
+@export var cat_vending_machine:VendingMachine
+@export var dog_vending_machine:VendingMachine
+@export var left_fish_pile:Node3D
+@export var right_fish_pile:Node3D
 
 var target_position:Vector3
 var current_location:String = "center"
@@ -73,10 +82,11 @@ func _ready() -> void:
 	
 	forward = camera.global_transform.basis.z
 	
+	stop_all_music()
+	
 	Global.caught_fish.connect(caught_fish)
 
 func caught_fish(fish:Fish):
-	print("Caught fish start minigame", fish)
 	fish_on_hook = fish
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -101,12 +111,75 @@ func _process(delta: float) -> void:
 		is_zooming = true
 		zoom_direction = 1
 		zoom_progress = 0
-		
 	elif Input.is_action_just_pressed("zoom_out"):
 		is_zooming = true
 		zoom_direction = -1
 		zoom_progress = 0
 	
+	if Input.is_action_just_pressed("eat") and Global.game_state["you"]["current_fish"] > 0:
+		if left_fish_pile.get_child_count() > 0:
+			var fish_to_remove:Fish = left_fish_pile.get_child(0)
+			left_fish_pile.remove_child(fish_to_remove)
+			fish_to_remove.queue_free()
+		elif right_fish_pile.get_child_count() > 0:
+			var fish_to_remove:Fish = right_fish_pile.get_child(0)
+			right_fish_pile.remove_child(fish_to_remove)
+			fish_to_remove.queue_free()
+		Global.game_state["you"]["hunger"] += 1.0
+		
+	if Input.is_action_pressed("travel_left"):
+		target_position.x = self.global_position.x + (boat_speed * delta)
+	elif Input.is_action_pressed("travel_right"):
+		target_position.x = self.global_position.x - (boat_speed * delta)
+	
+	if Input.is_action_just_pressed("activate_tablet"):
+		self.tablet.toggle_screen()
+	
+	if self.global_position.x == self.left_travel_point.global_position.x:
+		self.in_dialogue = true
+		if Input.is_action_just_pressed("shop_option_1"):
+			Global.game_state[cat_vending_machine.shop_screen.conversation_name]["settings"]["conversation_state"].append(0)
+			Global.update_conversation.emit()
+		elif Input.is_action_just_pressed("shop_option_2"):
+			Global.game_state[cat_vending_machine.shop_screen.conversation_name]["settings"]["conversation_state"].append(1)
+			Global.update_conversation.emit()
+		elif Input.is_action_just_pressed("shop_option_3"):
+			Global.game_state[cat_vending_machine.shop_screen.conversation_name]["settings"]["conversation_state"].append(2)
+			Global.update_conversation.emit()
+		if Global.game_state["you"]["current_fish"] > 0:
+			Global.game_state["cat"]["coins"] += Global.game_state["you"]["current_fish"]
+			for fish in left_fish_pile.get_children():
+				left_fish_pile.remove_child(fish)
+				fish.queue_free()
+			for fish in right_fish_pile.get_children():
+				right_fish_pile.remove_child(fish)
+				fish.queue_free()
+			
+			Global.game_state["you"]["current_fish"] = 0
+	elif self.global_position.x == self.right_travel_point.global_position.x:
+		self.in_dialogue = true
+		if Input.is_action_just_pressed("shop_option_1"):
+			Global.game_state[dog_vending_machine.shop_screen.conversation_name]["settings"]["conversation_state"].append(0)
+			Global.update_conversation.emit()
+		elif Input.is_action_just_pressed("shop_option_2"):
+			Global.game_state[dog_vending_machine.shop_screen.conversation_name]["settings"]["conversation_state"].append(1)
+			Global.update_conversation.emit()
+		elif Input.is_action_just_pressed("shop_option_3"):
+			Global.game_state[dog_vending_machine.shop_screen.conversation_name]["settings"]["conversation_state"].append(2)
+			Global.update_conversation.emit()
+		if Global.game_state["you"]["current_fish"] > 0:
+			Global.game_state["dog"]["coins"] += Global.game_state["you"]["current_fish"]
+			for fish in left_fish_pile.get_children():
+				left_fish_pile.remove_child(fish)
+				fish.queue_free()
+			for fish in right_fish_pile.get_children():
+				right_fish_pile.remove_child(fish)
+				fish.queue_free()
+			
+			Global.game_state["you"]["current_fish"] = 0
+	else:
+		self.in_dialogue = false
+		
 	if is_zooming:
 		if zoom_progress >= 1:
 			is_zooming = false
@@ -122,23 +195,24 @@ func _process(delta: float) -> void:
 		
 	if in_dialogue:
 		if global_position.x == left_travel_point.global_position.x and not music_cat.playing:
-			music_main.stop()
-			music_dog.stop()
-			music_cat.play()
+			stop_all_music()
+			music_cat.play(music_cat_playback_position)
 		elif global_position.x == right_travel_point.global_position.x and not music_dog.playing:
-			music_main.stop()
-			music_dog.play()
-			music_cat.stop()
-		return
-	elif not music_main.playing:
-		music_main.play()
-		music_dog.stop()
-		music_cat.stop()
+			stop_all_music()
+			music_dog.play(music_dog_playback_position)
+	elif not music_battle.playing and fish_on_hook:
+		stop_all_music()
+		music_battle.seek(music_battle_playback_position)
+		music_battle.play(music_battle_playback_position)
+	elif not music_main.playing and not fish_on_hook:
+		stop_all_music()
+		music_main.seek(music_main_playback_position)
+		music_main.play(music_main_playback_position)
+	
 	if fish_on_hook and not fish_on_hook.recharging:
 		update_camera(Vector2(fishing_rod.tip.global_position.x -fish_on_hook.global_position.x + randf_range(-1.5,1.5), fishing_rod.tip.global_position.z - fish_on_hook.global_position.z + randf_range(-1.5,1.5)))
 	
 	if global_position.x != left_travel_point.global_position.x and global_position.x != right_travel_point.global_position.x:
-		fishing_rod.visible = true
 		if fishing_lower:
 			fishing_rod.hook.global_position.y -= fishing_lower_speed * delta
 			fishing_rod.spinner.rotation.x -= fishing_lower_speed * 10* delta
@@ -165,11 +239,11 @@ func _process(delta: float) -> void:
 					if int(Global.game_state["you"]["current_fish"]) % 2 == 0:
 						fish_spot.add_child(fish_on_hook)
 						fish_on_hook.position = Vector3(0,fish_spot.get_child_count()*0.1,0)
-						
 					else:
 						fish_spot_2.add_child(fish_on_hook)
 						fish_on_hook.position = Vector3(0,fish_spot_2.get_child_count()*0.1,0)
 					fish_on_hook.rotation_degrees = Vector3(0,randf_range(-15, 15),0)
+					fish_on_hook.paused = true
 					fish_on_hook.fish.paused = true
 					Global.game_state["you"]["current_fish"] += 1
 					# reduce the number of fish on hook count
@@ -180,8 +254,6 @@ func _process(delta: float) -> void:
 				fish_on_hook.speed_modifier = 1.0
 				if not fish_on_hook.recharging:
 					fishing_rod.spinner.rotation.x -= fishing_lower_speed * 10* delta
-	else:
-		fishing_rod.visible = false
 	
 	if global_position.x > target_position.x:
 		global_position.x -= boat_speed * delta
@@ -190,12 +262,6 @@ func _process(delta: float) -> void:
 		global_position.x += boat_speed * delta
 		Global.game_state["you"]["hunger"] -= Global.game_state["you"]["travel_hunger_rate"] * delta
 	
-	if abs(global_position.x - target_position.x) <= boat_speed * delta and abs(global_position.x - target_position.x)>0:
-		global_position = target_position
-	if global_position.x == left_travel_point.global_position.x:
-		in_dialogue = true
-	elif global_position.x == right_travel_point.global_position.x:
-		in_dialogue = true
 	
 	global_position.x = clampf(global_position.x, right_travel_point.global_position.x,  left_travel_point.global_position.x)
 	fishing_rod.hook.global_position.y = clampf(fishing_rod.hook.global_position.y, -100000, 1.14)
@@ -217,85 +283,31 @@ func _process(delta: float) -> void:
 	Global.game_state["you"]["current_position"][1] = self.global_position.y
 	Global.game_state["you"]["current_position"][2] = self.global_position.z
 	
-
+func stop_all_music():
+	music_main_playback_position = music_main.get_playback_position()
+	music_dog_playback_position = music_dog.get_playback_position()
+	music_cat_playback_position = music_cat.get_playback_position()
+	music_battle_playback_position = music_battle.get_playback_position()
+	music_main.stream_paused = true
+	music_dog.stream_paused = true
+	music_cat.stream_paused = true
+	music_battle.stream_paused = true
+	
 func _unhandled_input(event : InputEvent):
 	if in_menu:
 		return
-	if event is InputEventMouseButton and event.button_index in [1,2]:
-		
-		var from:Vector3 = camera.project_ray_origin(event.position)
-		const RAY_LENGTH:float = 10.0
-		var to:Vector3 = from + camera.project_ray_normal(event.position) * RAY_LENGTH
-		var space_state = get_world_3d().direct_space_state
-		var query = PhysicsRayQueryParameters3D.create(from, to)
-		query.collide_with_areas = true
-		query.collision_mask = 2
-		var result = space_state.intersect_ray(query)
-		var collider:Area3D = result.get("collider", null)
-		
-		if collider:
-			print(collider.name)
-			if collider.name == "FishingArea":
-				target_position = self.global_position
-				current_location = "center"
-				if event.button_index == 1:
-					fishing_lower = event.pressed
-				elif event.button_index == 2:
-					fishing_raise = event.pressed
-			elif collider.name == "TabletArea":
-				if event.button_index == 1 and event.pressed:
-					tablet.toggle_screen()
-			elif collider.name == "LeftTravelArea":
-				if event.button_index == 1 and event.pressed:
-					if current_location == "center":
-						target_position = self.left_travel_point.global_position
-						current_location = "left"
-						in_dialogue = false
-					elif current_location == "right":
-						target_position = self.center_travel_point.global_position
-						current_location = "center"
-						in_dialogue = false
-			elif collider.name == "RightTravelArea":
-				if event.button_index == 1 and event.pressed:
-					if current_location == "center":
-						target_position = self.right_travel_point.global_position
-						current_location = "right"
-						in_dialogue = false
-					elif current_location == "left":
-						target_position = self.center_travel_point.global_position
-						current_location = "center"
-						in_dialogue = false
-			else:
-				if event.button_index == 1 and event.pressed:
-					var vending_machine:VendingMachine = collider.get_parent()
-					var option_picked:int = int(collider.name.replace("ShopOption", ""))-1
-					Global.game_state[vending_machine.shop_screen.conversation_name]["settings"]["conversation_state"].append(option_picked)
-					Global.update_conversation.emit()
+	if event is InputEventMouseButton:
+		if event.button_index == 1:
+			fishing_lower = event.pressed
+		elif event.button_index == 2:
+			fishing_raise = event.pressed
 		if not event.pressed:
 			fishing_lower = false
 			fishing_raise = false
 	if event is InputEventMouseMotion:
 		var mouseInput:Vector2 = event.relative
 		update_camera(mouseInput)
-		var from:Vector3 = camera.project_ray_origin(event.position)
-		const RAY_LENGTH:float = 10.0
-		var to:Vector3 = from + camera.project_ray_normal(event.position) * RAY_LENGTH
-		var space_state = get_world_3d().direct_space_state
-		var query = PhysicsRayQueryParameters3D.create(from, to)
-		query.collide_with_areas = true
-		query.collision_mask = 2
-		var result = space_state.intersect_ray(query)
-		var collider:Area3D = result.get("collider", null)
-		if collider:
-			if collider.name == "FishingArea":
-				pointers.show_fishing()
-			elif collider.name == "TabletArea":
-				pointers.show_tablet()
-			elif collider.name == "LeftTravelArea":
-				pointers.show_travel()
-			elif collider.name == "RightTravelArea":
-				pointers.show_travel()
-
+	
 func update_camera(mouseInput:Vector2):
 	if in_menu:
 		return

@@ -5,37 +5,44 @@ func generate(bones:Node2D, multi_colour_chance:float, colour:String):
 	var prev_bone:Node2D = null
 	var x_pos:float = 0
 	
-	num_bones = randi_range(6, 10)
+	num_bones = randi_range(8, 12)
 	max_distance = randi_range(10, 15)
-	max_radius = randi_range(10, 18)
+	max_radius = randi_range(10, 20)
 	
-	var min_turn_angle:float = 0.08
-	var turn_speed:float = 5
+	var min_turn_angle:float = 0.1
+	var turn_speed:float = 6
 	
-	for i in range(num_bones):
+	
+	for i in range(0, num_bones):
 		var bone:FishBone = fish_bone_object.instantiate()
 		
-		var scale = 1.0 - (i / float(num_bones)) * 0.6
-		var radius = max_radius * scale
-		
-		var use_individual_colours = randf() < multi_colour_chance
+		var use_individual_colours = false
 		bone.colour = colour
-		
+		if randf() < multi_colour_chance:
+			use_individual_colours = true
+		var radius = max_radius * ((4+abs((num_bones*0.5)-i))/num_bones)
 		var has_eyes:bool = (i == 0)
 		bone.init(prev_bone, use_individual_colours, max_distance, radius, min_turn_angle, turn_speed, has_eyes)
-		
+		bone.move_speed = randf_range(200, 500)
 		x_pos -= bone.radius
-		bone.position.x = x_pos
-		bones.add_child(bone)
+		var fin:FishBone = null
+		if i == num_bones-1 or i == num_bones-2:
+			fin = fish_bone_object.instantiate()
+			var fin_radius:float = bone.radius*2.75
+			var fin_max_distance:float = max_distance * 1.5
+			var fin_min_turn_angle:float = min_turn_angle
+			var fin_turn_speed:float = turn_speed * 1.5
+			fin.init(bone, use_individual_colours, fin_max_distance, fin_radius, fin_min_turn_angle, fin_turn_speed)
+			fin.move_speed = bone.move_speed
+			fin.position.x = x_pos - bone.radius
+			fin.position.y = -fin_radius
+			fin.rotation = 0
 		
-		# big tail fan
-		if i == num_bones - 1:
-			for j in range(3):
-				var fin:FishBone = fish_bone_object.instantiate()
-				var angle = (-0.5 + j * 0.5)
-				
-				fin.init(bone, use_individual_colours, max_distance * 1.5, radius * 2.0, min_turn_angle, turn_speed * 1.5)
-				fin.position = Vector2(x_pos, radius * angle * 2)
-				bones.add_child(fin)
+		bone.position.x = x_pos
+		bone.rotation = 0
+		
+		bones.add_child(bone)
+		if fin:
+			bones.add_child(fin)
 		
 		prev_bone = bone
