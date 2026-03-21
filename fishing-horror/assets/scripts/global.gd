@@ -43,12 +43,12 @@ var game_state:Dictionary = {
 	"cat": {
 		"settings": {
 			"name": "Cat Demon",
-			"default_image": "res://assets/art/placeholder.png",
+			"default_image": "res://assets/art/characters/maha_amused.png",
 			"conversation_state": [0],
 			"conversations":[
 				{
 					"prompt": "insert character introduction line here",
-					"image": "res://assets/art/placeholder.png",
+					"image": "res://assets/art/characters/maha_amused.png",
 					"responses": [
 						"Response 0",
 						"Response 1",
@@ -57,14 +57,14 @@ var game_state:Dictionary = {
 					"conversations":[
 						{
 							"prompt": "followup to response 0",
-							"image": "res://assets/art/placeholder.png",
+							"image": "res://assets/art/characters/maha_eyes_closed_cover_mouth.png",
 							"responses": [
 								"Response 0-0",
 							],
 							"conversations":[
 								{
 									"prompt": "followup to response 0-0",
-									"image": "res://assets/art/placeholder.png",
+									"image": "res://assets/art/characters/maha_eyes_open.png",
 									"responses": [
 									],
 									"conversations":[]
@@ -73,14 +73,14 @@ var game_state:Dictionary = {
 						},
 						{
 							"prompt": "followup to response 1",
-							"image": "res://assets/art/placeholder.png",
+							"image": "res://assets/art/characters/maha_eyes_open.png",
 							"responses": [
 								"Response 1-0",
 							],
 							"conversations":[
 								{
 									"prompt": "followup to response 1-0",
-									"image": "res://assets/art/placeholder.png",
+									"image": "res://assets/art/characters/maha_eyes_open_cover_mouth.png",
 									"responses": [
 									],
 									"conversations":[]
@@ -89,13 +89,14 @@ var game_state:Dictionary = {
 						},
 						{
 							"prompt": "followup to response 2",
+							"image": "res://assets/art/characters/maha_amused.png",
 							"responses": [
 								"Response 2-0",
 							],
 							"conversations":[
 								{
 									"prompt": "followup to response 2-0",
-									"image": "res://assets/art/placeholder.png",
+									"image": "res://assets/art/characters/maha_eyes_closed_cover_mouth.png",
 									"responses": [
 									],
 									"conversations":[]
@@ -128,12 +129,12 @@ var game_state:Dictionary = {
 	"dog": {
 		"settings": {
 			"name": "Dog Demon",
-			"default_image": "res://assets/art/placeholder.png",
+			"default_image": "res://assets/art/characters/hama_eyes_closed.png",
 			"conversation_state": [0],
 			"conversations":[
 				{
 					"prompt": "insert character introduction line here",
-					"image": "res://assets/art/placeholder.png",
+					"image": "res://assets/art/characters/hama_eyes_closed.png",
 					"responses": [
 						"Response 0",
 						"Response 1",
@@ -142,14 +143,14 @@ var game_state:Dictionary = {
 					"conversations":[
 						{
 							"prompt": "followup to response 0",
-							"image": "res://assets/art/placeholder.png",
+							"image": "res://assets/art/characters/hama_eyes_closed_mouth_cover.png",
 							"responses": [
 								"Response 0-0",
 							],
 							"conversations":[
 								{
 									"prompt": "followup to response 0-0",
-									"image": "res://assets/art/placeholder.png",
+									"image": "res://assets/art/characters/hama_eyes_open_cover_mouth.png",
 									"responses": [
 									],
 									"conversations":[]
@@ -158,14 +159,14 @@ var game_state:Dictionary = {
 						},
 						{
 							"prompt": "followup to response 1",
-							"image": "res://assets/art/placeholder.png",
+							"image": "/home/shrike/Dropbox/programming/fishinghorrorgamejam/fishing-horror/assets/art/characters/hama_eyes_open.png",
 							"responses": [
 								"Response 1-0",
 							],
 							"conversations":[
 								{
 									"prompt": "followup to response 1-0",
-									"image": "res://assets/art/placeholder.png",
+									"image": "/home/shrike/Dropbox/programming/fishinghorrorgamejam/fishing-horror/assets/art/characters/hama_eyes_open_cover_mouth.png",
 									"responses": [
 									],
 									"conversations":[]
@@ -180,7 +181,7 @@ var game_state:Dictionary = {
 							"conversations":[
 								{
 									"prompt": "followup to response 2-0",
-									"image": "res://assets/art/placeholder.png",
+									"image": "/home/shrike/Dropbox/programming/fishinghorrorgamejam/fishing-horror/assets/art/characters/hama_eyes_open_cover_mouth.png",
 									"responses": [
 									],
 									"conversations":[]

@@ -16,18 +16,14 @@ var hair:SoftBody3D
 @export var left_travel_point:Node3D
 @export var center_travel_point:Node3D
 @export var right_travel_point:Node3D
+var shop_distance:float = 2.0
+
 @export var camera_3p:Camera3D
 @export var head_3p:Node3D
 @export var pointers:Pointer
 
 @export var music_main:AudioStreamPlayer
-@export var music_cat:AudioStreamPlayer
-@export var music_dog:AudioStreamPlayer
-@export var music_battle:AudioStreamPlayer
-var music_main_playback_position:float = 0.0
-var music_cat_playback_position:float = 0.0
-var music_dog_playback_position:float = 0.0
-var music_battle_playback_position:float = 0.0
+var music_state = "menu"
 
 @export var cat_vending_machine:VendingMachine
 @export var dog_vending_machine:VendingMachine
@@ -57,10 +53,17 @@ var fishing_raise_speed:float
 var boat_speed:float
 var forward:Vector3
 var fish_on_hook:Fish
+var timer:float
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Global.load_settings()
+	# Set up the AudioStreamInteractive resource
+	var music = preload("res://assets/sound/audio_stream_interactive.tres")
+	music_main.stream = music
+	music_main.play()
+	
+	self.timer = 0
 	self.camera = camera_3p
 	self.head.rotation_degrees.y = 150
 	self.camera.rotation_degrees.x = -13
@@ -82,8 +85,6 @@ func _ready() -> void:
 	
 	forward = camera.global_transform.basis.z
 	
-	stop_all_music()
-	
 	Global.caught_fish.connect(caught_fish)
 
 func caught_fish(fish:Fish):
@@ -91,6 +92,9 @@ func caught_fish(fish:Fish):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	timer += delta
+	self.global_position.y = sin(timer)*0.05
+	
 	if in_menu:
 		return
 	
@@ -104,8 +108,11 @@ func _process(delta: float) -> void:
 		self.head.rotation_degrees.y = 150
 		self.camera.rotation_degrees.x = -13
 		update_camera_state()
+		switch_music("menu")
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		Global.save_settings()
+	elif not menu.visible and music_state == "menu":
+		switch_music("game")
 	
 	if Input.is_action_just_pressed("zoom_in"):
 		is_zooming = true
@@ -135,7 +142,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("activate_tablet"):
 		self.tablet.toggle_screen()
 	
-	if self.global_position.x == self.left_travel_point.global_position.x:
+	if self.global_position.x >= self.left_travel_point.global_position.x - shop_distance:
 		self.in_dialogue = true
 		if Input.is_action_just_pressed("shop_option_1"):
 			Global.game_state[cat_vending_machine.shop_screen.conversation_name]["settings"]["conversation_state"].append(0)
@@ -156,7 +163,7 @@ func _process(delta: float) -> void:
 				fish.queue_free()
 			
 			Global.game_state["you"]["current_fish"] = 0
-	elif self.global_position.x == self.right_travel_point.global_position.x:
+	elif self.global_position.x <= self.right_travel_point.global_position.x + shop_distance:
 		self.in_dialogue = true
 		if Input.is_action_just_pressed("shop_option_1"):
 			Global.game_state[dog_vending_machine.shop_screen.conversation_name]["settings"]["conversation_state"].append(0)
@@ -192,27 +199,22 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("toggle_camera"):
 		update_camera_state()
-		
-	if in_dialogue:
-		if global_position.x == left_travel_point.global_position.x and not music_cat.playing:
-			stop_all_music()
-			music_cat.play(music_cat_playback_position)
-		elif global_position.x == right_travel_point.global_position.x and not music_dog.playing:
-			stop_all_music()
-			music_dog.play(music_dog_playback_position)
-	elif not music_battle.playing and fish_on_hook:
-		stop_all_music()
-		music_battle.seek(music_battle_playback_position)
-		music_battle.play(music_battle_playback_position)
-	elif not music_main.playing and not fish_on_hook:
-		stop_all_music()
-		music_main.seek(music_main_playback_position)
-		music_main.play(music_main_playback_position)
+	
+	if not in_menu:
+		if in_dialogue:
+			if self.global_position.x >= self.left_travel_point.global_position.x - shop_distance:
+				switch_music("cat")
+			elif  self.global_position.x <= self.right_travel_point.global_position.x + shop_distance:
+				switch_music("dog")
+		elif fish_on_hook:
+			switch_music("battle")
+		elif not fish_on_hook:
+			switch_music("game")
 	
 	if fish_on_hook and not fish_on_hook.recharging:
 		update_camera(Vector2(fishing_rod.tip.global_position.x -fish_on_hook.global_position.x + randf_range(-1.5,1.5), fishing_rod.tip.global_position.z - fish_on_hook.global_position.z + randf_range(-1.5,1.5)))
 	
-	if global_position.x != left_travel_point.global_position.x and global_position.x != right_travel_point.global_position.x:
+	if self.global_position.x <= self.left_travel_point.global_position.x - shop_distance and self.global_position.x >= self.right_travel_point.global_position.x + shop_distance:
 		if fishing_lower:
 			fishing_rod.hook.global_position.y -= fishing_lower_speed * delta
 			fishing_rod.spinner.rotation.x -= fishing_lower_speed * 10* delta
@@ -283,16 +285,13 @@ func _process(delta: float) -> void:
 	Global.game_state["you"]["current_position"][1] = self.global_position.y
 	Global.game_state["you"]["current_position"][2] = self.global_position.z
 	
-func stop_all_music():
-	music_main_playback_position = music_main.get_playback_position()
-	music_dog_playback_position = music_dog.get_playback_position()
-	music_cat_playback_position = music_cat.get_playback_position()
-	music_battle_playback_position = music_battle.get_playback_position()
-	music_main.stream_paused = true
-	music_dog.stream_paused = true
-	music_cat.stream_paused = true
-	music_battle.stream_paused = true
-	
+func switch_music(new_music_state:String):
+	if music_state != new_music_state:
+		print("Switch music from %s to %s"%[music_state, new_music_state])
+		var playback = music_main.get_stream_playback() as AudioStreamPlaybackInteractive
+		playback.switch_to_clip_by_name(new_music_state)
+		music_state = new_music_state
+
 func _unhandled_input(event : InputEvent):
 	if in_menu:
 		return
@@ -326,7 +325,7 @@ func update_camera(mouseInput:Vector2):
 	if camera_toggle:
 		min_rotation_y=0
 		max_rotation_y=2*PI
-		min_rotation_x = 0
+		min_rotation_x = -PI/6
 		max_rotation_y = 2*PI
 		animation_x=0
 		animation_y=0

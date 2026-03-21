@@ -37,10 +37,11 @@ transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 
 surface_material_override/0 = SubResource("StandardMaterial3D_1l4ln")
 script = ExtResource("3_ptxbc")
 
-[node name="ShopScreen" parent="." instance=ExtResource("2_cbxty")]
+[node name="ShopScreen" parent="." node_paths=PackedStringArray("npc_screen") instance=ExtResource("2_cbxty")]
 transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, -0.50250244, -0.43892527, 0)
 surface_material_override/0 = SubResource("StandardMaterial3D_c0y86")
 script = ExtResource("5_1l4ln")
+npc_screen = NodePath("../NPCScreen")
 
 [node name="ShopOption1" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.013404727, 0)

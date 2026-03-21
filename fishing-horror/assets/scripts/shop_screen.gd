@@ -5,6 +5,8 @@ class_name ShopScreen
 var config:Dictionary = {}
 @onready var promp_text:RichTextLabel = self.find_child("ShopScreenContents", true).find_child("PromptText", true)
 
+@export var npc_screen:NPCScreen
+
 @onready var option1_text:RichTextLabel = self.find_child("ShopScreenContents", true).find_child("Text1", true)
 @onready var option2_text:RichTextLabel = self.find_child("ShopScreenContents", true).find_child("Text2", true)
 @onready var option3_text:RichTextLabel = self.find_child("ShopScreenContents", true).find_child("Text3", true)
@@ -32,6 +34,9 @@ func init(settings_name:String):
 	print("current_conversation: ", current_conversation)
 	
 	promp_text.text = "[center]%s[/center]"%current_conversation["prompt"]
+	
+	var image:Resource = load(current_conversation["image"])
+	self.npc_screen.image.texture = image
 	
 	var responses:Array = current_conversation["responses"]
 	print("responses: ", responses)
