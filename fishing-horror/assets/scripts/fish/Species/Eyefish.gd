@@ -4,13 +4,6 @@ class_name Eyefish
 func generate(bones:Node2D, multi_colour_chance:float, colour:String):
 	var prev_bone:Node2D = null
 	var x_pos:float = 0
-	# worm initial values
-	num_bones = randi_range(10, 12)
-	max_distance = randi_range(15, 15)
-	max_radius = randi_range(20, 30)
-	
-	var min_turn_angle:float = 0.5
-	var turn_speed:float = 1
 	
 	for i in range(0, num_bones):
 		var bone:FishBone = fish_bone_object.instantiate()

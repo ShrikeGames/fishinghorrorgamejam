@@ -4,16 +4,6 @@ class_name Longfish
 func generate(bones:Node2D, multi_colour_chance:float, colour:String):
 	var prev_bone:Node2D = null
 	var x_pos:float = 0
-	# long fish initial values
-	num_bones = 1+randi_range(3, 6)*4
-	max_distance = randi_range(10, 15)
-	max_radius = randi_range(10, 15)
-	
-	var scaling_max:float = min(num_bones, 15)
-	var min_turn_angle:float = (scaling_max * 0.01)
-	var turn_speed:float = 2
-	
-	
 	for i in range(0, num_bones):
 		var bone:FishBone = fish_bone_object.instantiate()
 		var scale_factor:float = 1-(i*(0.75/num_bones))

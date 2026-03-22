@@ -3,10 +3,12 @@ class_name FishSegment
 
 @export var bones:Node2D
 @export var base_colour:String
-@export var multi_colour_chance:float = 1.0
+@export var multi_colour_chance:float = 0.0
 var time:float = 0.0
 var paused:bool = false
-var species:Species
+@export var species:Species
+var last_valid_draw_points:Array[Vector2]
+var last_colour_points:Array[String]
 
 func _ready():
 	species.generate(bones, multi_colour_chance, base_colour)
@@ -51,10 +53,17 @@ func _on_draw():
 		
 	# if there are issues with the polygon intersecting itself
 	if Geometry2D.triangulate_polygon(draw_points).is_empty():
+		# print("invalid polygon detected with ", species.fish_stats["name"])
 		# sort the points to try and resolve it
 		draw_points = order_points_path(draw_points)
 	# check again if it's valid
+	if Geometry2D.triangulate_polygon(draw_points).is_empty() and last_valid_draw_points:
+		draw_points = last_valid_draw_points
+		colour_points = last_colour_points
+		
 	if not Geometry2D.triangulate_polygon(draw_points).is_empty():
+		last_valid_draw_points = draw_points
+		last_colour_points = colour_points
 		if multi_colour_chance > 0:
 			draw_polygon(draw_points, colour_points)
 		else:

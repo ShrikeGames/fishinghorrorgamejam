@@ -5,13 +5,6 @@ func generate(bones:Node2D, multi_colour_chance:float, colour:String):
 	var prev_bone:Node2D = null
 	var x_pos:float = 0
 	
-	num_bones = randi_range(4, 6)
-	max_distance = randi_range(10, 15)
-	max_radius = randi_range(10, 20)
-	
-	var min_turn_angle:float = 0.1
-	var turn_speed:float = 6
-	
 	
 	for i in range(0, num_bones):
 		var bone:FishBone = fish_bone_object.instantiate()

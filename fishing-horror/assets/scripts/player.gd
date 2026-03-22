@@ -126,13 +126,19 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("eat") and Global.game_state["you"]["current_fish"] > 0:
 		if left_fish_pile.get_child_count() > 0:
 			var fish_to_remove:Fish = left_fish_pile.get_child(0)
+			Global.game_state["you"]["hunger"] += fish_to_remove.fish.species.fish_stats["food"]
+			Global.game_state["you"]["corruption"] += fish_to_remove.fish.species.fish_stats["corruption"]
+			
 			left_fish_pile.remove_child(fish_to_remove)
 			fish_to_remove.queue_free()
 		elif right_fish_pile.get_child_count() > 0:
 			var fish_to_remove:Fish = right_fish_pile.get_child(0)
+			Global.game_state["you"]["hunger"] += fish_to_remove.fish.species.fish_stats["food"]
+			Global.game_state["you"]["corruption"] += fish_to_remove.fish.species.fish_stats["corruption"]
+			
 			right_fish_pile.remove_child(fish_to_remove)
 			fish_to_remove.queue_free()
-		Global.game_state["you"]["hunger"] += 1.0
+			
 		
 	if Input.is_action_pressed("travel_left"):
 		target_position.x = self.global_position.x + (boat_speed * delta)
@@ -154,11 +160,13 @@ func _process(delta: float) -> void:
 			Global.game_state[cat_vending_machine.shop_screen.conversation_name]["settings"]["conversation_state"].append(2)
 			Global.update_conversation.emit()
 		if Global.game_state["you"]["current_fish"] > 0:
-			Global.game_state["cat"]["coins"] += Global.game_state["you"]["current_fish"]
+			
 			for fish in left_fish_pile.get_children():
+				Global.game_state["cat"]["coins"] += fish.fish.species.fish_stats["cat_coins"]
 				left_fish_pile.remove_child(fish)
 				fish.queue_free()
 			for fish in right_fish_pile.get_children():
+				Global.game_state["cat"]["coins"] += fish.fish.species.fish_stats["cat_coins"]
 				right_fish_pile.remove_child(fish)
 				fish.queue_free()
 			
@@ -175,11 +183,12 @@ func _process(delta: float) -> void:
 			Global.game_state[dog_vending_machine.shop_screen.conversation_name]["settings"]["conversation_state"].append(2)
 			Global.update_conversation.emit()
 		if Global.game_state["you"]["current_fish"] > 0:
-			Global.game_state["dog"]["coins"] += Global.game_state["you"]["current_fish"]
 			for fish in left_fish_pile.get_children():
+				Global.game_state["dog"]["coins"] += fish.fish.species.fish_stats["dog_coins"]
 				left_fish_pile.remove_child(fish)
 				fish.queue_free()
 			for fish in right_fish_pile.get_children():
+				Global.game_state["dog"]["coins"] += fish.fish.species.fish_stats["dog_coins"]
 				right_fish_pile.remove_child(fish)
 				fish.queue_free()
 			
@@ -212,7 +221,7 @@ func _process(delta: float) -> void:
 			switch_music("game")
 	
 	if fish_on_hook and not fish_on_hook.recharging:
-		update_camera(Vector2(fishing_rod.tip.global_position.x -fish_on_hook.global_position.x + randf_range(-1.5,1.5), fishing_rod.tip.global_position.z - fish_on_hook.global_position.z + randf_range(-1.5,1.5)))
+		update_camera(Vector2(fishing_rod.tip.global_position.x -fish_on_hook.global_position.x + randf_range(-3.5,3.5), fishing_rod.tip.global_position.z - fish_on_hook.global_position.z + randf_range(-3.5,3.5)))
 	
 	if self.global_position.x <= self.left_travel_point.global_position.x - shop_distance and self.global_position.x >= self.right_travel_point.global_position.x + shop_distance:
 		if fishing_lower:

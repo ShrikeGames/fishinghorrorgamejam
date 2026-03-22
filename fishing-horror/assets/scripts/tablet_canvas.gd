@@ -34,7 +34,7 @@ func update_ui_bars(_delta):
 	if hunger:
 		hunger.scale.x = get_percentage(Global.game_state["you"]["hunger"], Global.game_state["you"]["max_hunger"])
 	if corruption:
-		corruption.scale.x = 1.0 - get_percentage(Global.game_state["you"]["corruption"], Global.game_state["you"]["max_corruption"])
+		corruption.scale.x = get_percentage(Global.game_state["you"]["corruption"], Global.game_state["you"]["max_corruption"])
 
 func get_percentage(current_value: float, max_value: float) -> float:
 	return current_value / max_value
