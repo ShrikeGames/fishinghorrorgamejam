@@ -1,16 +1,15 @@
 [gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://7bjos3vgw0eb"]
 
 [sub_resource type="Gradient" id="Gradient_k2t1h"]
-colors = PackedColorArray(0.23137255, 0.23137255, 0.23137255, 0.5568628, 0.8732984, 0.8732984, 0.8732984, 1)
+colors = PackedColorArray(0.5890953, 0.5890957, 0.5890954, 0.7882353, 0.8732984, 0.8732984, 0.8732984, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_phsto"]
 gradient = SubResource("Gradient_k2t1h")
-fill_from = Vector2(0.47863248, 0.9188034)
-fill_to = Vector2(0.48290598, 0.6880342)
+fill_from = Vector2(0.5, 0.9188034)
+fill_to = Vector2(0.6282051, 0.51282054)
 
 [resource]
 transparency = 1
-blend_mode = 4
 depth_draw_mode = 1
 diffuse_mode = 1
 specular_mode = 1

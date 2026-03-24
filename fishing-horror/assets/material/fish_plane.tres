@@ -8,4 +8,5 @@ resource_local_to_scene = true
 transparency = 2
 alpha_scissor_threshold = 0.764
 alpha_antialiasing_mode = 0
+cull_mode = 2
 albedo_texture = SubResource("ViewportTexture_54ncq")

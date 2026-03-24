@@ -5,7 +5,7 @@ class_name Player
 var camera:Camera3D
 @export var animation_player:AnimationPlayer
 @export var animation_tree:AnimationTree
-var hair:SoftBody3D
+var hair:MeshInstance3D
 @export var hair_3p:MeshInstance3D
 
 @export var fishing_rod:FishingRod
