@@ -1,23 +1,27 @@
-[gd_scene load_steps=11 format=3 uid="uid://ccj5wxgu84l73"]
+[gd_scene load_steps=14 format=3 uid="uid://ccj5wxgu84l73"]
 
 [ext_resource type="Script" uid="uid://pk5p8slhm4iq" path="res://assets/scripts/tablet_canvas.gd" id="1_mm14m"]
 [ext_resource type="Texture2D" uid="uid://dad0limonhuj7" path="res://assets/art/ui/ui_bar_hp_amount.png" id="4_kyoxx"]
 [ext_resource type="Texture2D" uid="uid://dio8312we7u7b" path="res://assets/art/ui/ui_bar_hp.png" id="5_2byn7"]
+[ext_resource type="Texture2D" uid="uid://dj0b4u7dwrtut" path="res://assets/art/ui/ui_bar_amount_fish.png" id="6_2byn7"]
 [ext_resource type="Texture2D" uid="uid://3ja7u3wh02v5" path="res://assets/art/ui/ui_cat_coins.png" id="6_bif1e"]
 [ext_resource type="Texture2D" uid="uid://bvy63vlm08xue" path="res://assets/art/ui/ui_bar_magic_amount.png" id="6_vijj3"]
+[ext_resource type="Texture2D" uid="uid://cpx6f4g8xa6ae" path="res://assets/art/ui/ui_bar_fish.png" id="7_bif1e"]
 [ext_resource type="Texture2D" uid="uid://mu4aj81pnrnu" path="res://assets/art/ui/ui_bar_magic.png" id="7_bu4mw"]
 [ext_resource type="Texture2D" uid="uid://cwajyfo7h3ipr" path="res://assets/art/ui/ui_dog_dollars.png" id="7_vijj3"]
 [ext_resource type="Texture2D" uid="uid://dt7k3c2b8jum4" path="res://assets/art/ui/ui_hunger_icon.png" id="9_2byn7"]
 [ext_resource type="Texture2D" uid="uid://dr7u5hpgiurwi" path="res://assets/art/ui/ui_corruption_icon.png" id="11_vijj3"]
+[ext_resource type="Texture2D" uid="uid://b21pj4wmfrshy" path="res://assets/art/ui/ui_fish_icon.png" id="12_bif1e"]
 
 [sub_resource type="Theme" id="Theme_bu4mw"]
 
-[node name="TabletCanvas" type="CanvasLayer" node_paths=PackedStringArray("cat_coins_count", "dog_dollars_count", "hunger", "corruption")]
+[node name="TabletCanvas" type="CanvasLayer" node_paths=PackedStringArray("cat_coins_count", "dog_dollars_count", "hunger", "corruption", "fish")]
 script = ExtResource("1_mm14m")
 cat_coins_count = NodePath("Icons/UiCatCoins/Count")
 dog_dollars_count = NodePath("Icons/UiDogDollars/Count")
 hunger = NodePath("Bars/UiBarHpAmount")
 corruption = NodePath("Bars/UiBarMagicAmount")
+fish = NodePath("Bars/UiBarAmountFish")
 
 [node name="Bars" type="Node2D" parent="."]
 position = Vector2(80, -80)
@@ -40,8 +44,17 @@ offset = Vector2(173, 1)
 position = Vector2(220, 200)
 texture = ExtResource("7_bu4mw")
 
+[node name="UiBarAmountFish" type="Sprite2D" parent="Bars"]
+position = Vector2(44, 277)
+texture = ExtResource("6_2byn7")
+offset = Vector2(176, 3)
+
+[node name="UiBarFish" type="Sprite2D" parent="Bars"]
+position = Vector2(220, 280)
+texture = ExtResource("7_bif1e")
+
 [node name="Icons" type="Node2D" parent="."]
-position = Vector2(0, -160)
+position = Vector2(0, -80)
 
 [node name="UiCatCoins" type="Sprite2D" parent="Icons"]
 position = Vector2(40, 360)
@@ -80,3 +93,7 @@ texture = ExtResource("9_2byn7")
 [node name="UiCorruptionIcon" type="Sprite2D" parent="."]
 position = Vector2(40, 120)
 texture = ExtResource("11_vijj3")
+
+[node name="UiFishIcon" type="Sprite2D" parent="."]
+position = Vector2(40, 200)
+texture = ExtResource("12_bif1e")

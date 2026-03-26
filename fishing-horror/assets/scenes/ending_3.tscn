@@ -1,0 +1,77 @@
+[gd_scene load_steps=7 format=3 uid="uid://p7gb8ogrybp6"]
+
+[ext_resource type="PackedScene" uid="uid://dgh6m424fkly3" path="res://assets/scenes/env.tscn" id="1_ugfbw"]
+[ext_resource type="PackedScene" uid="uid://dfnx351jxkk8q" path="res://assets/models/noir/NoiR_Base.glb" id="2_i0jwb"]
+[ext_resource type="PackedScene" uid="uid://crnk4kkhvkan3" path="res://assets/models/noir/NoiR_LowPoly_Hair.glb" id="3_ba6wy"]
+[ext_resource type="PackedScene" uid="uid://bxfsm8fdsjudx" path="res://assets/scenes/texture_button.tscn" id="4_v4730"]
+[ext_resource type="Theme" uid="uid://c6j256munykbu" path="res://assets/themes/texture_button.tres" id="5_ykb81"]
+[ext_resource type="Texture2D" uid="uid://dkaluyrbw0u6g" path="res://assets/art/characters/maha_amused.png" id="6_i0jwb"]
+
+[node name="Ending6" type="Node3D"]
+
+[node name="env" parent="." instance=ExtResource("1_ugfbw")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.8660254, 0, -0.8660254, 0.49999997, 0, 2, 1)
+fov = 18.3
+
+[node name="NoiR_Base" parent="." instance=ExtResource("2_i0jwb")]
+transform = Transform3D(1, 0, 0, 0, 0, 1.0000001, 0, -1.0000001, 0, 0.0061866045, 0, 1.0228527)
+
+[node name="NoiR_LowPoly_Hair" parent="." instance=ExtResource("3_ba6wy")]
+transform = Transform3D(0.13, 0, 0, 0, -5.6824803e-09, 0.13, 0, -0.13, -5.6824803e-09, -0.009209871, 0.10474408, 0.74881965)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CenterContainer3" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -273.0
+offset_right = 452.0
+grow_vertical = 0
+
+[node name="MahaAmused" type="Sprite2D" parent="CanvasLayer/CenterContainer3"]
+position = Vector2(259, 15)
+texture = ExtResource("6_i0jwb")
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -279.0
+offset_right = 500.0
+offset_bottom = 279.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/CenterContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 101
+bbcode_enabled = true
+text = "[center]Ending 3/6
+Cat Conquerers[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="CenterContainer2" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_top = 0.65300006
+anchor_right = 1.0
+anchor_bottom = 0.822
+offset_left = 361.0
+offset_top = 16.839966
+offset_right = 361.0
+offset_bottom = 145.15997
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.42, 0.42)
+
+[node name="TextureButton" parent="CanvasLayer/CenterContainer2" instance=ExtResource("4_v4730")]
+layout_mode = 2
+theme = ExtResource("5_ykb81")
+text = "Retry"

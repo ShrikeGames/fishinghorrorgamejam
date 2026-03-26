@@ -3,7 +3,7 @@ extends Node
 class_name GlobalState
 signal caught_fish(fish:Fish)
 signal update_conversation()
-var settings_config_location:String = "user://user_settings_v0_2026_03_22.json"
+var settings_config_location:String = "user://user_settings_v0_2026_03_25.json"
 var fish_object:Resource = load("res://assets/scenes/fish/FishSegment.tscn")
 var fish_rbg_colour_choices:Array[String] = ["00", "11", "22", "33", "44", "55", "66", "77", "88", "99", "AA", "BB", "CC", "DD", "EE", "FF"]
 
@@ -519,6 +519,7 @@ var game_state:Dictionary = {
 		"stamina": 10,
 		"max_stamina": 10,
 		"travel_hunger_rate": 0.1,
+		"idle_hunger_rate": 0.01,
 		"stamina_regen_rate": 2.0,
 		"stamina_cost": 0.5,
 		"max_fish": 10,
@@ -533,21 +534,25 @@ var game_state:Dictionary = {
 		"target_position": [0,0,0],
 		"current_position": [0,0,0],
 		"current_location": "center",
+		"cat_score": 1,
+		"dog_score": 1,
 		"fish_caught": []
 	},
 	"cat": {
+		"coins": 0,
+		"corruption": 0,
 		"settings": {
 			"name": "Cat Demon",
 			"default_image": "res://assets/art/characters/maha_amused.png",
 			"conversation_state": [0],
 			"conversations":[
 				{
-					"prompt": "insert character introduction line here",
+					"prompt": "Nya~haha~ Have you brought me more fish?",
 					"image": "res://assets/art/characters/maha_amused.png",
 					"responses": [
-						"Response 0",
-						"Response 1",
-						"Response 2"
+						"Yes",
+						"No",
+						"Why?"
 					],
 					"conversations":[
 						{
@@ -602,8 +607,6 @@ var game_state:Dictionary = {
 				}
 			]
 		},
-		"corruption": 0,
-		"coins": 0,
 		"upgrades": {
 			"camera_app": false,
 			"shop_app": false,
@@ -622,6 +625,8 @@ var game_state:Dictionary = {
 		
 	},
 	"dog": {
+		"coins": 0,
+		"corruption": 0,
 		"settings": {
 			"name": "Dog Demon",
 			"default_image": "res://assets/art/characters/hama_eyes_closed.png",
@@ -687,8 +692,6 @@ var game_state:Dictionary = {
 				}
 			]
 		},
-		"corruption": 0,
-		"coins": 0,
 		"upgrades": {
 			"camera_app": false,
 			"shop_app": false,

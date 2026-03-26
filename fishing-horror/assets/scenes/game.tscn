@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ugy5rgmg786j" path="res://assets/scenes/water_2.tscn" id="1_xe33q"]
 [ext_resource type="Script" uid="uid://cxs13vgiii6p8" path="res://assets/scripts/player.gd" id="2_cb5na"]
 [ext_resource type="PackedScene" uid="uid://dfnx351jxkk8q" path="res://assets/models/noir/NoiR_Base.glb" id="2_dis88"]
-[ext_resource type="Environment" uid="uid://bc2gd46jqouln" path="res://assets/env/above_water.tres" id="2_pkhv0"]
+[ext_resource type="PackedScene" uid="uid://dgh6m424fkly3" path="res://assets/scenes/env.tscn" id="3_8vm3o"]
 [ext_resource type="PackedScene" uid="uid://bwd1dktaq5uae" path="res://assets/scenes/fishing_rod.tscn" id="3_k2t1h"]
 [ext_resource type="Texture2D" uid="uid://ky5vmkfg0s7f" path="res://assets/art/ui/boat_wood.png" id="5_j62u1"]
 [ext_resource type="PackedScene" uid="uid://d2slf4ex2iyy5" path="res://assets/scenes/tablet.tscn" id="6_wfsp4"]
@@ -4307,12 +4307,12 @@ height = 0.23896027
 [sub_resource type="BoxMesh" id="BoxMesh_wfsp4"]
 resource_local_to_scene = true
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_p2xyf"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_8vm3o"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c7jqk"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p2xyf"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_p2xyf")
+albedo_texture = SubResource("ViewportTexture_8vm3o")
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_s2rys"]
 
@@ -4356,34 +4356,14 @@ script = ExtResource("1_8vm3o")
 [node name="water2" parent="." instance=ExtResource("1_xe33q")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.215, -99.96, 0)
 
-[node name="env" type="Node3D" parent="."]
+[node name="env" parent="." instance=ExtResource("3_8vm3o")]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="env"]
-environment = ExtResource("2_pkhv0")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="env"]
-transform = Transform3D(1, 0, 0, 0, -0.9612617, 0.27563736, 0, -0.27563736, -0.9612617, 0, 2.7238648, 0)
-light_color = Color(0.80784315, 0.99607843, 1, 1)
-shadow_enabled = true
-shadow_normal_bias = 4.69
-shadow_opacity = 0.69
-shadow_blur = 2.053
-
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="env"]
-transform = Transform3D(1, 0, 0, 0, 0.77162457, 0.63607824, 0, -0.63607824, 0.77162457, 0, 2.7238648, 0)
-light_color = Color(0.45587033, 0.5547719, 0.7924383, 1)
-light_energy = 0.725
-light_indirect_energy = 0.88
-light_volumetric_fog_energy = 0.92
-light_specular = 0.532
-sky_mode = 1
-
-[node name="CatSpotLight3D" type="SpotLight3D" parent="env"]
-transform = Transform3D(-0.99559975, 4.370145e-08, -0.09370862, -0.049128506, 0.8515532, 0.52196133, 0.07979789, 0.52426827, -0.84780616, 40.76541, 2.7227046, 0)
+[node name="CatSpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(-0.9955996, -3.78943e-08, -0.09370866, -0.0491285, 0.8515532, 0.5219613, 0.07979788, 0.52426827, -0.84780604, 40.76541, 2.7227046, 0)
 light_color = Color(0.19733328, 0.13999999, 1, 1)
 
-[node name="DogSpotLight3D2" type="SpotLight3D" parent="env"]
-transform = Transform3D(-0.9823288, -0.13569061, 0.12891273, -0.049128484, 0.8515532, 0.52196133, -0.18060133, 0.5064041, -0.84317124, -40.765, 2.723, 0)
+[node name="DogSpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(-0.98232865, -0.13569061, 0.12891276, -0.049128477, 0.85155326, 0.5219612, -0.18060131, 0.50640416, -0.8431714, -40.765, 2.723, 0)
 light_color = Color(1, 0.32941177, 0.32941177, 1)
 
 [node name="player" type="StaticBody3D" parent="." node_paths=PackedStringArray("head", "animation_player", "animation_tree", "hair_3p", "fishing_rod", "tablet", "fish_spot", "fish_spot_2", "menu", "left_travel_point", "center_travel_point", "right_travel_point", "camera_3p", "head_3p", "pointers", "music_main", "cat_vending_machine", "dog_vending_machine", "left_fish_pile", "right_fish_pile")]
@@ -4700,7 +4680,7 @@ shape = SubResource("CapsuleShape3D_5gf0t")
 [node name="Tablet" parent="player" node_paths=PackedStringArray("fishing_rod") instance=ExtResource("6_wfsp4")]
 transform = Transform3D(0.25550267, -0.0006625685, 0.0043419693, 6.578513e-09, 0.008164607, 0.18226676, -0.011244819, -0.015054745, 0.09865725, 0.17545666, 0.7353785, 0.44574192)
 mesh = SubResource("BoxMesh_wfsp4")
-surface_material_override/0 = SubResource("StandardMaterial3D_c7jqk")
+surface_material_override/0 = SubResource("StandardMaterial3D_p2xyf")
 fishing_rod = NodePath("../NoiR_Base/Armature/GeneralSkeleton/BoneAttachment3D/FishingRod")
 
 [node name="Head3rdPerson" type="Node3D" parent="player"]

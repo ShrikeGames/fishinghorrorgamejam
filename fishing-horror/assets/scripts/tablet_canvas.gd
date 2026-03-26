@@ -9,6 +9,7 @@ class_name TabletCanvas
 @export var stamina:Sprite2D
 @export var hunger:Sprite2D
 @export var corruption:Sprite2D
+@export var fish:Sprite2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -35,6 +36,8 @@ func update_ui_bars(_delta):
 		hunger.scale.x = get_percentage(Global.game_state["you"]["hunger"], Global.game_state["you"]["max_hunger"])
 	if corruption:
 		corruption.scale.x = get_percentage(Global.game_state["you"]["corruption"], Global.game_state["you"]["max_corruption"])
+	if fish:
+		fish.scale.x = get_percentage(Global.game_state["you"]["current_fish"], Global.game_state["you"]["max_fish"])
 
 func get_percentage(current_value: float, max_value: float) -> float:
 	return current_value / max_value

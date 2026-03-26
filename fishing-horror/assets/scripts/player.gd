@@ -95,6 +95,23 @@ func _process(delta: float) -> void:
 	timer += delta
 	self.global_position.y = sin(timer)*0.05
 	
+	if Global.game_state["you"]["hunger"] <= 0:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		get_tree().change_scene_to_file("res://assets/scenes/ending_1.tscn")
+		return
+	if Global.game_state["you"]["corruption"] >= Global.game_state["you"]["max_corruption"]:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		get_tree().change_scene_to_file("res://assets/scenes/ending_2.tscn")
+		return
+	if Global.game_state["you"]["cat_score"] >= 100:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		get_tree().change_scene_to_file("res://assets/scenes/ending_3.tscn")
+		return
+	if Global.game_state["you"]["dog_score"] >= 100:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		get_tree().change_scene_to_file("res://assets/scenes/ending_4.tscn")
+		return
+	
 	if in_menu:
 		return
 	
@@ -160,6 +177,8 @@ func _process(delta: float) -> void:
 			Global.game_state[cat_vending_machine.shop_screen.conversation_name]["settings"]["conversation_state"].append(2)
 			Global.update_conversation.emit()
 		if Global.game_state["you"]["current_fish"] > 0:
+			Global.game_state["you"]["cat_score"] *= 1.0
+			Global.game_state["you"]["dog_score"] *= 0.75
 			
 			for fish in left_fish_pile.get_children():
 				Global.game_state["cat"]["coins"] += fish.fish.species.fish_stats["cat_coins"]
@@ -183,6 +202,9 @@ func _process(delta: float) -> void:
 			Global.game_state[dog_vending_machine.shop_screen.conversation_name]["settings"]["conversation_state"].append(2)
 			Global.update_conversation.emit()
 		if Global.game_state["you"]["current_fish"] > 0:
+			Global.game_state["you"]["dog_score"] *= 1.0
+			Global.game_state["you"]["cat_score"] *= 0.75
+			
 			for fish in left_fish_pile.get_children():
 				Global.game_state["dog"]["coins"] += fish.fish.species.fish_stats["dog_coins"]
 				left_fish_pile.remove_child(fish)
@@ -272,7 +294,8 @@ func _process(delta: float) -> void:
 	elif global_position.x < target_position.x:
 		global_position.x += boat_speed * delta
 		Global.game_state["you"]["hunger"] -= Global.game_state["you"]["travel_hunger_rate"] * delta
-	
+	else:
+		Global.game_state["you"]["hunger"] -= Global.game_state["you"]["idle_hunger_rate"] * delta
 	
 	global_position.x = clampf(global_position.x, right_travel_point.global_position.x,  left_travel_point.global_position.x)
 	fishing_rod.hook.global_position.y = clampf(fishing_rod.hook.global_position.y, -100000, 1.14)

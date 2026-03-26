@@ -7,8 +7,8 @@
 [ext_resource type="Theme" uid="uid://c6j256munykbu" path="res://assets/themes/texture_button.tres" id="5_gw4d2"]
 
 [node name="TextureButton" type="TextureButton" node_paths=PackedStringArray("text_label")]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 800.0
+offset_bottom = 250.0
 texture_normal = ExtResource("1_n8lb8")
 texture_pressed = ExtResource("2_uuxqe")
 texture_hover = ExtResource("3_gw4d2")
