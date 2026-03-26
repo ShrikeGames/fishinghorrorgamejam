@@ -30,6 +30,8 @@ var music_state = "menu"
 @export var left_fish_pile:Node3D
 @export var right_fish_pile:Node3D
 
+@export var fish_info_text:RichTextLabel
+
 var target_position:Vector3
 var current_location:String = "center"
 
@@ -113,6 +115,7 @@ func _process(delta: float) -> void:
 		return
 	
 	if in_menu:
+		fish_info_text.visible = false
 		return
 	
 	if is_zooming:
@@ -244,6 +247,12 @@ func _process(delta: float) -> void:
 	
 	if fish_on_hook and not fish_on_hook.recharging:
 		update_camera(Vector2(fishing_rod.tip.global_position.x -fish_on_hook.global_position.x + randf_range(-3.5,3.5), fishing_rod.tip.global_position.z - fish_on_hook.global_position.z + randf_range(-3.5,3.5)))
+	
+	if fish_on_hook and fishing_rod.hook.global_position.y > 0:
+		fish_info_text.text = "[center]%s\n%s[/center]"%[fish_on_hook.fish_stats["name"], fish_on_hook.fish_stats["description"]]
+		fish_info_text.visible = true
+	else:
+		fish_info_text.visible = false
 	
 	if self.global_position.x <= self.left_travel_point.global_position.x - shop_distance and self.global_position.x >= self.right_travel_point.global_position.x + shop_distance:
 		if fishing_lower:

@@ -4307,12 +4307,12 @@ height = 0.23896027
 [sub_resource type="BoxMesh" id="BoxMesh_wfsp4"]
 resource_local_to_scene = true
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_4hayi"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_xe33q"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c7jqk"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1q3k2"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_4hayi")
+albedo_texture = SubResource("ViewportTexture_xe33q")
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_s2rys"]
 
@@ -4366,7 +4366,7 @@ light_color = Color(0.19733328, 0.13999999, 1, 1)
 transform = Transform3D(-0.98232865, -0.13569061, 0.12891276, -0.049128477, 0.85155326, 0.5219612, -0.18060131, 0.50640416, -0.8431714, -40.765, 2.723, 0)
 light_color = Color(1, 0.32941177, 0.32941177, 1)
 
-[node name="player" type="StaticBody3D" parent="." node_paths=PackedStringArray("head", "animation_player", "animation_tree", "hair_3p", "fishing_rod", "tablet", "fish_spot", "fish_spot_2", "menu", "left_travel_point", "center_travel_point", "right_travel_point", "camera_3p", "head_3p", "pointers", "music_main", "cat_vending_machine", "dog_vending_machine", "left_fish_pile", "right_fish_pile")]
+[node name="player" type="StaticBody3D" parent="." node_paths=PackedStringArray("head", "animation_player", "animation_tree", "hair_3p", "fishing_rod", "tablet", "fish_spot", "fish_spot_2", "menu", "left_travel_point", "center_travel_point", "right_travel_point", "camera_3p", "head_3p", "pointers", "music_main", "cat_vending_machine", "dog_vending_machine", "left_fish_pile", "right_fish_pile", "fish_info_text")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("2_cb5na")
@@ -4390,6 +4390,7 @@ cat_vending_machine = NodePath("../CatIsland/CatVendingMachine")
 dog_vending_machine = NodePath("../DogIsland/DogVendingMachine")
 left_fish_pile = NodePath("Boat/FishSpot1")
 right_fish_pile = NodePath("Boat/FishSpot2")
+fish_info_text = NodePath("../Pointers/FishInfoContainer/FishInfo")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="player"]
 root_node = NodePath("../NoiR_Base")
@@ -4680,7 +4681,7 @@ shape = SubResource("CapsuleShape3D_5gf0t")
 [node name="Tablet" parent="player" node_paths=PackedStringArray("fishing_rod") instance=ExtResource("6_wfsp4")]
 transform = Transform3D(0.25550267, -0.0006625685, 0.0043419693, 6.578513e-09, 0.008164607, 0.18226676, -0.011244819, -0.015054745, 0.09865725, 0.17545666, 0.7353785, 0.44574192)
 mesh = SubResource("BoxMesh_wfsp4")
-surface_material_override/0 = SubResource("StandardMaterial3D_c7jqk")
+surface_material_override/0 = SubResource("StandardMaterial3D_1q3k2")
 fishing_rod = NodePath("../NoiR_Base/Armature/GeneralSkeleton/BoneAttachment3D/FishingRod")
 
 [node name="Head3rdPerson" type="Node3D" parent="player"]
@@ -4787,6 +4788,27 @@ grow_vertical = 2
 modulate = Color(1, 1, 1, 0.48235294)
 texture = ExtResource("19_3cnnv")
 centered = false
+
+[node name="FishInfoContainer" type="CenterContainer" parent="Pointers"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -638.5
+offset_right = 638.5
+offset_bottom = 150.0
+grow_horizontal = 2
+
+[node name="FishInfo" type="RichTextLabel" parent="Pointers/FishInfoContainer"]
+layout_mode = 2
+theme = ExtResource("24_h5j7u")
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "[center]Long Fish
+Description goes here and is very long sghshdfs hdfsh [/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
 [node name="BottomRight" type="CenterContainer" parent="Pointers"]
 anchors_preset = 3
