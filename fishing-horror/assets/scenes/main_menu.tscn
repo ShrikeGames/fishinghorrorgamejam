@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://w6ulejlbg88y"]
+[gd_scene load_steps=12 format=3 uid="uid://w6ulejlbg88y"]
 
 [ext_resource type="Texture2D" uid="uid://bb76y84iv8jf1" path="res://assets/art/ui/title_logo.png" id="1_uu6ob"]
 [ext_resource type="PackedScene" uid="uid://bxfsm8fdsjudx" path="res://assets/scenes/texture_button.tscn" id="2_v1ppo"]
@@ -8,6 +8,8 @@
 [ext_resource type="Theme" uid="uid://c6j256munykbu" path="res://assets/themes/texture_button.tres" id="6_v71do"]
 [ext_resource type="Script" uid="uid://cx7467qjbpvwd" path="res://assets/scripts/settings_button.gd" id="6_xmmar"]
 [ext_resource type="Script" uid="uid://c8v4u4kqtlymm" path="res://assets/scripts/settings_container.gd" id="7_66en2"]
+[ext_resource type="Texture2D" uid="uid://bkhu5bcfgennc" path="res://assets/art/logos/Aaron_Music_logo_v1.png" id="9_tp4c4"]
+[ext_resource type="Texture2D" uid="uid://1sklllsfhlr1" path="res://assets/art/logos/Shrike_878x878.png" id="10_uek13"]
 
 [sub_resource type="Theme" id="Theme_xmmar"]
 
@@ -122,6 +124,52 @@ scroll_active = false
 layout_mode = 2
 value = 80.0
 scrollable = false
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1271.0
+offset_bottom = 714.0
+grow_horizontal = 0
+scale = Vector2(0.445, 0.445)
+
+[node name="AaronMusicLogoV1" type="Sprite2D" parent="CenterContainer"]
+position = Vector2(2325.8428, 1011.236)
+scale = Vector2(0.79715747, 0.76988876)
+texture = ExtResource("9_tp4c4")
+
+[node name="Shrike878x878" type="Sprite2D" parent="CenterContainer"]
+position = Vector2(2312.3596, 265.16852)
+scale = Vector2(0.4723044, 0.46994662)
+texture = ExtResource("10_uek13")
+
+[node name="CenterContainer2" type="CenterContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -476.0
+offset_top = 137.0
+offset_bottom = 727.0
+grow_horizontal = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer2"]
+layout_mode = 2
+theme = ExtResource("6_v71do")
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "[center]Programming/Art/Design
+@ShrikeGames
+
+
+
+
+Music
+@Aaron_music_YT[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
 [connection signal="button_down" from="BottomLeft/SettingsButton" to="BottomLeft/SettingsButton" method="_on_button_down"]
 [connection signal="value_changed" from="BottomLeft/SettingsContainer/VolumeSettingsContainer/MasterVolumeSlider" to="BottomLeft/SettingsContainer" method="_on_master_volume_slider_value_changed"]

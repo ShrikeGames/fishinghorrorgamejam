@@ -4307,12 +4307,12 @@ height = 0.23896027
 [sub_resource type="BoxMesh" id="BoxMesh_wfsp4"]
 resource_local_to_scene = true
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_8vm3o"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_4hayi"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p2xyf"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c7jqk"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_8vm3o")
+albedo_texture = SubResource("ViewportTexture_4hayi")
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_s2rys"]
 
@@ -4680,7 +4680,7 @@ shape = SubResource("CapsuleShape3D_5gf0t")
 [node name="Tablet" parent="player" node_paths=PackedStringArray("fishing_rod") instance=ExtResource("6_wfsp4")]
 transform = Transform3D(0.25550267, -0.0006625685, 0.0043419693, 6.578513e-09, 0.008164607, 0.18226676, -0.011244819, -0.015054745, 0.09865725, 0.17545666, 0.7353785, 0.44574192)
 mesh = SubResource("BoxMesh_wfsp4")
-surface_material_override/0 = SubResource("StandardMaterial3D_p2xyf")
+surface_material_override/0 = SubResource("StandardMaterial3D_c7jqk")
 fishing_rod = NodePath("../NoiR_Base/Armature/GeneralSkeleton/BoneAttachment3D/FishingRod")
 
 [node name="Head3rdPerson" type="Node3D" parent="player"]
