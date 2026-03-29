@@ -22,30 +22,6 @@ transform = Transform3D(0.13, 0, 0, 0, -5.6824803e-09, 0.13, 0, -0.13, -5.682480
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -500.0
-offset_top = -279.0
-offset_right = 500.0
-offset_bottom = 279.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/CenterContainer"]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 101
-bbcode_enabled = true
-text = "[center]Ending 6/6
-You Return to the 
-Human World[/center]"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
 [node name="CenterContainer2" type="CenterContainer" parent="CanvasLayer"]
 anchors_preset = -1
 anchor_top = 0.65300006
@@ -60,6 +36,65 @@ grow_vertical = 0
 scale = Vector2(0.42, 0.42)
 
 [node name="TextureButton" parent="CanvasLayer/CenterContainer2" instance=ExtResource("4_rhokl")]
+layout_mode = 2
+theme = ExtResource("5_6m4w2")
+text = "Retry"
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -279.0
+offset_right = 500.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/normal_font_size = 101
+bbcode_enabled = true
+text = "[center]Ending 5/6
+The Demon Fish[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="CenterContainer4" type="CenterContainer" parent="CanvasLayer"]
+offset_left = 4.0
+offset_top = 333.0
+offset_right = 1281.0
+offset_bottom = 602.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/CenterContainer4"]
+layout_mode = 2
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[center]The Demon Fish was released!
+The world changes from purgatory to hell[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="CenterContainer3" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_top = 0.65300006
+anchor_right = 1.0
+anchor_bottom = 0.822
+offset_left = 361.0
+offset_top = 106.84003
+offset_right = 361.0
+offset_bottom = 235.16003
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.42, 0.42)
+
+[node name="TextureButton" parent="CanvasLayer/CenterContainer3" instance=ExtResource("4_rhokl")]
 layout_mode = 2
 theme = ExtResource("5_6m4w2")
 text = "Retry"
