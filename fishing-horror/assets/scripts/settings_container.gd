@@ -4,6 +4,7 @@ extends Node2D
 @export var music_volume_slider:HSlider
 @export var sfx_volume_slider:HSlider
 @export var voices_volume_slider:HSlider
+@export var ambient_volume_slider:HSlider
 
 func _ready() -> void:
 	Global.load_settings()
@@ -11,6 +12,7 @@ func _ready() -> void:
 	music_volume_slider.value = Global.game_state["settings"]["volume"]["music"]
 	sfx_volume_slider.value = Global.game_state["settings"]["volume"]["sfx"]
 	voices_volume_slider.value = Global.game_state["settings"]["volume"]["voices"]
+	ambient_volume_slider.value = Global.game_state["settings"]["volume"]["ambient"]
 
 func update_volume(settings_name:String, audio_bus_index: int, linear_value: float):
 	var volume_db = 20 * (log(linear_value * 0.01) / log(10))
@@ -33,3 +35,7 @@ func _on_sfx_volume_slider_value_changed(value: float) -> void:
 func _on_voices_volume_slider_value_changed(value: float) -> void:
 	var audio_bus_index:int = AudioServer.get_bus_index("Voice")
 	update_volume("voice", audio_bus_index, value)
+
+func _on_ambient_volume_slider_value_changed(value: float) -> void:
+	var audio_bus_index:int = AudioServer.get_bus_index("Ambient")
+	update_volume("ambient", audio_bus_index, value)

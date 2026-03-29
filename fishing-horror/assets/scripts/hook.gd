@@ -9,7 +9,7 @@ var max_distance:float = 2.0
 
 func _process(delta: float) -> void:
 	self.look_at(fishing_rod.tip.global_position)
-	if not player.fish_on_hook or (player.fish_on_hook and player.fish_on_hook.recharging):
+	if player.fish_on_hook.is_empty() or (not player.fish_on_hook.is_empty() and player.fish_on_hook[0].recharging):
 		var diff_x:float = self.global_position.x - fishing_rod.tip.global_position.x
 		self.global_position.x -= diff_x * delta * catch_up_speed
 		self.global_position.x = clampf(self.global_position.x, fishing_rod.tip.global_position.x-max_distance, fishing_rod.tip.global_position.x+max_distance)

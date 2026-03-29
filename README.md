@@ -64,8 +64,6 @@ Based on conversation_state find the indexes in conversations
 
 # Cat Shop
 
-  - Better bait
-  - Better hooks to catch more fish at once
   - Cosmetics themed to cats, not fancy
   - Sell cat food (corruption free, cheap, but gives little hunger)
   - Cat App

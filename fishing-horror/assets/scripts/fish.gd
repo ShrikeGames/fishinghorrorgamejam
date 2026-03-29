@@ -86,6 +86,10 @@ func init(fish_name:String, fishing_rod:FishingRod):
 		species = WhiskerFish.new()
 	elif species_id == 13:
 		species = Worm.new()
+	elif species_id == 14:
+		species = AngelFish.new()
+	elif species_id == 15:
+		species = DemonFish.new()
 	
 	
 	species.init(fish_stats)
@@ -167,7 +171,17 @@ func _process(delta: float) -> void:
 				# too far away, despawn
 				self.get_parent().remove_child(self)
 				self.queue_free()
-			elif self.hook.global_position.distance_to(self.global_position) <= 1.0 and hooked_fish < max_hooked_fish:
+			elif self.hook.global_position.distance_to(self.global_position) <= get_bait_distance() and hooked_fish < max_hooked_fish:
 				# traget hook when close to is
 				self.target_position = self.hook.global_position
 			self.target_position.y = clampf(self.target_position.y, -10000, -0.2)
+
+func get_bait_distance():
+	var distance:float = 1.0
+	if Global.game_state["cat"]["upgrades"]["bait"]:
+		distance += 1.0
+	if Global.game_state["dog"]["upgrades"]["bait"]:
+		distance += 1.0
+	return distance
+	
+	

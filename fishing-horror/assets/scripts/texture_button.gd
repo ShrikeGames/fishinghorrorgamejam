@@ -24,4 +24,7 @@ func _on_button_down() -> void:
 	
 	if scene_to_change_to != null:
 		get_tree().paused = false
+		Global.game_state["you"]["hunger"] = Global.game_state["you"]["max_hunger"]
+		Global.game_state["you"]["corruption"] = 0
+		Global.save_settings()
 		get_tree().change_scene_to_file(scene_to_change_to)

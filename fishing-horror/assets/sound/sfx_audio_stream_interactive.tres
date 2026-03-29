@@ -1,0 +1,56 @@
+[gd_resource type="AudioStreamInteractive" load_steps=4 format=3 uid="uid://x1sbdsvwxog2"]
+
+[ext_resource type="AudioStream" uid="uid://cpykxaskr2o7o" path="res://assets/sound/sfx/reel_pixabay.mp3" id="1_1b2ue"]
+[ext_resource type="AudioStream" uid="uid://b2cvwagygwll1" path="res://assets/sound/sfx/silence.mp3" id="3_w2625"]
+[ext_resource type="AudioStream" uid="uid://ctsgthixxqw3o" path="res://assets/sound/sfx/fish_caught_pixabay.mp3" id="4_8ewgo"]
+
+[resource]
+clip_count = 3
+clip_0/name = &"reel"
+clip_0/stream = ExtResource("1_1b2ue")
+clip_0/auto_advance = 0
+clip_1/name = &"fish"
+clip_1/stream = ExtResource("4_8ewgo")
+clip_1/auto_advance = 0
+clip_2/name = &"silence"
+clip_2/stream = ExtResource("3_w2625")
+clip_2/auto_advance = 0
+initial_clip = 2
+_transitions = {
+Vector2i(-1, 2): {
+"fade_beats": 0.1,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(0, 0): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 3,
+"to_time": 1
+},
+Vector2i(2, 0): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 3,
+"to_time": 1
+},
+Vector2i(2, 3): {
+"fade_beats": 1.0,
+"fade_mode": 3,
+"from_time": 3,
+"to_time": 0
+},
+Vector2i(3, 2): {
+"fade_beats": 1.0,
+"fade_mode": 3,
+"from_time": 3,
+"to_time": 1
+},
+Vector2i(3, 3): {
+"fade_beats": 1.0,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 0
+}
+}

@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=3 uid="uid://byoeo0uxwfn25"]
+[gd_scene load_steps=90 format=3 uid="uid://byoeo0uxwfn25"]
 
 [ext_resource type="Script" uid="uid://c0htbi2fbtilt" path="res://assets/scripts/game.gd" id="1_8vm3o"]
 [ext_resource type="PackedScene" uid="uid://ugy5rgmg786j" path="res://assets/scenes/water_2.tscn" id="1_xe33q"]
@@ -16,7 +16,6 @@
 [ext_resource type="Material" uid="uid://bmgwfjxxa1x7p" path="res://assets/material/hook.tres" id="13_52jqy"]
 [ext_resource type="Script" uid="uid://c4j44pnpfrwhr" path="res://assets/scripts/hook.gd" id="13_rojm1"]
 [ext_resource type="Texture2D" uid="uid://cwfjb1jxabkpk" path="res://assets/art/ui/hook.png" id="14_rojm1"]
-[ext_resource type="AudioStream" uid="uid://bxkh4axt6wekm" path="res://assets/sound/music/Whispers in the Dark_Aaron_music_YT.mp3" id="14_s2rys"]
 [ext_resource type="PackedScene" uid="uid://w6ulejlbg88y" path="res://assets/scenes/main_menu.tscn" id="15_fc420"]
 [ext_resource type="PackedScene" uid="uid://b807hmya3f770" path="res://assets/scenes/vending_machine.tscn" id="16_kc0sw"]
 [ext_resource type="Texture2D" uid="uid://bk4c61oqm7oa7" path="res://assets/art/ui/pointer.png" id="19_3cnnv"]
@@ -24,9 +23,17 @@
 [ext_resource type="Texture2D" uid="uid://xtflbp0tgsmp" path="res://assets/art/ui/kenny/mouse_left.png" id="23_jdjof"]
 [ext_resource type="Texture2D" uid="uid://db6b5vovcp04n" path="res://assets/art/ui/kenny/keyboard_t_outline.png" id="23_p2xyf"]
 [ext_resource type="Theme" uid="uid://c6j256munykbu" path="res://assets/themes/texture_button.tres" id="24_h5j7u"]
+[ext_resource type="Texture2D" uid="uid://blh4oo1o0vl0f" path="res://assets/art/ui/kenny/keyboard_a_outline.png" id="25_3sk60"]
 [ext_resource type="Texture2D" uid="uid://dfro12lql07dr" path="res://assets/art/ui/kenny/mouse_right.png" id="25_8vm3o"]
 [ext_resource type="Texture2D" uid="uid://mvn4wpemxi1e" path="res://assets/art/ui/keyboard_e_outline.png" id="25_xe33q"]
+[ext_resource type="Script" uid="uid://bw2e81gj05f1a" path="res://assets/scripts/dialogue.gd" id="26_1q3k2"]
 [ext_resource type="Texture2D" uid="uid://c7x34yh0fys4h" path="res://assets/art/ui/kenny/mouse_scroll.png" id="26_h5j7u"]
+[ext_resource type="Texture2D" uid="uid://bouowu38xdccf" path="res://assets/art/ui/kenny/keyboard_d_outline.png" id="26_lx1sk"]
+[ext_resource type="Texture2D" uid="uid://3ja7u3wh02v5" path="res://assets/art/ui/ui_cat_coins.png" id="27_tcehl"]
+[ext_resource type="AudioStream" uid="uid://c08n8cjg27vvj" path="res://assets/sound/audio_stream_interactive.tres" id="27_xe33q"]
+[ext_resource type="Texture2D" uid="uid://cwajyfo7h3ipr" path="res://assets/art/ui/ui_dog_dollars.png" id="28_c7jqk"]
+[ext_resource type="PackedScene" uid="uid://7713vgtknry" path="res://assets/scenes/water_ripple.tscn" id="28_p2xyf"]
+[ext_resource type="AudioStream" uid="uid://x1sbdsvwxog2" path="res://assets/sound/sfx_audio_stream_interactive.tres" id="29_xe33q"]
 
 [sub_resource type="Animation" id="Animation_jdjof"]
 resource_name = "LookDown"
@@ -34,458 +41,451 @@ length = 0.5
 tracks/0/type = "rotation_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Armature/GeneralSkeleton:Hips")
+tracks/0/path = NodePath("Armature/GeneralSkeleton:Spine")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0, 0, 0, 1)
+tracks/0/keys = PackedFloat32Array(0, 1, 0.09387376, 0, 0, 0.9955842, 0.5, 1, 0.09387376, 0, 0, 0.9955842)
 tracks/1/type = "rotation_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Armature/GeneralSkeleton:Spine")
+tracks/1/path = NodePath("Armature/GeneralSkeleton:Chest")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0.09387376, 0, 0, 0.9955842, 0.5, 1, 0.09387376, 0, 0, 0.9955842)
+tracks/1/keys = PackedFloat32Array(0, 1, 0.25173154, 0, 0, 0.9677972, 0.5, 1, 0.31047738, 0, 0, 0.9505808)
 tracks/2/type = "rotation_3d"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Armature/GeneralSkeleton:Chest")
+tracks/2/path = NodePath("Armature/GeneralSkeleton:UpperChest")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0.25173154, 0, 0, 0.9677972, 0.5, 1, 0.31047738, 0, 0, 0.9505808)
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0, 0, 0, 1)
 tracks/3/type = "rotation_3d"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Armature/GeneralSkeleton:UpperChest")
+tracks/3/path = NodePath("Armature/GeneralSkeleton:Neck")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0, 0, 0, 1)
+tracks/3/keys = PackedFloat32Array(0, 1, -0.21643956, 0, 0, 0.97629607, 0.5, 1, -0.21643956, 0, 0, 0.97629607)
 tracks/4/type = "rotation_3d"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Armature/GeneralSkeleton:Neck")
+tracks/4/path = NodePath("Armature/GeneralSkeleton:Head")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
-tracks/4/keys = PackedFloat32Array(0, 1, -0.21643956, 0, 0, 0.97629607, 0.5, 1, -0.21643956, 0, 0, 0.97629607)
+tracks/4/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0, 0, 0, 1)
 tracks/5/type = "rotation_3d"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Armature/GeneralSkeleton:Head")
+tracks/5/path = NodePath("Armature/GeneralSkeleton:mixamorig_HeadTop_End")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
-tracks/5/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0, 0, 0, 1)
+tracks/5/keys = PackedFloat32Array(0, 1, -4.4703484e-08, 2.8349689e-31, 2.0643441e-32, 1, 0.5, 1, -4.4703484e-08, 2.8349689e-31, 2.0643441e-32, 1)
 tracks/6/type = "rotation_3d"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Armature/GeneralSkeleton:mixamorig_HeadTop_End")
+tracks/6/path = NodePath("Armature/GeneralSkeleton:LeftShoulder")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
-tracks/6/keys = PackedFloat32Array(0, 1, -4.4703484e-08, 2.8349689e-31, 2.0643441e-32, 1, 0.5, 1, -4.4703484e-08, 2.8349689e-31, 2.0643441e-32, 1)
+tracks/6/keys = PackedFloat32Array(0, 1, 0.30066538, 0.6652604, 0.49912673, -0.4667993, 0.5, 1, 0.30066538, 0.6652604, 0.49912673, -0.4667993)
 tracks/7/type = "rotation_3d"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Armature/GeneralSkeleton:LeftShoulder")
+tracks/7/path = NodePath("Armature/GeneralSkeleton:LeftUpperArm")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
-tracks/7/keys = PackedFloat32Array(0, 1, 0.30066538, 0.6652604, 0.49912673, -0.4667993, 0.5, 1, 0.30066538, 0.6652604, 0.49912673, -0.4667993)
+tracks/7/keys = PackedFloat32Array(0, 1, 0.60833997, 0.60876137, 0.5092467, -1.7134485e-07, 0.5, 1, 0.60833997, 0.60876137, 0.5092467, -1.7134485e-07)
 tracks/8/type = "rotation_3d"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Armature/GeneralSkeleton:LeftUpperArm")
+tracks/8/path = NodePath("Armature/GeneralSkeleton:LeftLowerArm")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
-tracks/8/keys = PackedFloat32Array(0, 1, 0.60833997, 0.60876137, 0.5092467, -1.7134485e-07, 0.5, 1, 0.60833997, 0.60876137, 0.5092467, -1.7134485e-07)
+tracks/8/keys = PackedFloat32Array(0, 1, -0.28864628, -0.80670226, 0.16397454, 0.48890415, 0.5, 1, -0.28864628, -0.80670226, 0.16397454, 0.48890415)
 tracks/9/type = "rotation_3d"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Armature/GeneralSkeleton:LeftLowerArm")
+tracks/9/path = NodePath("Armature/GeneralSkeleton:LeftHand")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
-tracks/9/keys = PackedFloat32Array(0, 1, -0.28864628, -0.80670226, 0.16397454, 0.48890415, 0.5, 1, -0.28864628, -0.80670226, 0.16397454, 0.48890415)
+tracks/9/keys = PackedFloat32Array(0, 1, -0.7102911, 0.030430123, -0.46649224, 0.5262562, 0.5, 1, -0.7102911, 0.030430123, -0.46649224, 0.5262562)
 tracks/10/type = "rotation_3d"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Armature/GeneralSkeleton:LeftHand")
+tracks/10/path = NodePath("Armature/GeneralSkeleton:LeftThumbMetacarpal")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
-tracks/10/keys = PackedFloat32Array(0, 1, -0.7102911, 0.030430123, -0.46649224, 0.5262562, 0.5, 1, -0.7102911, 0.030430123, -0.46649224, 0.5262562)
+tracks/10/keys = PackedFloat32Array(0, 1, 0.13614416, 0.7121806, 0.266765, 0.6349015, 0.5, 1, 0.13614416, 0.7121806, 0.266765, 0.6349015)
 tracks/11/type = "rotation_3d"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Armature/GeneralSkeleton:LeftThumbMetacarpal")
+tracks/11/path = NodePath("Armature/GeneralSkeleton:LeftThumbProximal")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
-tracks/11/keys = PackedFloat32Array(0, 1, 0.13614416, 0.7121806, 0.266765, 0.6349015, 0.5, 1, 0.13614416, 0.7121806, 0.266765, 0.6349015)
+tracks/11/keys = PackedFloat32Array(0, 1, -1.4901163e-08, 0, 0, 1, 0.5, 1, -1.4901163e-08, 0, 0, 1)
 tracks/12/type = "rotation_3d"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Armature/GeneralSkeleton:LeftThumbProximal")
+tracks/12/path = NodePath("Armature/GeneralSkeleton:LeftThumbDistal")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
-tracks/12/keys = PackedFloat32Array(0, 1, -1.4901163e-08, 0, 0, 1, 0.5, 1, -1.4901163e-08, 0, 0, 1)
+tracks/12/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0, 0, 0, 1)
 tracks/13/type = "rotation_3d"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("Armature/GeneralSkeleton:LeftThumbDistal")
+tracks/13/path = NodePath("Armature/GeneralSkeleton:mixamorig_LeftHandThumb4")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
-tracks/13/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0, 0, 0, 1)
+tracks/13/keys = PackedFloat32Array(0, 1, -0.31222168, 0.7573157, -0.45126253, -0.3540518, 0.5, 1, -0.31222168, 0.7573157, -0.45126253, -0.3540518)
 tracks/14/type = "rotation_3d"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("Armature/GeneralSkeleton:mixamorig_LeftHandThumb4")
+tracks/14/path = NodePath("Armature/GeneralSkeleton:LeftIndexProximal")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
-tracks/14/keys = PackedFloat32Array(0, 1, -0.31222168, 0.7573157, -0.45126253, -0.3540518, 0.5, 1, -0.31222168, 0.7573157, -0.45126253, -0.3540518)
+tracks/14/keys = PackedFloat32Array(0, 1, 0.72400963, -0.16345277, 0.28310654, 0.60740757, 0.5, 1, 0.72400963, -0.16345277, 0.28310654, 0.60740757)
 tracks/15/type = "rotation_3d"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("Armature/GeneralSkeleton:LeftIndexProximal")
+tracks/15/path = NodePath("Armature/GeneralSkeleton:LeftIndexIntermediate")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
-tracks/15/keys = PackedFloat32Array(0, 1, 0.72400963, -0.16345277, 0.28310654, 0.60740757, 0.5, 1, 0.72400963, -0.16345277, 0.28310654, 0.60740757)
+tracks/15/keys = PackedFloat32Array(0, 1, 0.32891703, -0.2845659, -0.17658228, 0.88298047, 0.5, 1, 0.32891703, -0.2845659, -0.17658228, 0.88298047)
 tracks/16/type = "rotation_3d"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("Armature/GeneralSkeleton:LeftIndexIntermediate")
+tracks/16/path = NodePath("Armature/GeneralSkeleton:LeftIndexDistal")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
-tracks/16/keys = PackedFloat32Array(0, 1, 0.32891703, -0.2845659, -0.17658228, 0.88298047, 0.5, 1, 0.32891703, -0.2845659, -0.17658228, 0.88298047)
+tracks/16/keys = PackedFloat32Array(0, 1, 0.29296798, -0.25346377, -0.15728234, 0.9083987, 0.5, 1, 0.29296798, -0.25346377, -0.15728234, 0.9083987)
 tracks/17/type = "rotation_3d"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("Armature/GeneralSkeleton:LeftIndexDistal")
+tracks/17/path = NodePath("Armature/GeneralSkeleton:mixamorig_LeftHandIndex4")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
-tracks/17/keys = PackedFloat32Array(0, 1, 0.29296798, -0.25346377, -0.15728234, 0.9083987, 0.5, 1, 0.29296798, -0.25346377, -0.15728234, 0.9083987)
+tracks/17/keys = PackedFloat32Array(0, 1, 0.4960974, -0.009604053, -0.0086632585, 0.8681706, 0.5, 1, 0.4960974, -0.009604053, -0.0086632585, 0.8681706)
 tracks/18/type = "rotation_3d"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("Armature/GeneralSkeleton:mixamorig_LeftHandIndex4")
+tracks/18/path = NodePath("Armature/GeneralSkeleton:LeftMiddleProximal")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
-tracks/18/keys = PackedFloat32Array(0, 1, 0.4960974, -0.009604053, -0.0086632585, 0.8681706, 0.5, 1, 0.4960974, -0.009604053, -0.0086632585, 0.8681706)
+tracks/18/keys = PackedFloat32Array(0, 1, 0.80567807, 0.062182173, -0.46629634, 0.35997784, 0.5, 1, 0.80567807, 0.062182173, -0.46629634, 0.35997784)
 tracks/19/type = "rotation_3d"
 tracks/19/imported = false
 tracks/19/enabled = true
-tracks/19/path = NodePath("Armature/GeneralSkeleton:LeftMiddleProximal")
+tracks/19/path = NodePath("Armature/GeneralSkeleton:LeftMiddleIntermediate")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
-tracks/19/keys = PackedFloat32Array(0, 1, 0.80567807, 0.062182173, -0.46629634, 0.35997784, 0.5, 1, 0.80567807, 0.062182173, -0.46629634, 0.35997784)
+tracks/19/keys = PackedFloat32Array(0, 1, 0.08301309, 0.24634263, -0.3233192, 0.909884, 0.5, 1, 0.08301309, 0.24634263, -0.3233192, 0.909884)
 tracks/20/type = "rotation_3d"
 tracks/20/imported = false
 tracks/20/enabled = true
-tracks/20/path = NodePath("Armature/GeneralSkeleton:LeftMiddleIntermediate")
+tracks/20/path = NodePath("Armature/GeneralSkeleton:LeftMiddleDistal")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
-tracks/20/keys = PackedFloat32Array(0, 1, 0.08301309, 0.24634263, -0.3233192, 0.909884, 0.5, 1, 0.08301309, 0.24634263, -0.3233192, 0.909884)
+tracks/20/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0, 0, 0, 1)
 tracks/21/type = "rotation_3d"
 tracks/21/imported = false
 tracks/21/enabled = true
-tracks/21/path = NodePath("Armature/GeneralSkeleton:LeftMiddleDistal")
+tracks/21/path = NodePath("Armature/GeneralSkeleton:mixamorig_LeftHandMiddle4")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
-tracks/21/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0, 0, 0, 1)
+tracks/21/keys = PackedFloat32Array(0, 1, 0.5081711, 0.0012157736, -0.03117279, 0.86069095, 0.5, 1, 0.5081711, 0.0012157736, -0.03117279, 0.86069095)
 tracks/22/type = "rotation_3d"
 tracks/22/imported = false
 tracks/22/enabled = true
-tracks/22/path = NodePath("Armature/GeneralSkeleton:mixamorig_LeftHandMiddle4")
+tracks/22/path = NodePath("Armature/GeneralSkeleton:LeftRingProximal")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
-tracks/22/keys = PackedFloat32Array(0, 1, 0.5081711, 0.0012157736, -0.03117279, 0.86069095, 0.5, 1, 0.5081711, 0.0012157736, -0.03117279, 0.86069095)
+tracks/22/keys = PackedFloat32Array(0, 1, 0.848564, -0.12814443, -0.40113133, 0.3203307, 0.5, 1, 0.848564, -0.12814443, -0.40113133, 0.3203307)
 tracks/23/type = "rotation_3d"
 tracks/23/imported = false
 tracks/23/enabled = true
-tracks/23/path = NodePath("Armature/GeneralSkeleton:LeftRingProximal")
+tracks/23/path = NodePath("Armature/GeneralSkeleton:LeftRingIntermediate")
 tracks/23/interp = 1
 tracks/23/loop_wrap = true
-tracks/23/keys = PackedFloat32Array(0, 1, 0.848564, -0.12814443, -0.40113133, 0.3203307, 0.5, 1, 0.848564, -0.12814443, -0.40113133, 0.3203307)
+tracks/23/keys = PackedFloat32Array(0, 1, 0.16330667, 0.32689512, 0.29190767, 0.8838894, 0.5, 1, 0.16330667, 0.32689512, 0.29190767, 0.8838894)
 tracks/24/type = "rotation_3d"
 tracks/24/imported = false
 tracks/24/enabled = true
-tracks/24/path = NodePath("Armature/GeneralSkeleton:LeftRingIntermediate")
+tracks/24/path = NodePath("Armature/GeneralSkeleton:LeftRingDistal")
 tracks/24/interp = 1
 tracks/24/loop_wrap = true
-tracks/24/keys = PackedFloat32Array(0, 1, 0.16330667, 0.32689512, 0.29190767, 0.8838894, 0.5, 1, 0.16330667, 0.32689512, 0.29190767, 0.8838894)
+tracks/24/keys = PackedFloat32Array(0, 1, 0.13795933, -0.061802663, 0.31310523, 0.93761015, 0.5, 1, 0.13795933, -0.061802663, 0.31310523, 0.93761015)
 tracks/25/type = "rotation_3d"
 tracks/25/imported = false
 tracks/25/enabled = true
-tracks/25/path = NodePath("Armature/GeneralSkeleton:LeftRingDistal")
+tracks/25/path = NodePath("Armature/GeneralSkeleton:mixamorig_LeftHandRing4")
 tracks/25/interp = 1
 tracks/25/loop_wrap = true
-tracks/25/keys = PackedFloat32Array(0, 1, 0.13795933, -0.061802663, 0.31310523, 0.93761015, 0.5, 1, 0.13795933, -0.061802663, 0.31310523, 0.93761015)
+tracks/25/keys = PackedFloat32Array(0, 1, 0.5105295, -0.005496515, -0.017363982, 0.85966736, 0.5, 1, 0.5105295, -0.005496515, -0.017363982, 0.85966736)
 tracks/26/type = "rotation_3d"
 tracks/26/imported = false
 tracks/26/enabled = true
-tracks/26/path = NodePath("Armature/GeneralSkeleton:mixamorig_LeftHandRing4")
+tracks/26/path = NodePath("Armature/GeneralSkeleton:LeftLittleProximal")
 tracks/26/interp = 1
 tracks/26/loop_wrap = true
-tracks/26/keys = PackedFloat32Array(0, 1, 0.5105295, -0.005496515, -0.017363982, 0.85966736, 0.5, 1, 0.5105295, -0.005496515, -0.017363982, 0.85966736)
+tracks/26/keys = PackedFloat32Array(0, 1, 0.47848386, 0.4166628, -0.7658499, 0.104495555, 0.5, 1, 0.47848386, 0.4166628, -0.7658499, 0.104495555)
 tracks/27/type = "rotation_3d"
 tracks/27/imported = false
 tracks/27/enabled = true
-tracks/27/path = NodePath("Armature/GeneralSkeleton:LeftLittleProximal")
+tracks/27/path = NodePath("Armature/GeneralSkeleton:LeftLittleIntermediate")
 tracks/27/interp = 1
 tracks/27/loop_wrap = true
-tracks/27/keys = PackedFloat32Array(0, 1, 0.47848386, 0.4166628, -0.7658499, 0.104495555, 0.5, 1, 0.47848386, 0.4166628, -0.7658499, 0.104495555)
+tracks/27/keys = PackedFloat32Array(0, 1, 0.0022727237, 0.18534541, 0.03540144, 0.98203295, 0.5, 1, 0.0022727237, 0.18534541, 0.03540144, 0.98203295)
 tracks/28/type = "rotation_3d"
 tracks/28/imported = false
 tracks/28/enabled = true
-tracks/28/path = NodePath("Armature/GeneralSkeleton:LeftLittleIntermediate")
+tracks/28/path = NodePath("Armature/GeneralSkeleton:LeftLittleDistal")
 tracks/28/interp = 1
 tracks/28/loop_wrap = true
-tracks/28/keys = PackedFloat32Array(0, 1, 0.0022727237, 0.18534541, 0.03540144, 0.98203295, 0.5, 1, 0.0022727237, 0.18534541, 0.03540144, 0.98203295)
+tracks/28/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0, 0, 0, 1)
 tracks/29/type = "rotation_3d"
 tracks/29/imported = false
 tracks/29/enabled = true
-tracks/29/path = NodePath("Armature/GeneralSkeleton:LeftLittleDistal")
+tracks/29/path = NodePath("Armature/GeneralSkeleton:mixamorig_LeftHandPinky4")
 tracks/29/interp = 1
 tracks/29/loop_wrap = true
-tracks/29/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0, 0, 0, 1)
+tracks/29/keys = PackedFloat32Array(0, 1, 0.51307607, 0.050859496, -0.13719454, 0.8457801, 0.5, 1, 0.51307607, 0.050859496, -0.13719454, 0.8457801)
 tracks/30/type = "rotation_3d"
 tracks/30/imported = false
 tracks/30/enabled = true
-tracks/30/path = NodePath("Armature/GeneralSkeleton:mixamorig_LeftHandPinky4")
+tracks/30/path = NodePath("Armature/GeneralSkeleton:RightShoulder")
 tracks/30/interp = 1
 tracks/30/loop_wrap = true
-tracks/30/keys = PackedFloat32Array(0, 1, 0.51307607, 0.050859496, -0.13719454, 0.8457801, 0.5, 1, 0.51307607, 0.050859496, -0.13719454, 0.8457801)
+tracks/30/keys = PackedFloat32Array(0, 1, 0.23727694, -0.92191744, -0.16705514, -0.2566333, 0.5, 1, 0.23727694, -0.92191744, -0.16705514, -0.2566333)
 tracks/31/type = "rotation_3d"
 tracks/31/imported = false
 tracks/31/enabled = true
-tracks/31/path = NodePath("Armature/GeneralSkeleton:RightShoulder")
+tracks/31/path = NodePath("Armature/GeneralSkeleton:RightUpperArm")
 tracks/31/interp = 1
 tracks/31/loop_wrap = true
-tracks/31/keys = PackedFloat32Array(0, 1, 0.23727694, -0.92191744, -0.16705514, -0.2566333, 0.5, 1, 0.23727694, -0.92191744, -0.16705514, -0.2566333)
+tracks/31/keys = PackedFloat32Array(0, 1, -0.38509536, 0.8917779, 0.03841432, -0.23443204, 0.5, 1, -0.38509536, 0.8917779, 0.03841432, -0.23443204)
 tracks/32/type = "rotation_3d"
 tracks/32/imported = false
 tracks/32/enabled = true
-tracks/32/path = NodePath("Armature/GeneralSkeleton:RightUpperArm")
+tracks/32/path = NodePath("Armature/GeneralSkeleton:RightLowerArm")
 tracks/32/interp = 1
 tracks/32/loop_wrap = true
-tracks/32/keys = PackedFloat32Array(0, 1, -0.38509536, 0.8917779, 0.03841432, -0.23443204, 0.5, 1, -0.38509536, 0.8917779, 0.03841432, -0.23443204)
+tracks/32/keys = PackedFloat32Array(0, 1, -0.20032051, 0.78994936, 0.09686357, 0.57137483, 0.5, 1, -0.20032051, 0.78994936, 0.09686357, 0.57137483)
 tracks/33/type = "rotation_3d"
 tracks/33/imported = false
 tracks/33/enabled = true
-tracks/33/path = NodePath("Armature/GeneralSkeleton:RightLowerArm")
+tracks/33/path = NodePath("Armature/GeneralSkeleton:RightHand")
 tracks/33/interp = 1
 tracks/33/loop_wrap = true
-tracks/33/keys = PackedFloat32Array(0, 1, -0.20032051, 0.78994936, 0.09686357, 0.57137483, 0.5, 1, -0.20032051, 0.78994936, 0.09686357, 0.57137483)
+tracks/33/keys = PackedFloat32Array(0, 1, -0.28786275, -0.14711595, 0.20336741, 0.9241935, 0.5, 1, -0.28786275, -0.14711595, 0.20336741, 0.9241935)
 tracks/34/type = "rotation_3d"
 tracks/34/imported = false
 tracks/34/enabled = true
-tracks/34/path = NodePath("Armature/GeneralSkeleton:RightHand")
+tracks/34/path = NodePath("Armature/GeneralSkeleton:RightThumbMetacarpal")
 tracks/34/interp = 1
 tracks/34/loop_wrap = true
-tracks/34/keys = PackedFloat32Array(0, 1, -0.28786275, -0.14711595, 0.20336741, 0.9241935, 0.5, 1, -0.28786275, -0.14711595, 0.20336741, 0.9241935)
+tracks/34/keys = PackedFloat32Array(0, 1, -0.23559108, -0.77483433, -0.4855563, 0.3291865, 0.5, 1, -0.23559108, -0.77483433, -0.4855563, 0.3291865)
 tracks/35/type = "rotation_3d"
 tracks/35/imported = false
 tracks/35/enabled = true
-tracks/35/path = NodePath("Armature/GeneralSkeleton:RightThumbMetacarpal")
+tracks/35/path = NodePath("Armature/GeneralSkeleton:RightThumbProximal")
 tracks/35/interp = 1
 tracks/35/loop_wrap = true
-tracks/35/keys = PackedFloat32Array(0, 1, -0.23559108, -0.77483433, -0.4855563, 0.3291865, 0.5, 1, -0.23559108, -0.77483433, -0.4855563, 0.3291865)
+tracks/35/keys = PackedFloat32Array(0, 1, -1.4901163e-08, 0, 0, 1, 0.5, 1, -1.4901163e-08, 0, 0, 1)
 tracks/36/type = "rotation_3d"
 tracks/36/imported = false
 tracks/36/enabled = true
-tracks/36/path = NodePath("Armature/GeneralSkeleton:RightThumbProximal")
+tracks/36/path = NodePath("Armature/GeneralSkeleton:RightThumbDistal")
 tracks/36/interp = 1
 tracks/36/loop_wrap = true
-tracks/36/keys = PackedFloat32Array(0, 1, -1.4901163e-08, 0, 0, 1, 0.5, 1, -1.4901163e-08, 0, 0, 1)
+tracks/36/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0, 0, 0, 1)
 tracks/37/type = "rotation_3d"
 tracks/37/imported = false
 tracks/37/enabled = true
-tracks/37/path = NodePath("Armature/GeneralSkeleton:RightThumbDistal")
+tracks/37/path = NodePath("Armature/GeneralSkeleton:mixamorig_RightHandThumb4")
 tracks/37/interp = 1
 tracks/37/loop_wrap = true
-tracks/37/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0, 0, 0, 1)
+tracks/37/keys = PackedFloat32Array(0, 1, 0.35839856, 0.7320843, -0.46317124, 0.34795904, 0.5, 1, 0.35839856, 0.7320843, -0.46317124, 0.34795904)
 tracks/38/type = "rotation_3d"
 tracks/38/imported = false
 tracks/38/enabled = true
-tracks/38/path = NodePath("Armature/GeneralSkeleton:mixamorig_RightHandThumb4")
+tracks/38/path = NodePath("Armature/GeneralSkeleton:RightIndexProximal")
 tracks/38/interp = 1
 tracks/38/loop_wrap = true
-tracks/38/keys = PackedFloat32Array(0, 1, 0.35839856, 0.7320843, -0.46317124, 0.34795904, 0.5, 1, 0.35839856, 0.7320843, -0.46317124, 0.34795904)
+tracks/38/keys = PackedFloat32Array(0, 1, -0.09784332, 0.11786077, -0.25815833, 0.95388144, 0.5, 1, -0.09784332, 0.11786077, -0.25815833, 0.95388144)
 tracks/39/type = "rotation_3d"
 tracks/39/imported = false
 tracks/39/enabled = true
-tracks/39/path = NodePath("Armature/GeneralSkeleton:RightIndexProximal")
+tracks/39/path = NodePath("Armature/GeneralSkeleton:RightIndexIntermediate")
 tracks/39/interp = 1
 tracks/39/loop_wrap = true
-tracks/39/keys = PackedFloat32Array(0, 1, -0.09784332, 0.11786077, -0.25815833, 0.95388144, 0.5, 1, -0.09784332, 0.11786077, -0.25815833, 0.95388144)
+tracks/39/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0, 0, 0, 1)
 tracks/40/type = "rotation_3d"
 tracks/40/imported = false
 tracks/40/enabled = true
-tracks/40/path = NodePath("Armature/GeneralSkeleton:RightIndexIntermediate")
+tracks/40/path = NodePath("Armature/GeneralSkeleton:RightIndexDistal")
 tracks/40/interp = 1
 tracks/40/loop_wrap = true
 tracks/40/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0, 0, 0, 1)
 tracks/41/type = "rotation_3d"
 tracks/41/imported = false
 tracks/41/enabled = true
-tracks/41/path = NodePath("Armature/GeneralSkeleton:RightIndexDistal")
+tracks/41/path = NodePath("Armature/GeneralSkeleton:mixamorig_RightHandIndex4")
 tracks/41/interp = 1
 tracks/41/loop_wrap = true
-tracks/41/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0, 0, 0, 1)
+tracks/41/keys = PackedFloat32Array(0, 1, 0.50328594, 0.019532006, 0.004845511, 0.8638856, 0.5, 1, 0.50328594, 0.019532006, 0.004845511, 0.8638856)
 tracks/42/type = "rotation_3d"
 tracks/42/imported = false
 tracks/42/enabled = true
-tracks/42/path = NodePath("Armature/GeneralSkeleton:mixamorig_RightHandIndex4")
+tracks/42/path = NodePath("Armature/GeneralSkeleton:RightMiddleProximal")
 tracks/42/interp = 1
 tracks/42/loop_wrap = true
-tracks/42/keys = PackedFloat32Array(0, 1, 0.50328594, 0.019532006, 0.004845511, 0.8638856, 0.5, 1, 0.50328594, 0.019532006, 0.004845511, 0.8638856)
+tracks/42/keys = PackedFloat32Array(0, 1, 0.914921, -0.020569287, 0.29684576, 0.27272537, 0.5, 1, 0.914921, -0.020569287, 0.29684576, 0.27272537)
 tracks/43/type = "rotation_3d"
 tracks/43/imported = false
 tracks/43/enabled = true
-tracks/43/path = NodePath("Armature/GeneralSkeleton:RightMiddleProximal")
+tracks/43/path = NodePath("Armature/GeneralSkeleton:RightMiddleIntermediate")
 tracks/43/interp = 1
 tracks/43/loop_wrap = true
-tracks/43/keys = PackedFloat32Array(0, 1, 0.914921, -0.020569287, 0.29684576, 0.27272537, 0.5, 1, 0.914921, -0.020569287, 0.29684576, 0.27272537)
+tracks/43/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0, 0, 0, 1)
 tracks/44/type = "rotation_3d"
 tracks/44/imported = false
 tracks/44/enabled = true
-tracks/44/path = NodePath("Armature/GeneralSkeleton:RightMiddleIntermediate")
+tracks/44/path = NodePath("Armature/GeneralSkeleton:RightMiddleDistal")
 tracks/44/interp = 1
 tracks/44/loop_wrap = true
 tracks/44/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0, 0, 0, 1)
 tracks/45/type = "rotation_3d"
 tracks/45/imported = false
 tracks/45/enabled = true
-tracks/45/path = NodePath("Armature/GeneralSkeleton:RightMiddleDistal")
+tracks/45/path = NodePath("Armature/GeneralSkeleton:mixamorig_RightHandMiddle4")
 tracks/45/interp = 1
 tracks/45/loop_wrap = true
-tracks/45/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0, 0, 0, 1)
+tracks/45/keys = PackedFloat32Array(0, 1, 0.47183135, 0.013731857, 0.016962389, 0.8814187, 0.5, 1, 0.47183135, 0.013731857, 0.016962389, 0.8814187)
 tracks/46/type = "rotation_3d"
 tracks/46/imported = false
 tracks/46/enabled = true
-tracks/46/path = NodePath("Armature/GeneralSkeleton:mixamorig_RightHandMiddle4")
+tracks/46/path = NodePath("Armature/GeneralSkeleton:RightRingProximal")
 tracks/46/interp = 1
 tracks/46/loop_wrap = true
-tracks/46/keys = PackedFloat32Array(0, 1, 0.47183135, 0.013731857, 0.016962389, 0.8814187, 0.5, 1, 0.47183135, 0.013731857, 0.016962389, 0.8814187)
+tracks/46/keys = PackedFloat32Array(0, 1, 0.93460166, -0.021011725, 0.3032312, 0.18474054, 0.5, 1, 0.93460166, -0.021011725, 0.3032312, 0.18474054)
 tracks/47/type = "rotation_3d"
 tracks/47/imported = false
 tracks/47/enabled = true
-tracks/47/path = NodePath("Armature/GeneralSkeleton:RightRingProximal")
+tracks/47/path = NodePath("Armature/GeneralSkeleton:RightRingIntermediate")
 tracks/47/interp = 1
 tracks/47/loop_wrap = true
-tracks/47/keys = PackedFloat32Array(0, 1, 0.93460166, -0.021011725, 0.3032312, 0.18474054, 0.5, 1, 0.93460166, -0.021011725, 0.3032312, 0.18474054)
+tracks/47/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0, 0, 0, 1)
 tracks/48/type = "rotation_3d"
 tracks/48/imported = false
 tracks/48/enabled = true
-tracks/48/path = NodePath("Armature/GeneralSkeleton:RightRingIntermediate")
+tracks/48/path = NodePath("Armature/GeneralSkeleton:RightRingDistal")
 tracks/48/interp = 1
 tracks/48/loop_wrap = true
 tracks/48/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0, 0, 0, 1)
 tracks/49/type = "rotation_3d"
 tracks/49/imported = false
 tracks/49/enabled = true
-tracks/49/path = NodePath("Armature/GeneralSkeleton:RightRingDistal")
+tracks/49/path = NodePath("Armature/GeneralSkeleton:mixamorig_RightHandRing4")
 tracks/49/interp = 1
 tracks/49/loop_wrap = true
-tracks/49/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0, 0, 0, 1)
+tracks/49/keys = PackedFloat32Array(0, 1, 0.57952833, 0.016760593, 0.012191839, 0.8146885, 0.5, 1, 0.57952833, 0.016760593, 0.012191839, 0.8146885)
 tracks/50/type = "rotation_3d"
 tracks/50/imported = false
 tracks/50/enabled = true
-tracks/50/path = NodePath("Armature/GeneralSkeleton:mixamorig_RightHandRing4")
+tracks/50/path = NodePath("Armature/GeneralSkeleton:RightLittleProximal")
 tracks/50/interp = 1
 tracks/50/loop_wrap = true
-tracks/50/keys = PackedFloat32Array(0, 1, 0.57952833, 0.016760593, 0.012191839, 0.8146885, 0.5, 1, 0.57952833, 0.016760593, 0.012191839, 0.8146885)
+tracks/50/keys = PackedFloat32Array(0, 1, 0.93572706, -0.021037024, 0.30359632, 0.17833, 0.5, 1, 0.93572706, -0.021037024, 0.30359632, 0.17833)
 tracks/51/type = "rotation_3d"
 tracks/51/imported = false
 tracks/51/enabled = true
-tracks/51/path = NodePath("Armature/GeneralSkeleton:RightLittleProximal")
+tracks/51/path = NodePath("Armature/GeneralSkeleton:RightLittleIntermediate")
 tracks/51/interp = 1
 tracks/51/loop_wrap = true
-tracks/51/keys = PackedFloat32Array(0, 1, 0.93572706, -0.021037024, 0.30359632, 0.17833, 0.5, 1, 0.93572706, -0.021037024, 0.30359632, 0.17833)
+tracks/51/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0, 0, 0, 1)
 tracks/52/type = "rotation_3d"
 tracks/52/imported = false
 tracks/52/enabled = true
-tracks/52/path = NodePath("Armature/GeneralSkeleton:RightLittleIntermediate")
+tracks/52/path = NodePath("Armature/GeneralSkeleton:RightLittleDistal")
 tracks/52/interp = 1
 tracks/52/loop_wrap = true
 tracks/52/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0, 0, 0, 1)
 tracks/53/type = "rotation_3d"
 tracks/53/imported = false
 tracks/53/enabled = true
-tracks/53/path = NodePath("Armature/GeneralSkeleton:RightLittleDistal")
+tracks/53/path = NodePath("Armature/GeneralSkeleton:mixamorig_RightHandPinky4")
 tracks/53/interp = 1
 tracks/53/loop_wrap = true
-tracks/53/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0, 0, 0, 1)
+tracks/53/keys = PackedFloat32Array(0, 1, 0.5839892, -0.019317225, 0.12018048, 0.8025834, 0.5, 1, 0.5839892, -0.019317225, 0.12018048, 0.8025834)
 tracks/54/type = "rotation_3d"
 tracks/54/imported = false
 tracks/54/enabled = true
-tracks/54/path = NodePath("Armature/GeneralSkeleton:mixamorig_RightHandPinky4")
+tracks/54/path = NodePath("Armature/GeneralSkeleton:LeftUpperLeg")
 tracks/54/interp = 1
 tracks/54/loop_wrap = true
-tracks/54/keys = PackedFloat32Array(0, 1, 0.5839892, -0.019317225, 0.12018048, 0.8025834, 0.5, 1, 0.5839892, -0.019317225, 0.12018048, 0.8025834)
+tracks/54/keys = PackedFloat32Array(0, 1, 0.20114964, 0.6112594, 0.6907588, -0.32977733)
 tracks/55/type = "rotation_3d"
 tracks/55/imported = false
 tracks/55/enabled = true
-tracks/55/path = NodePath("Armature/GeneralSkeleton:LeftUpperLeg")
+tracks/55/path = NodePath("Armature/GeneralSkeleton:LeftLowerLeg")
 tracks/55/interp = 1
 tracks/55/loop_wrap = true
-tracks/55/keys = PackedFloat32Array(0, 1, 0.20114964, 0.6112594, 0.6907588, -0.32977733)
+tracks/55/keys = PackedFloat32Array(0, 1, -0.96791863, -0.20990518, 0.11373241, -0.078348026)
 tracks/56/type = "rotation_3d"
 tracks/56/imported = false
 tracks/56/enabled = true
-tracks/56/path = NodePath("Armature/GeneralSkeleton:LeftLowerLeg")
+tracks/56/path = NodePath("Armature/GeneralSkeleton:LeftFoot")
 tracks/56/interp = 1
 tracks/56/loop_wrap = true
-tracks/56/keys = PackedFloat32Array(0, 1, -0.96791863, -0.20990518, 0.11373241, -0.078348026)
+tracks/56/keys = PackedFloat32Array(0, 1, 0.27906695, 0.6978794, -0.5914344, 0.29204682)
 tracks/57/type = "rotation_3d"
 tracks/57/imported = false
 tracks/57/enabled = true
-tracks/57/path = NodePath("Armature/GeneralSkeleton:LeftFoot")
+tracks/57/path = NodePath("Armature/GeneralSkeleton:LeftToes")
 tracks/57/interp = 1
 tracks/57/loop_wrap = true
-tracks/57/keys = PackedFloat32Array(0, 1, 0.27906695, 0.6978794, -0.5914344, 0.29204682)
+tracks/57/keys = PackedFloat32Array(0, 1, 0, 1, 0, 0)
 tracks/58/type = "rotation_3d"
 tracks/58/imported = false
 tracks/58/enabled = true
-tracks/58/path = NodePath("Armature/GeneralSkeleton:LeftToes")
+tracks/58/path = NodePath("Armature/GeneralSkeleton:mixamorig_LeftToe_End")
 tracks/58/interp = 1
 tracks/58/loop_wrap = true
-tracks/58/keys = PackedFloat32Array(0, 1, 0, 1, 0, 0)
+tracks/58/keys = PackedFloat32Array(0, 1, 0.0025797852, 0.9998532, 0.008687842, 0.01454594)
 tracks/59/type = "rotation_3d"
 tracks/59/imported = false
 tracks/59/enabled = true
-tracks/59/path = NodePath("Armature/GeneralSkeleton:mixamorig_LeftToe_End")
+tracks/59/path = NodePath("Armature/GeneralSkeleton:RightUpperLeg")
 tracks/59/interp = 1
 tracks/59/loop_wrap = true
-tracks/59/keys = PackedFloat32Array(0, 1, 0.0025797852, 0.9998532, 0.008687842, 0.01454594)
+tracks/59/keys = PackedFloat32Array(0, 1, -0.5653009, 0.6351485, 0.4452765, -0.28062454)
 tracks/60/type = "rotation_3d"
 tracks/60/imported = false
 tracks/60/enabled = true
-tracks/60/path = NodePath("Armature/GeneralSkeleton:RightUpperLeg")
+tracks/60/path = NodePath("Armature/GeneralSkeleton:RightLowerLeg")
 tracks/60/interp = 1
 tracks/60/loop_wrap = true
-tracks/60/keys = PackedFloat32Array(0, 1, -0.5653009, 0.6351485, 0.4452765, -0.28062454)
+tracks/60/keys = PackedFloat32Array(0, 1, 0.12839048, 0.29784483, -0.9426773, -0.07851027)
 tracks/61/type = "rotation_3d"
 tracks/61/imported = false
 tracks/61/enabled = true
-tracks/61/path = NodePath("Armature/GeneralSkeleton:RightLowerLeg")
+tracks/61/path = NodePath("Armature/GeneralSkeleton:RightFoot")
 tracks/61/interp = 1
 tracks/61/loop_wrap = true
-tracks/61/keys = PackedFloat32Array(0, 1, 0.12839048, 0.29784483, -0.9426773, -0.07851027)
+tracks/61/keys = PackedFloat32Array(0, 1, 0.08988097, 0.67872703, -0.47366726, 0.5539769)
 tracks/62/type = "rotation_3d"
 tracks/62/imported = false
 tracks/62/enabled = true
-tracks/62/path = NodePath("Armature/GeneralSkeleton:RightFoot")
+tracks/62/path = NodePath("Armature/GeneralSkeleton:RightToes")
 tracks/62/interp = 1
 tracks/62/loop_wrap = true
-tracks/62/keys = PackedFloat32Array(0, 1, 0.08988097, 0.67872703, -0.47366726, 0.5539769)
+tracks/62/keys = PackedFloat32Array(0, 1, 0, 1, 0, 0)
 tracks/63/type = "rotation_3d"
 tracks/63/imported = false
 tracks/63/enabled = true
-tracks/63/path = NodePath("Armature/GeneralSkeleton:RightToes")
+tracks/63/path = NodePath("Armature/GeneralSkeleton:mixamorig_RightToe_End")
 tracks/63/interp = 1
 tracks/63/loop_wrap = true
-tracks/63/keys = PackedFloat32Array(0, 1, 0, 1, 0, 0)
-tracks/64/type = "rotation_3d"
-tracks/64/imported = false
-tracks/64/enabled = true
-tracks/64/path = NodePath("Armature/GeneralSkeleton:mixamorig_RightToe_End")
-tracks/64/interp = 1
-tracks/64/loop_wrap = true
-tracks/64/keys = PackedFloat32Array(0, 1, -0.0025577773, 0.99985313, 0.008611372, -0.014601834)
+tracks/63/keys = PackedFloat32Array(0, 1, -0.0025577773, 0.99985313, 0.008611372, -0.014601834)
 
 [sub_resource type="Animation" id="Animation_pnywb"]
 resource_name = "LookLeft"
@@ -4266,7 +4266,7 @@ transitions = ["Start", "BlendSpace2D", SubResource("AnimationNodeStateMachineTr
 graph_offset = Vector2(-73, -27)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_cb5na"]
-graph_offset = Vector2(-433.24255, 62.70546)
+graph_offset = Vector2(-248.50961, 67.51572)
 nodes/output/position = Vector2(460, 240)
 nodes/AnimationMachine/node = SubResource("AnimationNodeStateMachine_8vm3o")
 nodes/AnimationMachine/position = Vector2(-80, 380)
@@ -4307,12 +4307,12 @@ height = 0.23896027
 [sub_resource type="BoxMesh" id="BoxMesh_wfsp4"]
 resource_local_to_scene = true
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_xe33q"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_3sk60"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1q3k2"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lx1sk"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_xe33q")
+albedo_texture = SubResource("ViewportTexture_3sk60")
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_s2rys"]
 
@@ -4350,6 +4350,11 @@ albedo_texture = ExtResource("5_j62u1")
 [sub_resource type="BoxMesh" id="BoxMesh_3cnnv"]
 size = Vector3(8, 1, 2)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xe33q"]
+bg_color = Color(0.21535105, 0.13271907, 0.4627267, 1)
+
+[sub_resource type="Theme" id="Theme_3sk60"]
+
 [node name="Game" type="Node3D"]
 script = ExtResource("1_8vm3o")
 
@@ -4366,7 +4371,7 @@ light_color = Color(0.19733328, 0.13999999, 1, 1)
 transform = Transform3D(-0.98232865, -0.13569061, 0.12891276, -0.049128477, 0.85155326, 0.5219612, -0.18060131, 0.50640416, -0.8431714, -40.765, 2.723, 0)
 light_color = Color(1, 0.32941177, 0.32941177, 1)
 
-[node name="player" type="StaticBody3D" parent="." node_paths=PackedStringArray("head", "animation_player", "animation_tree", "hair_3p", "fishing_rod", "tablet", "fish_spot", "fish_spot_2", "menu", "left_travel_point", "center_travel_point", "right_travel_point", "camera_3p", "head_3p", "pointers", "music_main", "cat_vending_machine", "dog_vending_machine", "left_fish_pile", "right_fish_pile", "fish_info_text")]
+[node name="player" type="StaticBody3D" parent="." node_paths=PackedStringArray("head", "animation_player", "animation_tree", "hair_3p", "dialogue_menu", "fishing_rod", "tablet", "fish_spot", "fish_spot_2", "menu", "left_travel_point", "center_travel_point", "right_travel_point", "camera_3p", "head_3p", "pointers", "music_main", "sfx_main", "ambient_main", "cat_vending_machine", "dog_vending_machine", "left_fish_pile", "right_fish_pile", "fish_info_text")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("2_cb5na")
@@ -4374,6 +4379,7 @@ head = NodePath("NoiR_Base/Armature/GeneralSkeleton/BoneAttachment3D3/Head")
 animation_player = NodePath("AnimationPlayer")
 animation_tree = NodePath("AnimationTree")
 hair_3p = NodePath("NoiR_Base/Armature/GeneralSkeleton/BoneAttachment3D2/NoiRLowPolyHair_3p")
+dialogue_menu = NodePath("../Dialogue")
 fishing_rod = NodePath("NoiR_Base/Armature/GeneralSkeleton/BoneAttachment3D/FishingRod")
 tablet = NodePath("Tablet")
 fish_spot = NodePath("Boat/FishSpot1")
@@ -4386,6 +4392,8 @@ camera_3p = NodePath("Head3rdPerson/3rd Person Camera")
 head_3p = NodePath("Head3rdPerson")
 pointers = NodePath("../Pointers")
 music_main = NodePath("../MusicPlayer")
+sfx_main = NodePath("../SFXPlayer")
+ambient_main = NodePath("../AmbientPlayer")
 cat_vending_machine = NodePath("../CatIsland/CatVendingMachine")
 dog_vending_machine = NodePath("../DogIsland/DogVendingMachine")
 left_fish_pile = NodePath("Boat/FishSpot1")
@@ -4551,9 +4559,10 @@ transform = Transform3D(0.9676988, 0.23202473, -0.1027316, -0.03152315, -0.29158
 bone_name = "LeftThumbDistal"
 bone_idx = 13
 
-[node name="FishingRod" parent="player/NoiR_Base/Armature/GeneralSkeleton/BoneAttachment3D" node_paths=PackedStringArray("base", "hook", "fishing_line", "hook_camera_node") instance=ExtResource("3_k2t1h")]
+[node name="FishingRod" parent="player/NoiR_Base/Armature/GeneralSkeleton/BoneAttachment3D" node_paths=PackedStringArray("water_ripple_node", "base", "hook", "fishing_line", "hook_camera_node") instance=ExtResource("3_k2t1h")]
 transform = Transform3D(0.96670955, -0.19678189, -0.16040209, 0.23251651, 0.43029875, 0.8734432, -0.10287092, -0.88176584, 0.46178132, 0.005530894, 0.002430737, 0.015280783)
 skeleton = NodePath("../..")
+water_ripple_node = NodePath("../../../../../../Node3D")
 base = NodePath("../../../../../../Hook/MeshInstance3D2")
 hook = NodePath("../../../../../../Hook")
 fishing_line = NodePath("../../../../../../FishingLine")
@@ -4681,7 +4690,7 @@ shape = SubResource("CapsuleShape3D_5gf0t")
 [node name="Tablet" parent="player" node_paths=PackedStringArray("fishing_rod") instance=ExtResource("6_wfsp4")]
 transform = Transform3D(0.25550267, -0.0006625685, 0.0043419693, 6.578513e-09, 0.008164607, 0.18226676, -0.011244819, -0.015054745, 0.09865725, 0.17545666, 0.7353785, 0.44574192)
 mesh = SubResource("BoxMesh_wfsp4")
-surface_material_override/0 = SubResource("StandardMaterial3D_1q3k2")
+surface_material_override/0 = SubResource("StandardMaterial3D_lx1sk")
 fishing_rod = NodePath("../NoiR_Base/Armature/GeneralSkeleton/BoneAttachment3D/FishingRod")
 
 [node name="Head3rdPerson" type="Node3D" parent="player"]
@@ -4763,6 +4772,7 @@ transform = Transform3D(0.015395112, -0.00043298243, 0, 0.0028113546, 0.09996047
 [node name="CenterTravelPoint" type="Node3D" parent="."]
 
 [node name="Pointers" type="CanvasLayer" parent="." node_paths=PackedStringArray("menu", "pointer", "fishing", "tablet", "travel", "fps_counter")]
+visible = false
 script = ExtResource("19_au80e")
 menu = NodePath("../MainMenu")
 pointer = NodePath("CenterContainer/Pointer")
@@ -4882,6 +4892,58 @@ text = "Toggle Tablet"
 fit_content = true
 scroll_active = false
 
+[node name="E" type="Sprite2D" parent="Pointers/BottomRight/tablet/Node2D"]
+position = Vector2(347.6801, 332.68005)
+scale = Vector2(1.4899997, 1.4899997)
+texture = ExtResource("25_xe33q")
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="Pointers/BottomRight/tablet/Node2D"]
+offset_left = 402.68024
+offset_top = 302.68005
+offset_right = 692.6805
+offset_bottom = 355.68005
+theme = ExtResource("24_h5j7u")
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/normal_font_size = 36
+text = "Eat Fish"
+fit_content = true
+scroll_active = false
+
+[node name="A" type="Sprite2D" parent="Pointers/BottomRight/tablet/Node2D"]
+position = Vector2(347.68036, 465.18005)
+scale = Vector2(1.49, 1.49)
+texture = ExtResource("25_3sk60")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Pointers/BottomRight/tablet/Node2D"]
+offset_left = 405.18018
+offset_top = 435.18005
+offset_right = 695.1804
+offset_bottom = 488.18005
+theme = ExtResource("24_h5j7u")
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/normal_font_size = 36
+text = "Travel Left"
+fit_content = true
+scroll_active = false
+metadata/_edit_use_anchors_ = true
+
+[node name="D" type="Sprite2D" parent="Pointers/BottomRight/tablet/Node2D"]
+position = Vector2(685.1801, 462.68005)
+scale = Vector2(1.49, 1.49)
+texture = ExtResource("26_lx1sk")
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Pointers/BottomRight/tablet/Node2D"]
+offset_left = 742.67993
+offset_top = 432.68005
+offset_right = 1032.6802
+offset_bottom = 485.68005
+theme = ExtResource("24_h5j7u")
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/normal_font_size = 36
+text = "Travel Right"
+fit_content = true
+scroll_active = false
+
 [node name="MouseLeft2" type="Sprite2D" parent="Pointers/BottomRight/tablet"]
 position = Vector2(843, 283.00003)
 scale = Vector2(0.4, 0.4)
@@ -4903,60 +4965,8 @@ scroll_active = false
 position = Vector2(408, 251.00002)
 scale = Vector2(0.4, 0.4)
 
-[node name="T" type="Sprite2D" parent="Pointers/BottomRight/tablet/Node2D2"]
-position = Vector2(684.99994, 335)
-scale = Vector2(1.4899998, 1.4899998)
-texture = ExtResource("25_xe33q")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Pointers/BottomRight/tablet/Node2D2"]
-offset_left = 739.9999
-offset_top = 305.00003
-offset_right = 1030.0001
-offset_bottom = 358.00003
-theme = ExtResource("24_h5j7u")
-theme_override_constants/outline_size = 20
-theme_override_font_sizes/normal_font_size = 36
-text = "Eat Fish"
-fit_content = true
-scroll_active = false
-
 [node name="travel" type="Node2D" parent="Pointers/BottomRight"]
-visible = false
-position = Vector2(-612, -258)
-
-[node name="MouseLeft" type="Sprite2D" parent="Pointers/BottomRight/travel"]
-position = Vector2(682, 336)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("23_jdjof")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Pointers/BottomRight/travel/MouseLeft"]
-offset_left = 57.50006
-offset_top = -34.99997
-offset_right = 347.5003
-offset_bottom = 18.00003
-theme = ExtResource("24_h5j7u")
-theme_override_constants/outline_size = 20
-theme_override_font_sizes/normal_font_size = 36
-text = "Travel"
-fit_content = true
-scroll_active = false
-
-[node name="MouseLeft2" type="Sprite2D" parent="Pointers/BottomRight/travel"]
-position = Vector2(682.00006, 386.00003)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("26_h5j7u")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Pointers/BottomRight/travel/MouseLeft2"]
-offset_left = 57.50006
-offset_top = -34.99997
-offset_right = 347.5003
-offset_bottom = 18.00003
-theme = ExtResource("24_h5j7u")
-theme_override_constants/outline_size = 20
-theme_override_font_sizes/normal_font_size = 36
-text = "Zoom"
-fit_content = true
-scroll_active = false
+position = Vector2(-876, -256)
 
 [node name="fps_counter" type="RichTextLabel" parent="Pointers"]
 offset_left = 8.0
@@ -4965,11 +4975,219 @@ offset_right = 151.0
 offset_bottom = 68.0
 text = "60"
 
+[node name="Dialogue" type="CanvasLayer" parent="." node_paths=PackedStringArray("player", "button_bait", "button_hook", "button_line", "button_stamina", "button_fish", "button_strength", "button_unique", "button_food", "button_hat", "button_sell", "text_dialogue", "text_name", "icon_cat", "coin_cat", "icon_dog", "coin_dog")]
+visible = false
+script = ExtResource("26_1q3k2")
+player = NodePath("../player")
+button_bait = NodePath("Right/shop/bait")
+button_hook = NodePath("Right/shop/hook")
+button_line = NodePath("Right/shop/line")
+button_stamina = NodePath("Right/shop/stamina")
+button_fish = NodePath("Right/shop/fish")
+button_strength = NodePath("Right/shop/strength")
+button_unique = NodePath("Right/shop/unique")
+button_food = NodePath("Right/shop/food")
+button_hat = NodePath("Right/shop/hat")
+button_sell = NodePath("Right/shop/sell")
+text_dialogue = NodePath("Left/character_dialogue")
+text_name = NodePath("Left2/character_name")
+icon_cat = NodePath("Right/shop/UiCatCoins")
+coin_cat = NodePath("Right/shop/UiCatCoins/Count")
+icon_dog = NodePath("Right/shop/UiDogDollars")
+coin_dog = NodePath("Right/shop/UiDogDollars/Count")
+
+[node name="Left2" type="CenterContainer" parent="Dialogue"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -357.0
+offset_right = 633.0
+offset_bottom = -272.0
+grow_vertical = 2
+
+[node name="character_name" type="RichTextLabel" parent="Dialogue/Left2"]
+layout_mode = 2
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "[center]Maha[/center]
+"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Left" type="CenterContainer" parent="Dialogue"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -265.0
+offset_right = 633.0
+offset_bottom = 361.0
+grow_vertical = 2
+
+[node name="character_dialogue" type="RichTextLabel" parent="Dialogue/Left"]
+custom_minimum_size = Vector2(600, 600)
+layout_mode = 2
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "Nyahaha, look what we have here. 
+A new soul has come to us. 
+We are Maha.
+Give Maha [color=green][url=#fish]fish[/url][/color], and Maha give you [color=green][url=#coin]coin[/url][/color]. 
+
+It's a fair trade, nyo? 
+Or do you need [color=green][url=#information]information[/url][/color]?"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+autowrap_trim_flags = 0
+
+[node name="Right" type="CenterContainer" parent="Dialogue"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -633.0
+offset_top = -361.0
+offset_bottom = 361.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="shop" type="GridContainer" parent="Dialogue/Right"]
+layout_mode = 2
+columns = 2
+
+[node name="bait" type="Button" parent="Dialogue/Right/shop"]
+layout_mode = 2
+theme = ExtResource("24_h5j7u")
+text = "Bait (10)"
+
+[node name="hook" type="Button" parent="Dialogue/Right/shop"]
+layout_mode = 2
+theme = ExtResource("24_h5j7u")
+text = "Fishing Hook (10)"
+
+[node name="line" type="Button" parent="Dialogue/Right/shop"]
+layout_mode = 2
+theme = ExtResource("24_h5j7u")
+text = "Fishing Line (10)"
+
+[node name="stamina" type="Button" parent="Dialogue/Right/shop"]
+layout_mode = 2
+theme = ExtResource("24_h5j7u")
+text = "Stamina (20)"
+
+[node name="fish" type="Button" parent="Dialogue/Right/shop"]
+layout_mode = 2
+theme = ExtResource("24_h5j7u")
+text = "Capacity (10)"
+
+[node name="strength" type="Button" parent="Dialogue/Right/shop"]
+layout_mode = 2
+theme = ExtResource("24_h5j7u")
+text = "Strength (10)
+"
+
+[node name="unique" type="Button" parent="Dialogue/Right/shop"]
+layout_mode = 2
+theme = ExtResource("24_h5j7u")
+text = "C Detector (50)"
+
+[node name="food" type="Button" parent="Dialogue/Right/shop"]
+layout_mode = 2
+theme = ExtResource("24_h5j7u")
+text = "Food (2)"
+
+[node name="hat" type="Button" parent="Dialogue/Right/shop"]
+layout_mode = 2
+theme = ExtResource("24_h5j7u")
+text = "Cat Hat (10)"
+
+[node name="sell" type="Button" parent="Dialogue/Right/shop"]
+layout_mode = 2
+theme = ExtResource("24_h5j7u")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xe33q")
+text = "Sell Fish (10)"
+
+[node name="UiCatCoins" type="Sprite2D" parent="Dialogue/Right/shop"]
+position = Vector2(40, 360)
+texture = ExtResource("27_tcehl")
+
+[node name="Count" type="RichTextLabel" parent="Dialogue/Right/shop/UiCatCoins"]
+offset_left = 49.0
+offset_top = -35.0
+offset_right = 396.0
+offset_bottom = 38.0
+theme = SubResource("Theme_3sk60")
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/normal_font_size = 51
+bbcode_enabled = true
+text = "9999"
+
+[node name="UiDogDollars" type="Sprite2D" parent="Dialogue/Right/shop"]
+position = Vector2(40, 360)
+texture = ExtResource("28_c7jqk")
+
+[node name="Count" type="RichTextLabel" parent="Dialogue/Right/shop/UiDogDollars"]
+offset_left = 49.0
+offset_top = -35.0
+offset_right = 396.0
+offset_bottom = 38.0
+theme = SubResource("Theme_3sk60")
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/normal_font_size = 51
+bbcode_enabled = true
+text = "9999"
+
+[node name="Right2" type="CenterContainer" parent="Dialogue"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -633.0
+offset_bottom = 99.0
+grow_horizontal = 0
+
+[node name="character_name" type="RichTextLabel" parent="Dialogue/Right2"]
+layout_mode = 2
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "Shop"
+fit_content = true
+autowrap_mode = 0
+
 [node name="MainMenu" parent="." instance=ExtResource("15_fc420")]
 
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="water_ripple2" parent="Node3D" node_paths=PackedStringArray("player") instance=ExtResource("28_p2xyf")]
+player = NodePath("../../player")
+max_size = 10.0
+max_transparency = 0.2
+
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("14_s2rys")
+stream = ExtResource("27_xe33q")
 bus = &"Music"
-parameters/looping = false
+
+[node name="AmbientPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("29_xe33q")
+bus = &"Ambient"
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("29_xe33q")
+bus = &"SFX"
+
+[connection signal="meta_clicked" from="Dialogue/Left/character_dialogue" to="Dialogue" method="_on_character_dialogue_meta_clicked"]
+[connection signal="button_down" from="Dialogue/Right/shop/bait" to="Dialogue" method="_on_bait_button_down"]
+[connection signal="button_down" from="Dialogue/Right/shop/hook" to="Dialogue" method="_on_hook_button_down"]
+[connection signal="button_down" from="Dialogue/Right/shop/line" to="Dialogue" method="_on_line_button_down"]
+[connection signal="button_down" from="Dialogue/Right/shop/stamina" to="Dialogue" method="_on_stamina_button_down"]
+[connection signal="button_down" from="Dialogue/Right/shop/fish" to="Dialogue" method="_on_fish_button_down"]
+[connection signal="button_down" from="Dialogue/Right/shop/strength" to="Dialogue" method="_on_strength_button_down"]
+[connection signal="button_down" from="Dialogue/Right/shop/unique" to="Dialogue" method="_on_unique_button_down"]
+[connection signal="button_down" from="Dialogue/Right/shop/food" to="Dialogue" method="_on_food_button_down"]
+[connection signal="button_down" from="Dialogue/Right/shop/hat" to="Dialogue" method="_on_hat_button_down"]
+[connection signal="button_down" from="Dialogue/Right/shop/sell" to="Dialogue" method="_on_sell_button_down"]
 
 [editable path="player/NoiR_Base"]

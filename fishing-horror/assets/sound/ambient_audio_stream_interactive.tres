@@ -1,0 +1,13 @@
+[gd_resource type="AudioStreamInteractive" load_steps=3 format=3 uid="uid://bl2mr43fecnoi"]
+
+[ext_resource type="AudioStream" uid="uid://npyhlsmgo6f8" path="res://assets/sound/sfx/wind_pixabay.mp3" id="1_fefwu"]
+[ext_resource type="AudioStream" uid="uid://de4ljgbjnsa4p" path="res://assets/sound/sfx/wind2_pixabay.mp3" id="2_pnuhm"]
+
+[resource]
+clip_count = 2
+clip_0/name = &"wind1"
+clip_0/stream = ExtResource("1_fefwu")
+clip_0/auto_advance = 0
+clip_1/name = &"wind2"
+clip_1/stream = ExtResource("2_pnuhm")
+clip_1/auto_advance = 0

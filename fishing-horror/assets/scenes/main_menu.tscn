@@ -53,7 +53,7 @@ texture_hover = ExtResource("5_xmmar")
 script = ExtResource("6_xmmar")
 settings_container = NodePath("../SettingsContainer")
 
-[node name="SettingsContainer" type="Node2D" parent="BottomLeft" node_paths=PackedStringArray("master_volume_slider", "music_volume_slider", "sfx_volume_slider", "voices_volume_slider")]
+[node name="SettingsContainer" type="Node2D" parent="BottomLeft" node_paths=PackedStringArray("master_volume_slider", "music_volume_slider", "sfx_volume_slider", "voices_volume_slider", "ambient_volume_slider")]
 visible = false
 position = Vector2(95, -5)
 script = ExtResource("7_66en2")
@@ -61,15 +61,16 @@ master_volume_slider = NodePath("VolumeSettingsContainer/MasterVolumeSlider")
 music_volume_slider = NodePath("VolumeSettingsContainer/MusicVolumeSlider")
 sfx_volume_slider = NodePath("VolumeSettingsContainer/SFXVolumeSlider")
 voices_volume_slider = NodePath("VolumeSettingsContainer/VoicesVolumeSlider")
+ambient_volume_slider = NodePath("VolumeSettingsContainer/AmbientVolumeSlider")
 
 [node name="VolumeSettingsContainer" type="VBoxContainer" parent="BottomLeft/SettingsContainer"]
 custom_minimum_size = Vector2(500, 200)
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -100.0
+offset_top = -113.0
 offset_right = 500.0
-offset_bottom = 100.0
+offset_bottom = 87.0
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
@@ -112,7 +113,21 @@ layout_mode = 2
 value = 40.0
 scrollable = false
 
+[node name="AmbientVolumeText" type="RichTextLabel" parent="BottomLeft/SettingsContainer/VolumeSettingsContainer"]
+layout_mode = 2
+theme = ExtResource("6_v71do")
+bbcode_enabled = true
+text = "Ambient Sounds Volume"
+fit_content = true
+scroll_active = false
+
+[node name="AmbientVolumeSlider" type="HSlider" parent="BottomLeft/SettingsContainer/VolumeSettingsContainer"]
+layout_mode = 2
+value = 50.0
+scrollable = false
+
 [node name="VoicesVolumeText" type="RichTextLabel" parent="BottomLeft/SettingsContainer/VolumeSettingsContainer"]
+visible = false
 layout_mode = 2
 theme = ExtResource("6_v71do")
 bbcode_enabled = true
@@ -121,6 +136,7 @@ fit_content = true
 scroll_active = false
 
 [node name="VoicesVolumeSlider" type="HSlider" parent="BottomLeft/SettingsContainer/VolumeSettingsContainer"]
+visible = false
 layout_mode = 2
 value = 80.0
 scrollable = false
@@ -175,4 +191,5 @@ autowrap_mode = 0
 [connection signal="value_changed" from="BottomLeft/SettingsContainer/VolumeSettingsContainer/MasterVolumeSlider" to="BottomLeft/SettingsContainer" method="_on_master_volume_slider_value_changed"]
 [connection signal="value_changed" from="BottomLeft/SettingsContainer/VolumeSettingsContainer/MusicVolumeSlider" to="BottomLeft/SettingsContainer" method="_on_music_volume_slider_value_changed"]
 [connection signal="value_changed" from="BottomLeft/SettingsContainer/VolumeSettingsContainer/SFXVolumeSlider" to="BottomLeft/SettingsContainer" method="_on_sfx_volume_slider_value_changed"]
+[connection signal="value_changed" from="BottomLeft/SettingsContainer/VolumeSettingsContainer/AmbientVolumeSlider" to="BottomLeft/SettingsContainer" method="_on_ambient_volume_slider_value_changed"]
 [connection signal="value_changed" from="BottomLeft/SettingsContainer/VolumeSettingsContainer/VoicesVolumeSlider" to="BottomLeft/SettingsContainer" method="_on_voices_volume_slider_value_changed"]
