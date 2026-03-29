@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/wind2_pixabay.mp3-bf821d3ed1bdce3c8b1d8cf47e7
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

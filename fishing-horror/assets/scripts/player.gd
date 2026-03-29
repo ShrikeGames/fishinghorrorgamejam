@@ -261,9 +261,9 @@ func _process(delta: float) -> void:
 	if not fish_on_hook.is_empty() and fishing_rod.hook.global_position.y > 0:
 		var text:String = "[center]%s\n%s[/center]"%[fish_on_hook[0].fish_stats["name"], fish_on_hook[0].fish_stats["description"]]
 		if Global.game_state["cat"]["upgrades"]["unique"]:
-			text = "%s\n(%s Corruption)"%[text, fish_on_hook[0].fish_stats["corruption"]]
+			text = "%s [center]%s Corruption[/center]"%[text, snapped(fish_on_hook[0].fish_stats["corruption"], 0.01)]
 		if Global.game_state["dog"]["upgrades"]["unique"]:
-			text = "%s\n(%s CC / %s DD)"%[text, fish_on_hook[0].fish_stats["cat_coins"], fish_on_hook[0].fish_stats["dog_coins"]]
+			text = "%s [center]%s CC / %s DD[/center]"%[text, fish_on_hook[0].fish_stats["cat_coins"], fish_on_hook[0].fish_stats["dog_coins"]]
 		fish_info_text.text = text
 		fish_info_text.visible = true
 	else:

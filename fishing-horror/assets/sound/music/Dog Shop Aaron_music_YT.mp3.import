@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Dog Shop Aaron_music_YT.mp3-ab6cbc1f84075feb8
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0
