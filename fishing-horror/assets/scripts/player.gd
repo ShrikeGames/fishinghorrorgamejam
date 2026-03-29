@@ -38,6 +38,8 @@ var ambient_state = "wind1"
 
 @export var fish_info_text:RichTextLabel
 
+@export var cat_hat:Node3D
+@export var dog_hat:Node3D
 
 var target_position:Vector3
 var current_location:String = "center"
@@ -112,6 +114,9 @@ func caught_fish(fish:Fish):
 func _process(delta: float) -> void:
 	timer += delta
 	self.global_position.y = sin(timer)*0.05
+	
+	self.cat_hat.visible = Global.game_state["cat"]["upgrades"]["hat"]
+	self.dog_hat.visible = Global.game_state["dog"]["upgrades"]["hat"]
 	
 	if Global.game_state["you"]["hunger"] <= 0:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -364,7 +369,7 @@ func _process(delta: float) -> void:
 	Global.game_state["you"]["current_position"][2] = self.global_position.z
 	
 func switch_music(new_music_state:String):
-	if music_state != new_music_state:
+	if music_state != new_music_state or not music_main.playing:
 		if music_state == "game" or music_state == "battle":
 			if new_music_state == "cat" or new_music_state == "dog":
 				prev_camera_rotation = camera.rotation
