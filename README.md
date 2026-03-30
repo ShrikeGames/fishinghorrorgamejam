@@ -1,6 +1,9 @@
 # Fishing Horror Game Jam 2
 
-I'll be creating a fishing horror game in 14 days. 
+I be created a fishing horror game in 14 days. 
+
+Play on Itch.io or download it for Free: https://shrikegames.itch.io/fishy-fetchy
+
 Fishing has to be the core mechanic, it must be horror themed, and include a story with some npcs.
 
 Hosted by Figerox Studios
