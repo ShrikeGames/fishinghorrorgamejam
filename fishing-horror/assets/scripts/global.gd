@@ -3,7 +3,7 @@ extends Node
 class_name GlobalState
 signal caught_fish(fish: Fish)
 signal update_conversation()
-var settings_config_location: String = "user://user_settings_v0_2026_03_29.json"
+var settings_config_location: String = "user://user_settings_v1_rc1.json"
 var fish_object: Resource = load("res://assets/scenes/fish/FishSegment.tscn")
 var fish_rbg_colour_choices: Array[String] = ["00", "11", "22", "33", "44", "55", "66", "77", "88", "99", "AA", "BB", "CC", "DD", "EE", "FF"]
 
@@ -23,8 +23,8 @@ var bestiary: Dictionary = {
 		"max_speed": 1.4,
 		"agility": 6.0,
 		"food": 5.0,
-		"cat_coins": 3.0,
-		"dog_coins": 3.0,
+		"cat_coins": 16.0,
+		"dog_coins": 16.0,
 		"min_turn_angle": 0.15,
 		"turn_speed": 5.0,
 		"min_num_bones": 6,
@@ -163,8 +163,8 @@ var bestiary: Dictionary = {
 		"max_speed": 1.5,
 		"agility": 8.0,
 		"food": 1.0,
-		"cat_coins": 3.0,
-		"dog_coins": 6.0,
+		"cat_coins": 4.0,
+		"dog_coins": 16.0,
 		"min_turn_angle": 0.5,
 		"turn_speed": 2.0,
 		"min_num_bones": 16,
@@ -198,8 +198,8 @@ var bestiary: Dictionary = {
 		"max_speed": 1.3,
 		"agility": 5.0,
 		"food": 3.0,
-		"cat_coins": 5.0,
-		"dog_coins": 1.0,
+		"cat_coins": 15.0,
+		"dog_coins": 10.0,
 		"min_turn_angle": 0.15,
 		"turn_speed": 1.0,
 		"min_num_bones": 4,
@@ -233,8 +233,8 @@ var bestiary: Dictionary = {
 		"max_speed": 1.3,
 		"agility": 5.0,
 		"food": 1.0,
-		"cat_coins": 5.0,
-		"dog_coins": 1.0,
+		"cat_coins": 15.0,
+		"dog_coins": 10.0,
 		"min_turn_angle": 0.15,
 		"turn_speed": 2.0,
 		"min_num_bones": 5,
@@ -269,7 +269,7 @@ var bestiary: Dictionary = {
 		"agility": 8.0,
 		"food": 10.0,
 		"cat_coins": 10.0,
-		"dog_coins": 30.0,
+		"dog_coins": 40.0,
 		"min_turn_angle": 0.02,
 		"turn_speed": 10.0,
 		"min_num_bones": 14,
@@ -338,8 +338,8 @@ var bestiary: Dictionary = {
 		"max_speed": 1.25,
 		"agility": 4.0,
 		"food": 1.0,
-		"cat_coins": 10.0,
-		"dog_coins": 10.0,
+		"cat_coins": 15.0,
+		"dog_coins": 15.0,
 		"min_turn_angle": 0.2,
 		"turn_speed": 6.0,
 		"min_num_bones": 8,
@@ -408,8 +408,8 @@ var bestiary: Dictionary = {
 		"max_speed": 1.0,
 		"agility": 9.0,
 		"food": 1.0,
-		"cat_coins": 1.0,
-		"dog_coins": 1.0,
+		"cat_coins": 3.0,
+		"dog_coins": 3.0,
 		"min_turn_angle": 0.2,
 		"turn_speed": 7.0,
 		"min_num_bones": 6,
@@ -443,8 +443,8 @@ var bestiary: Dictionary = {
 		"max_speed": 1.0,
 		"agility": 4.0,
 		"food": 5.0,
-		"cat_coins": 40.0,
-		"dog_coins": 10.0,
+		"cat_coins": 50.0,
+		"dog_coins": 20.0,
 		"min_turn_angle": 0.15,
 		"turn_speed": 5.0,
 		"min_num_bones": 6,
@@ -478,8 +478,8 @@ var bestiary: Dictionary = {
 		"max_speed": 0.7,
 		"agility": 14.0,
 		"food": 10.0,
-		"cat_coins": 10.0,
-		"dog_coins": 10.0,
+		"cat_coins": 30.0,
+		"dog_coins": 30.0,
 		"min_turn_angle": 0.12,
 		"turn_speed": 3.0,
 		"min_num_bones": 8,
@@ -669,7 +669,7 @@ Until then [color=green][url=#talk]talk[/url][/color] and [color=green][url=#foo
 				
 				"#lake": "Small lake. Many [color=green][url=#fish]fish[/url][/color].
 Delicous all. [color=green][url=#buy]Trade[/url][/color] to [color=green][url=#maha]Maha[/url][/color] you must.
-[color=green][url=#variety]Different fish/url][/color] found different depths.
+[color=green][url=#variety]Different fish[]/url][/color] found different depths.
 Looky looky for tasty fishy.",
 				
 				"#coin": "[color=green][url=#maha]Maha[/url][/color] [color=green][url=#buy]trade[/url][/color] in Cat Coins.
@@ -686,7 +686,7 @@ Show support for Maha. Wear [color=green][url=#hat]kawaii hat[/url][/color]. Bet
 
 Or you like [color=green][url=#talk]talk[/url][/color]?
 ",
-				"hat": "[color=green][url=#maha]Maha[/url][/color] has cute ears yes?
+				"#hat": "[color=green][url=#maha]Maha[/url][/color] has cute ears yes?
 You want be like Maha, yes?
 [color=green][url=#buy]Buy[/url][/color] Maha hat.
 Be Cute.

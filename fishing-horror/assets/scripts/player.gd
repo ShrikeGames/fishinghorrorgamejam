@@ -452,6 +452,8 @@ func convert_to_range(value:float,min_value:float, max_value:float, new_min_valu
 	
 	
 func update_camera_state():
+	if in_menu or in_dialogue:
+		return
 	camera_toggle = not camera_toggle
 	
 	if camera_toggle:

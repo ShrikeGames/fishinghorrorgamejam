@@ -26,5 +26,10 @@ func _on_button_down() -> void:
 		get_tree().paused = false
 		Global.game_state["you"]["hunger"] = Global.game_state["you"]["max_hunger"]
 		Global.game_state["you"]["corruption"] = 0
+		Global.game_state["you"]["cat_score"] = 1
+		Global.game_state["you"]["dog_score"] = 1
+		Global.game_state["cat"]["corruption"] = clampf(Global.game_state["cat"]["corruption"], 0.0, 9.0)
+		Global.game_state["dog"]["corruption"] = clampf(Global.game_state["dog"]["corruption"], 0.0, 9.0)
+		
 		Global.save_settings()
 		get_tree().change_scene_to_file(scene_to_change_to)

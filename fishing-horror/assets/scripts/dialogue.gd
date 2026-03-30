@@ -39,22 +39,14 @@ func update(character_key:String):
 	self.text_name.text = "[center]%s[/center]"%[self.info["name"]]
 	var convo_state:String = self.info["settings"]["conversation_state"]
 	self.text_dialogue.text = "%s"%[self.info["settings"]["conversations"].get(convo_state, self.info["settings"]["conversations"]["#unknown"])]
-	if self.info["upgrades"]["bait"]:
-		button_bait.disabled = true
-	if self.info["upgrades"]["hook"]:
-		button_hook.disabled = true
-	if self.info["upgrades"]["line"]:
-		button_line.disabled = true
-	if self.info["upgrades"]["stamina"]:
-		button_stamina.disabled = true
-	if self.info["upgrades"]["fish"]:
-		button_fish.disabled = true
-	if self.info["upgrades"]["strength"]:
-		button_strength.disabled = true
-	if self.info["upgrades"]["unique"]:
-		button_unique.disabled = true
-	if self.info["upgrades"]["hat"]:
-		button_hat.disabled = true
+	button_bait.disabled = self.info["upgrades"]["bait"]
+	button_hook.disabled = self.info["upgrades"]["hook"]
+	button_line.disabled = self.info["upgrades"]["line"]
+	button_stamina.disabled = self.info["upgrades"]["stamina"]
+	button_fish.disabled = self.info["upgrades"]["fish"]
+	button_strength.disabled = self.info["upgrades"]["strength"]
+	button_unique.disabled = self.info["upgrades"]["unique"]
+	button_hat.disabled = self.info["upgrades"]["hat"]
 	
 	if self.character_name == "cat":
 		button_hat.text = "Cat Hat (10)"
