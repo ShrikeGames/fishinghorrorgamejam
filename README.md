@@ -11,6 +11,8 @@ The rules and FAQ about the game jam itself are here: https://itch.io/jam/fishin
 
 ![Screenshot_2026-03-29_21-48-10](https://github.com/user-attachments/assets/80c2c1f4-6e45-4ba6-972f-04b544b5ea06)
 
+<img width="1292" height="767" alt="image" src="https://github.com/user-attachments/assets/793d8ef4-a041-4a8d-93fb-35d419154fa0" />
+
 [Youtube Dev Stream VOD Playlist](https://www.youtube.com/watch?v=RgrWEnyo_t4&list=PL1WRu1sntH9hR84aOMpLvKX8BNxd41p2i&pp=sAgC)
 
 # Rules
