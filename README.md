@@ -9,7 +9,7 @@ Fishing has to be the core mechanic, it must be horror themed, and include a sto
 Hosted by Figerox Studios
 The rules and FAQ about the game jam itself are here: https://itch.io/jam/fishing-horror-jam-2
 
-![celluloid-shot1260](https://github.com/user-attachments/assets/9a481eb2-edc0-4a67-9c55-164b3afd9c9d)
+![Screenshot_2026-03-29_21-48-10](https://github.com/user-attachments/assets/80c2c1f4-6e45-4ba6-972f-04b544b5ea06)
 
 [Youtube Dev Stream VOD Playlist](https://www.youtube.com/watch?v=RgrWEnyo_t4&list=PL1WRu1sntH9hR84aOMpLvKX8BNxd41p2i&pp=sAgC)
 
