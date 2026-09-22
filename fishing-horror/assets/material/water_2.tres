@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=9 format=3 uid="uid://dotxujvqmh550"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dotxujvqmh550"]
 
 [ext_resource type="Shader" uid="uid://dihi2d34wlddw" path="res://assets/shaders/water2.gdshader" id="1_vf2p6"]
 

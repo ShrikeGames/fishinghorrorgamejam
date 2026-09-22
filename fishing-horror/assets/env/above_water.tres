@@ -1,4 +1,4 @@
-[gd_resource type="Environment" load_steps=3 format=3 uid="uid://bc2gd46jqouln"]
+[gd_resource type="Environment" format=3 uid="uid://bc2gd46jqouln"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j62u1"]
 ground_bottom_color = Color(0.09448417, 0.07239526, 0.45212418, 1)

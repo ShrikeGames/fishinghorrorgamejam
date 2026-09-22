@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://w6ulejlbg88y"]
+[gd_scene format=3 uid="uid://w6ulejlbg88y"]
 
 [ext_resource type="Texture2D" uid="uid://bb76y84iv8jf1" path="res://assets/art/ui/title_logo.png" id="1_uu6ob"]
 [ext_resource type="PackedScene" uid="uid://bxfsm8fdsjudx" path="res://assets/scenes/texture_button.tscn" id="2_v1ppo"]
@@ -8,18 +8,17 @@
 [ext_resource type="Theme" uid="uid://c6j256munykbu" path="res://assets/themes/texture_button.tres" id="6_v71do"]
 [ext_resource type="Script" uid="uid://cx7467qjbpvwd" path="res://assets/scripts/settings_button.gd" id="6_xmmar"]
 [ext_resource type="Script" uid="uid://c8v4u4kqtlymm" path="res://assets/scripts/settings_container.gd" id="7_66en2"]
-[ext_resource type="Texture2D" uid="uid://bkhu5bcfgennc" path="res://assets/art/logos/Aaron_Music_logo_v1.png" id="9_tp4c4"]
 [ext_resource type="Texture2D" uid="uid://1sklllsfhlr1" path="res://assets/art/logos/Shrike_878x878.png" id="10_uek13"]
 
 [sub_resource type="Theme" id="Theme_xmmar"]
 
-[node name="MainMenu" type="CanvasLayer"]
+[node name="MainMenu" type="CanvasLayer" unique_id=425179252]
 
-[node name="TitleLogo" type="Sprite2D" parent="."]
+[node name="TitleLogo" type="Sprite2D" parent="." unique_id=1984345074]
 position = Vector2(259, 174)
 texture = ExtResource("1_uu6ob")
 
-[node name="StartButton" parent="." node_paths=PackedStringArray("menu") instance=ExtResource("2_v1ppo")]
+[node name="StartButton" parent="." unique_id=1804118589 node_paths=PackedStringArray("menu") instance=ExtResource("2_v1ppo")]
 anchors_preset = -1
 anchor_left = 0.18900001
 anchor_top = 0.32200003
@@ -35,7 +34,7 @@ text = "Continue"
 start_button = true
 menu = NodePath("..")
 
-[node name="BottomLeft" type="CenterContainer" parent="."]
+[node name="BottomLeft" type="CenterContainer" parent="." unique_id=1552331605]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -45,7 +44,7 @@ offset_right = 98.0
 offset_bottom = -10.0
 grow_vertical = 0
 
-[node name="SettingsButton" type="TextureButton" parent="BottomLeft" node_paths=PackedStringArray("settings_container")]
+[node name="SettingsButton" type="TextureButton" parent="BottomLeft" unique_id=1235851704 node_paths=PackedStringArray("settings_container")]
 layout_mode = 2
 texture_normal = ExtResource("3_f2xsc")
 texture_pressed = ExtResource("4_v71do")
@@ -53,7 +52,7 @@ texture_hover = ExtResource("5_xmmar")
 script = ExtResource("6_xmmar")
 settings_container = NodePath("../SettingsContainer")
 
-[node name="SettingsContainer" type="Node2D" parent="BottomLeft" node_paths=PackedStringArray("master_volume_slider", "music_volume_slider", "sfx_volume_slider", "voices_volume_slider", "ambient_volume_slider")]
+[node name="SettingsContainer" type="Node2D" parent="BottomLeft" unique_id=246245038 node_paths=PackedStringArray("master_volume_slider", "music_volume_slider", "sfx_volume_slider", "voices_volume_slider", "ambient_volume_slider")]
 visible = false
 position = Vector2(95, -5)
 script = ExtResource("7_66en2")
@@ -63,7 +62,7 @@ sfx_volume_slider = NodePath("VolumeSettingsContainer/SFXVolumeSlider")
 voices_volume_slider = NodePath("VolumeSettingsContainer/VoicesVolumeSlider")
 ambient_volume_slider = NodePath("VolumeSettingsContainer/AmbientVolumeSlider")
 
-[node name="VolumeSettingsContainer" type="VBoxContainer" parent="BottomLeft/SettingsContainer"]
+[node name="VolumeSettingsContainer" type="VBoxContainer" parent="BottomLeft/SettingsContainer" unique_id=248391785]
 custom_minimum_size = Vector2(500, 200)
 anchors_preset = 4
 anchor_top = 0.5
@@ -74,7 +73,7 @@ offset_bottom = 87.0
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="MasterVolumeText" type="RichTextLabel" parent="BottomLeft/SettingsContainer/VolumeSettingsContainer"]
+[node name="MasterVolumeText" type="RichTextLabel" parent="BottomLeft/SettingsContainer/VolumeSettingsContainer" unique_id=1121305984]
 layout_mode = 2
 theme = ExtResource("6_v71do")
 bbcode_enabled = true
@@ -82,12 +81,12 @@ text = "Master Volume"
 fit_content = true
 scroll_active = false
 
-[node name="MasterVolumeSlider" type="HSlider" parent="BottomLeft/SettingsContainer/VolumeSettingsContainer"]
+[node name="MasterVolumeSlider" type="HSlider" parent="BottomLeft/SettingsContainer/VolumeSettingsContainer" unique_id=1054938183]
 layout_mode = 2
 value = 80.0
 scrollable = false
 
-[node name="MusicVolumeText" type="RichTextLabel" parent="BottomLeft/SettingsContainer/VolumeSettingsContainer"]
+[node name="MusicVolumeText" type="RichTextLabel" parent="BottomLeft/SettingsContainer/VolumeSettingsContainer" unique_id=263679593]
 layout_mode = 2
 theme = ExtResource("6_v71do")
 bbcode_enabled = true
@@ -95,12 +94,12 @@ text = "Music Volume"
 fit_content = true
 scroll_active = false
 
-[node name="MusicVolumeSlider" type="HSlider" parent="BottomLeft/SettingsContainer/VolumeSettingsContainer"]
+[node name="MusicVolumeSlider" type="HSlider" parent="BottomLeft/SettingsContainer/VolumeSettingsContainer" unique_id=182408487]
 layout_mode = 2
 value = 40.0
 scrollable = false
 
-[node name="SFXVolumeText" type="RichTextLabel" parent="BottomLeft/SettingsContainer/VolumeSettingsContainer"]
+[node name="SFXVolumeText" type="RichTextLabel" parent="BottomLeft/SettingsContainer/VolumeSettingsContainer" unique_id=1596173568]
 layout_mode = 2
 theme = ExtResource("6_v71do")
 bbcode_enabled = true
@@ -108,12 +107,12 @@ text = "Sound Effects Volume"
 fit_content = true
 scroll_active = false
 
-[node name="SFXVolumeSlider" type="HSlider" parent="BottomLeft/SettingsContainer/VolumeSettingsContainer"]
+[node name="SFXVolumeSlider" type="HSlider" parent="BottomLeft/SettingsContainer/VolumeSettingsContainer" unique_id=10650014]
 layout_mode = 2
 value = 40.0
 scrollable = false
 
-[node name="AmbientVolumeText" type="RichTextLabel" parent="BottomLeft/SettingsContainer/VolumeSettingsContainer"]
+[node name="AmbientVolumeText" type="RichTextLabel" parent="BottomLeft/SettingsContainer/VolumeSettingsContainer" unique_id=2031430393]
 layout_mode = 2
 theme = ExtResource("6_v71do")
 bbcode_enabled = true
@@ -121,12 +120,12 @@ text = "Ambient Sounds Volume"
 fit_content = true
 scroll_active = false
 
-[node name="AmbientVolumeSlider" type="HSlider" parent="BottomLeft/SettingsContainer/VolumeSettingsContainer"]
+[node name="AmbientVolumeSlider" type="HSlider" parent="BottomLeft/SettingsContainer/VolumeSettingsContainer" unique_id=563552859]
 layout_mode = 2
 value = 50.0
 scrollable = false
 
-[node name="VoicesVolumeText" type="RichTextLabel" parent="BottomLeft/SettingsContainer/VolumeSettingsContainer"]
+[node name="VoicesVolumeText" type="RichTextLabel" parent="BottomLeft/SettingsContainer/VolumeSettingsContainer" unique_id=977824656]
 visible = false
 layout_mode = 2
 theme = ExtResource("6_v71do")
@@ -135,13 +134,13 @@ text = "Voices Volume"
 fit_content = true
 scroll_active = false
 
-[node name="VoicesVolumeSlider" type="HSlider" parent="BottomLeft/SettingsContainer/VolumeSettingsContainer"]
+[node name="VoicesVolumeSlider" type="HSlider" parent="BottomLeft/SettingsContainer/VolumeSettingsContainer" unique_id=2135976635]
 visible = false
 layout_mode = 2
 value = 80.0
 scrollable = false
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=212343770]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -150,17 +149,12 @@ offset_bottom = 714.0
 grow_horizontal = 0
 scale = Vector2(0.445, 0.445)
 
-[node name="AaronMusicLogoV1" type="Sprite2D" parent="CenterContainer"]
-position = Vector2(2325.8428, 1011.236)
-scale = Vector2(0.79715747, 0.76988876)
-texture = ExtResource("9_tp4c4")
-
-[node name="Shrike878x878" type="Sprite2D" parent="CenterContainer"]
-position = Vector2(2312.3596, 265.16852)
+[node name="Shrike878x878" type="Sprite2D" parent="CenterContainer" unique_id=1984303073]
+position = Vector2(2328.0898, 624.7191)
 scale = Vector2(0.4723044, 0.46994662)
 texture = ExtResource("10_uek13")
 
-[node name="CenterContainer2" type="CenterContainer" parent="."]
+[node name="CenterContainer2" type="CenterContainer" parent="." unique_id=654350228]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -169,20 +163,14 @@ offset_top = 137.0
 offset_bottom = 727.0
 grow_horizontal = 0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer2"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer2" unique_id=600612501]
 layout_mode = 2
 theme = ExtResource("6_v71do")
 theme_override_constants/outline_size = 20
 theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = "[center]Programming/Art/Design
-@ShrikeGames
-
-
-
-
-Music
-@Aaron_music_YT[/center]"
+@ShrikeGames[/center]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
